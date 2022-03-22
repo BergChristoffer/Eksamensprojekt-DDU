@@ -2,10 +2,15 @@ Button singlePlayerButton;
 Button multiPlayerButton;
 Button highScorePageButton;
 
+Player player1;
+Player player2;
+
 
 void setup() {
   size(1000, 1000);
   noStroke();
+  player1 = new Player(width/2-100,height/2);
+  player2 = new Player(width/2+100,height/2);
 
 }
 
@@ -15,6 +20,9 @@ void draw() {
   singlePlayerButton.update();
   multiPlayerButton.update();
   highScorePageButton.update();
+
+  //player1.display(color(255,0,0));
+  //player2.display(color(0,0,255));
 }
 
 void drawStartScreen() {
