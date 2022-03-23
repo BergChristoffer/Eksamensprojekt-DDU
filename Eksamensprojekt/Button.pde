@@ -17,7 +17,7 @@ class Button {
 
   void update() {
     display();
-    buttonClicked();
+    isClicked();
     mouseOver();
   }
 
@@ -45,7 +45,7 @@ class Button {
       return false;
   }
 
-  boolean buttonClicked() {
+  boolean isClicked() {
     if (mouseX >= x - (w/2) && mouseX <= x + (w/2) && mouseY >= y - (h/2) && mouseY <= y + (h/2) && mousePressed) {
       mousePressed = false;
       return true;
