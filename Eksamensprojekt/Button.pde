@@ -18,11 +18,17 @@ class Button {
   void update() {
     display();
     buttonClicked();
+    mouseOver();
   }
 
   void display() {
     rectMode(CENTER);
+    if(mouseOver() == false)
     fill(col);
+      else
+      fill(col,210);
+    
+    
     rect(x, y, w, h);
     textSize(textSize);
     textAlign(CENTER, CENTER);
@@ -31,12 +37,19 @@ class Button {
     fill(255);
   }
 
+  boolean mouseOver() {
+    if (mouseX >= x - (w/2) && mouseX <= x + (w/2) && mouseY >= y - (h/2) && mouseY <= y + (h/2)) {
+
+      return true;
+    } else
+      return false;
+  }
+
   boolean buttonClicked() {
     if (mouseX >= x - (w/2) && mouseX <= x + (w/2) && mouseY >= y - (h/2) && mouseY <= y + (h/2) && mousePressed) {
       mousePressed = false;
       return true;
-    } else{    
-      return false;
-    }
+    } else   
+    return false;
   }
 }
