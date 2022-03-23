@@ -90,6 +90,7 @@ void controlEvent(ControlEvent theEvent) {
 }
 
 String sql;
+//indsæt singleplayer navn i database
 void createSingleplayer() {
   db = new SQLite( this, "database.sqlite" );
   // Connect to database
@@ -98,7 +99,7 @@ void createSingleplayer() {
     try {
 
       if (singleplayerName != "") {
-        // Insert username & hashed password into database
+        // Insert username into database
         sql = "INSERT INTO singleplayer (name,score) VALUES ('" + singleplayerName + "', '" + 0 + "');";
         db.execute(sql);
 
@@ -113,6 +114,7 @@ void createSingleplayer() {
   }
 }
 
+//indsæt multiplayer navn i database
 void createMultiplayer() {
   db = new SQLite( this, "database.sqlite" );
   // Connect to database
@@ -121,7 +123,7 @@ void createMultiplayer() {
     try {
 
       if (singleplayerName != "") {
-        // Insert username & hashed password into database
+        // Insert username into database
         sql = "INSERT INTO multiplayer (name,score) VALUES ('" + multiplayerName + "', '" + 0 + "');";
         db.execute(sql);
 

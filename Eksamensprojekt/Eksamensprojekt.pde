@@ -15,6 +15,8 @@ Button playButton;
 Player player1;
 Player player2;
 
+//LevelController levelcontroller;
+
 boolean playSinglePlayer, playMultiPlayer = false;
 boolean start = true;
 boolean singlePlayerLoginScreen = false;
@@ -56,11 +58,14 @@ void draw() {
     playButton.update();
     backButton.update();
   }
-  
+
   if (playSinglePlayer) {
     player1.display(color(255, 0, 0));  
+    updateMovementPlayer1();
+
     if (playMultiPlayer) {
       player2.display(color(0, 0, 255));
+      updateMovementPlayer2();
     }
   }
 }
