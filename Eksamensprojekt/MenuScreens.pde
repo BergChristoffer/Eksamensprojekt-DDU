@@ -91,7 +91,7 @@ void controlEvent(ControlEvent theEvent) {
 
 String sql;
 void createSingleplayer() {
-  db = new SQLite( this, "DDU eksamen.sqlite" );
+  db = new SQLite( this, "database.sqlite" );
   // Connect to database
   if ( db.connect() )
   {
@@ -114,7 +114,7 @@ void createSingleplayer() {
 }
 
 void createMultiplayer() {
-  db = new SQLite( this, "DDU eksamen.sqlite" );
+  db = new SQLite( this, "database.sqlite" );
   // Connect to database
   if ( db.connect() )
   {
@@ -122,7 +122,7 @@ void createMultiplayer() {
 
       if (singleplayerName != "") {
         // Insert username & hashed password into database
-        sql = "INSERT INTO multiplayer (teamName,score) VALUES ('" + multiplayerName + "', '" + 0 + "');";
+        sql = "INSERT INTO multiplayer (name,score) VALUES ('" + multiplayerName + "', '" + 0 + "');";
         db.execute(sql);
 
         //multiplayerName = "";
