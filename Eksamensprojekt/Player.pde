@@ -54,13 +54,13 @@ void updateMovementPlayer1() {
   if (w) {
     player1.speed.x=cos(player1.angle);
     player1.speed.y=sin(player1.angle);
-    player1.speed.mult(2);
+    player1.speed.mult(3);
     player1.position.add(player1.speed);
   }
   if (s) {
     player1.speed.x=cos(player1.angle)*-1;
     player1.speed.y=sin(player1.angle)*-1;
-    player1.speed.mult(2);
+    player1.speed.mult(3);
     player1.position.add(player1.speed);
   }
   if (a) 
