@@ -43,7 +43,16 @@ class Player {
     if (position.y>height)
       position.y=0;
   }
-
+  boolean wallcolision() {
+    boolean colide = false;
+    for (int i=0; i<wall.length; i++) {
+      if (dist(position.x, position.y, wall[i].x, wall[i].y)<player1.size/2+wall[i].radius)
+        colide = true;
+    }
+    if (colide==true)
+    return true;
+    else return false;
+  }
   void turn(float a) {
     heading+=a;
   }

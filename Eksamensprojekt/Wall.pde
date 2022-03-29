@@ -21,12 +21,11 @@ class Wall {
     fill(255);
   }
 
-  boolean wallcolision() {
-
-    if (dist(player1.position.x, player1.position.y, x, y)<player1.size/2+radius)
-      return true;
-    if (dist(player2.position.x, player2.position.y, x, y)<player2.size/2+radius)
-      return true;
-    else return false;
-  }
+  //boolean wallcolision() {
+  //  if (dist(player1.position.x, player1.position.y, x, y)<player1.size/2+radius)
+  //    return true;
+  //  if (dist(player2.position.x, player2.position.y, x, y)<player2.size/2+radius)
+  //    return true;
+  //  else return false;
+  //}
 }
