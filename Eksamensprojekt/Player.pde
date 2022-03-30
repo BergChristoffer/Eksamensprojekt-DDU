@@ -1,4 +1,3 @@
-
 class Player {
   float health, angle;
   int size;
@@ -43,6 +42,7 @@ class Player {
     if (position.y>height)
       position.y=0;
   }
+  
   boolean wallcolision() {
     boolean colide = false;
     for (int i=0; i<wall.length; i++) {

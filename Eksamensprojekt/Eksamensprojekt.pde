@@ -14,6 +14,8 @@ Button playButton;
 Player player1;
 Player player2;
 
+Enemy enemy1;
+
 //LevelController levelcontroller;
 
 boolean playSinglePlayer, playMultiPlayer = false;
@@ -28,6 +30,7 @@ void setup() {
   noStroke();
   player1 = new Player(width/2, height/2);
   player2 = new Player(width/2+100, height/2);
+  enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
   drawSingleplayerLoginTextBox();
   drawMultiplayerLoginTextBox();
@@ -38,7 +41,7 @@ void setup() {
     //wall[1] = new Wall(600, 200, 50, color(0, 255, 0));
     //wall[2] = new Wall(800, 200, 50, color(0, 255, 0));
     //wall[3] = new Wall(width/2,800,150,color(255,0,255));
-    wall[i]=new Wall(random(width),random(height),random(5,80),color(0,255,0));
+    wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
     player1.speed.x=1;
     player2.speed.x=1;
   }
@@ -71,6 +74,9 @@ void draw() {
   if (playSinglePlayer) {
     player1.update();
     player1.display(color(255, 0, 0));
+
+    enemy1.update();
+
     if (player1.wallcolision()==false)
       updateMovementPlayer1();
     else {
