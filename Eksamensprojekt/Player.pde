@@ -14,7 +14,7 @@ class Player {
     speed = new PVector();
     size = 80;
     img = loadImage("sunglasses.png");
-    gun = new Gun();
+    gun = new Gun(position.x, position.y, "pistol" );
     bullet1 = new Bullet(position.x, position.y, 20);
     bullet2 = new Bullet(position.x, position.y, 20);
   }
@@ -37,7 +37,9 @@ class Player {
     circle(position.x, position.y, size);
     img.resize(0, size+25);
     image(img, position.x, position.y);
-    gun.display(position.x, position.y);
+    gun.x = position.x;
+    gun.y = position.y;
+    gun.display();
     popMatrix();
     if (shootplayer1)
       bullet1.display();
@@ -69,7 +71,7 @@ class Player {
   void turn(float a) {
     heading+=a;
   }
-  
+
   //metode til at skyde
   void shoot() {   
     //shoot1 metode til når player1 skyder
