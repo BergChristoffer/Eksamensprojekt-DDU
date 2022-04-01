@@ -75,7 +75,7 @@ void draw() {
     player1.update();
     player1.display(color(255, 0, 0));
 
-    //enemy1.update();
+    enemy1.update();
 
     if (player1.wallcolision()==false)
       updateMovementPlayer1();

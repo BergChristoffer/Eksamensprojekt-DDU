@@ -69,6 +69,7 @@ class Player {
   void turn(float a) {
     heading+=a;
   }
+  
   //metode til at skyde
   void shoot() {   
     //shoot1 metode til når player1 skyder
