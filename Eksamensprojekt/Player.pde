@@ -84,6 +84,10 @@ class Player {
       shoot1=false;
     }
     if (shootplayer1) {
+      for (int i = 0; i <wall.length; i++) {
+        if (dist(bullet1.position.x, bullet1.position.y, wall[i].x, wall[i].y)<10+wall[i].radius)
+          shootplayer1=false;
+      }
       bullet1.position.add(bullet1.velocity);
     }
     if (shoot2) {
@@ -92,18 +96,19 @@ class Player {
       bullet2.position.x=player2.position.x+44*cos(player2.angle+90)+80*cos(player2.angle);
       bullet2.position.y=player2.position.y+44*sin(player2.angle+90)+80*sin(player2.angle);
       bullet2.velocity.mult(10);
-      for (int i = 0; i <wall.length; i++) {
-        if (dist(bullet2.position.x, bullet2.position.y, wall[i].x, wall[i].y)>10+wall[i].radius)
-        shootplayer2=true;
-        else shootplayer2=false;
-      }
+      shootplayer2=true;
       shoot2=false;
     }
     if (shootplayer2) {
+      for (int i = 0; i <wall.length; i++) {
+        if (dist(bullet2.position.x, bullet2.position.y, wall[i].x, wall[i].y)<10+wall[i].radius)
+          shootplayer2=false;
+      }
       bullet2.position.add(bullet2.velocity);
     }
   }
 }
+
 
 
 void updateMovementPlayer1() {
