@@ -1,21 +1,21 @@
 class Gun {
   float x, y; //position
-  String gun;
+  String type;
 
-  Gun(float x, float y, String gun) {
+  Gun(float x, float y, String type) {
     this.x = x;
     this.y = y;
-    this.gun = gun;
+    this.type = type;
   }
 
   void display() {
 
-    if (gun == "pistol") {
+    if (type == "pistol") {
       fill(0);
       rect(x+20, y+40, 50, 10);
     }
 
-    if (gun == "rifle") {
+    if (type == "rifle") {
       fill(0);
       rect(x+20, y+40, 100, 10);
     }

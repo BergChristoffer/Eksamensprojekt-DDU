@@ -16,6 +16,12 @@ Player player2;
 
 Enemy enemy1;
 
+Gun gun1;
+Gun gun2;
+Bullet1 bullet1;
+Bullet2 bullet2;
+
+
 //LevelController levelcontroller;
 
 boolean playSinglePlayer, playMultiPlayer = false;
@@ -26,6 +32,7 @@ boolean multiplayerLoginScreen = false;
 Wall[] wall = new Wall[20];
 
 void setup() {
+  frameRate(60);
   size(1000, 1000);
   noStroke();
   player1 = new Player(width/2, height/2);
@@ -44,6 +51,7 @@ void setup() {
     wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
     player1.speed.x=30;
     player2.speed.x=30;
+
   }
 }
 
