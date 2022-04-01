@@ -3,7 +3,7 @@ class Enemy {
   int size;
   PVector position, speed;
   float heading;
-    float rotation = 0;
+  float rotation = 0;
 
 
 
@@ -38,11 +38,13 @@ class Enemy {
   }
 
   void updateMovement() {
-    if ((int)random(20) == 1) {
-      speed = new PVector(random(-10, 10), random(-10, 10));
-      position.add(speed);
-    }
+    if ((int)random(20) == 1) 
+      speed = new PVector(random(-5, 5), random(-5, 5));
+    
+    position.add(speed);
   }
+  
+  
   float updateRotation() {
     float rotate = 0;
     rotate = random(PI/10);
