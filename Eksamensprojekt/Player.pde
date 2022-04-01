@@ -4,18 +4,26 @@ class Player {
   PVector position, speed;
   PImage img; 
   float heading;
+  Gun gun;
+  Bullet bullet1;
+  Bullet bullet2;
+  boolean shootplayer1, shootplayer2 = false;
 
   Player(int positionX, int positionY) {
     position = new PVector(positionX, positionY);
     speed = new PVector();
     size = 80;
     img = loadImage("sunglasses.png");
+    gun = new Gun();
+    bullet1 = new Bullet(position.x, position.y, 20);
+    bullet2 = new Bullet(position.x, position.y, 20);
   }
 
 
   void update() {
     //checkedges();
     angle = heading-PI/2;
+    shoot();
   }
 
   void display(color c) {
@@ -29,7 +37,12 @@ class Player {
     circle(position.x, position.y, size);
     img.resize(0, size+25);
     image(img, position.x, position.y);
+    gun.display(position.x, position.y);
     popMatrix();
+    if (shootplayer1)
+      bullet1.display();
+    if (shootplayer2)
+      bullet2.display();
   }
 
   void checkedges() {
@@ -42,7 +55,7 @@ class Player {
     if (position.y>height)
       position.y=0;
   }
-  
+
   boolean wallcolision() {
     boolean colide = false;
     for (int i=0; i<wall.length; i++) {
@@ -50,11 +63,44 @@ class Player {
         colide = true;
     }
     if (colide==true)
-    return true;
+      return true;
     else return false;
   }
   void turn(float a) {
     heading+=a;
+  }
+  //metode til at skyde
+  void shoot() {   
+    //shoot1 metode til når player1 skyder
+    if (shoot1) {
+      bullet1.velocity.x=cos(angle);
+      bullet1.velocity.y=sin(angle);
+      //matematik til at forskyde kuglens position til at passe med våben
+      bullet1.position.x=position.x+44*cos(angle+90)+80*cos(angle);
+      bullet1.position.y=position.y+44*sin(angle+90)+80*sin(angle);
+      bullet1.velocity.mult(10);
+      shootplayer1=true;
+      shoot1=false;
+    }
+    if (shootplayer1) {
+      bullet1.position.add(bullet1.velocity);
+    }
+    if (shoot2) {
+      bullet2.velocity.x=cos(player2.angle);
+      bullet2.velocity.y=sin(player2.angle);
+      bullet2.position.x=player2.position.x+44*cos(player2.angle+90)+80*cos(player2.angle);
+      bullet2.position.y=player2.position.y+44*sin(player2.angle+90)+80*sin(player2.angle);
+      bullet2.velocity.mult(10);
+      for (int i = 0; i <wall.length; i++) {
+        if (dist(bullet2.position.x, bullet2.position.y, wall[i].x, wall[i].y)>10+wall[i].radius)
+        shootplayer2=true;
+        else shootplayer2=false;
+      }
+      shoot2=false;
+    }
+    if (shootplayer2) {
+      bullet2.position.add(bullet2.velocity);
+    }
   }
 }
 
@@ -103,10 +149,10 @@ void updateMovementPlayer2() {
 
 
 //player 1
-boolean w, a, s, d;
+boolean w, a, s, d, shoot1;
 
 //player 2
-boolean up, down, right, left;
+boolean up, down, right, left, shoot2;
 
 void keyPressed() {
   if  (keyCode == UP) {
@@ -125,6 +171,9 @@ void keyPressed() {
     right = true;
     left = false;
   }
+  if (key == 'm') {
+    shoot2=true;
+  }
 
   if (key == 'w') {
     w = true;
@@ -142,6 +191,9 @@ void keyPressed() {
     d = true;
     a = false;
   }
+  if (key == ' ') {
+    shoot1=true;
+  }
 }
 void keyReleased() {
   if  (keyCode == UP) {
@@ -156,6 +208,9 @@ void keyReleased() {
   if (keyCode == RIGHT) {
     right = false;
   }
+  if (key == 'm') {
+    shoot2 = false;
+  }
   if (key == 'w') {
     w = false;
   }  
@@ -167,5 +222,8 @@ void keyReleased() {
   }  
   if (key == 'd') {
     d = false;
+  }
+  if (key == ' ') {
+    shoot1=false;
   }
 }

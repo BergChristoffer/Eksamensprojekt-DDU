@@ -42,8 +42,8 @@ void setup() {
     //wall[2] = new Wall(800, 200, 50, color(0, 255, 0));
     //wall[3] = new Wall(width/2,800,150,color(255,0,255));
     wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
-    player1.speed.x=1;
-    player2.speed.x=1;
+    player1.speed.x=30;
+    player2.speed.x=30;
   }
 }
 
@@ -75,7 +75,7 @@ void draw() {
     player1.update();
     player1.display(color(255, 0, 0));
 
-    enemy1.update();
+    //enemy1.update();
 
     if (player1.wallcolision()==false)
       updateMovementPlayer1();

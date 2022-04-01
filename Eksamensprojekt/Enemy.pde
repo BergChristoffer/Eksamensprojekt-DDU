@@ -29,7 +29,7 @@ class Enemy {
   }
 
   void updateMovement() {
-    if ((int)random(5) == 1) {
+    if ((int)random(20) == 1) {
       speed = new PVector(random(-10, 10), random(-10, 10));
       position.add(speed);
     }
