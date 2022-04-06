@@ -17,17 +17,17 @@ class Bullet1 {
       velocity.y=sin(player1.angle);
 
       if (gun1.type == "pistol") {
-        velocity.mult(10);
+        velocity.mult(4);
         diameter = 10;
         a = 44;
-        b = 20;
+        b = 80;
       }
 
       if (gun1.type == "rifle") {
-        velocity.mult(30);
-        diameter = 20;
+        velocity.mult(10);
+        diameter = 15;
         a = 44;
-        b = 80;
+        b = 100;
       }
 
       position.x=position.x+a*cos(player1.angle+90)+b*cos(player1.angle);
@@ -72,7 +72,7 @@ class Bullet2 {
       }
 
       if (gun2.type == "rifle") {
-        velocity.mult(30);
+        velocity.mult(60);
         diameter = 100;
         a = 44;
         b = 80;

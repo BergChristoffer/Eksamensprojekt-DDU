@@ -13,7 +13,7 @@ class Player {
     size = 80;
     img = loadImage("sunglasses.png");
     gun1 = new Gun(position.x, position.y, "pistol");
-    gun2 = new Gun(position.x, position.y, "rifle");
+    gun2 = new Gun(position.x, position.y, "pistol");
 
     bullet1 = new Bullet1(position.x, position.y);
     bullet2 = new Bullet2(position.x, position.y);
