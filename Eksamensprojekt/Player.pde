@@ -1,22 +1,18 @@
-class Player {
+class Player { //<>//
   float health, angle;
   int size;
   PVector position, speed;
   PImage img; 
   float heading;
+  Gun gun;
 
 
-
-  Player(int positionX, int positionY) {
+  Player(int positionX, int positionY, Gun gun) {
     position = new PVector(positionX, positionY);
     speed = new PVector();
+    this.gun = gun;
     size = 80;
     img = loadImage("sunglasses.png");
-    gun1 = new Gun(position.x, position.y, "pistol");
-    gun2 = new Gun(position.x, position.y, "rifle");
-
-    bullet1 = new Bullet1(position.x, position.y);
-    bullet2 = new Bullet2(position.x, position.y);
   }
 
 
@@ -35,17 +31,11 @@ class Player {
     circle(position.x, position.y, size);
     img.resize(0, size+25);
     image(img, position.x, position.y);
-    gun1.x = position.x;
-    gun1.y = position.y;
-    gun1.display();   
-    gun2.x = position.x;
-    gun2.y = position.y;
-    gun2.display();
-
+    gun.angle = angle;
+    gun.x = position.x;
+    gun.y = position.y;
+    gun.display();   
     popMatrix();
-
-    bullet1.shoot();
-    bullet2.shoot();
   }
 
   void checkedges() {
@@ -141,7 +131,7 @@ void keyPressed() {
     left = false;
   }
   if (key == 'm') {
-    shoot2=true;
+    player2.gun.pullTrigger();
   }
 
   if (key == 'w') {
@@ -161,7 +151,7 @@ void keyPressed() {
     a = false;
   }
   if (key == ' ') {
-    shoot1 = true;
+    player1.gun.pullTrigger();
   }
 }
 void keyReleased() {
@@ -178,7 +168,7 @@ void keyReleased() {
     right = false;
   }
   if (key == 'm') {
-    shoot2 = false;
+    player2.gun.releaseTrigger();
   }
   if (key == 'w') {
     w = false;
@@ -193,6 +183,6 @@ void keyReleased() {
     d = false;
   }
   if (key == ' ') {
-    shoot1=false;
+    player1.gun.releaseTrigger();
   }
 }

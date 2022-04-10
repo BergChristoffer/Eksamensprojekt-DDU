@@ -1,95 +1,53 @@
-class Bullet1 {
-  PVector velocity, position;
-  boolean bulletPlayer1InAir;
-  float diameter, a, b; 
-  
-  Bullet1(float x, float y) {
-    position = new PVector(x, y);
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>//
 
-    velocity = new PVector();
-  }
-
-  void shoot() {
-    if (shoot1) {
-      position.x = player1.position.x;
-      position.y= player1.position.y;
-      velocity.x=cos(player1.angle);
-      velocity.y=sin(player1.angle);
-
-      if (gun1.type == "pistol") {
-        velocity.mult(10);
-        diameter = 10;
-        a = 44;
-        b = 20;
-      }
-
-      if (gun1.type == "rifle") {
-        velocity.mult(30);
-        diameter = 20;
-        a = 44;
-        b = 80;
-      }
-
-      position.x=position.x+a*cos(player1.angle+90)+b*cos(player1.angle);
-      position.y=position.y+a*sin(player1.angle+90)+b*sin(player1.angle);
-
-      bulletPlayer1InAir = true;
-      shoot1 = false;
+void updateBullets(){
+  for (int i = 0; i < bulletList.size(); i++) {
+      bulletList.get(i).update();
     }
+}
 
-    if (bulletPlayer1InAir)
-      position.add(velocity);
-    //else
-    //  diameter = 0;
+class Bullet {
+  PVector velocity, position;
+  boolean bulletPlayerInAir;
+  float diameter, angle; 
 
+  Bullet(float x, float y, float angle, float gunOffset1, float gunOffset2) {
+    position = new PVector(x, y);
+    this.angle = angle;
+    velocity = new PVector();
+    position.x=position.x+gunOffset1*cos(angle+90)+gunOffset2*cos(angle);
+    position.y=position.y+gunOffset1*sin(angle+90)+gunOffset2*sin(angle);
+    velocity.x=cos(angle);
+    velocity.y=sin(angle);
+  } //<>//
+
+  void update() {
+    fill(0);
     circle(position.x, position.y, diameter);
+    position.add(velocity);
   }
 }
 
-class Bullet2 {
-  PVector velocity, position;
-  boolean bulletPlayer2InAir;
-  float diameter, a, b; 
-  
-  Bullet2(float x, float y) {
-    position = new PVector(x, y);
-
-    velocity = new PVector();
+class PistolBullet extends Bullet {
+  PistolBullet(float x, float y, float angle) {
+    super(x, y, angle, 44, 20);
+    diameter = 10;
+    velocity.mult(10);
   }
+}
 
-  void shoot() {
-    if (shoot2) {
-      position.x = player2.position.x;
-      position.y= player2.position.y;
-      velocity.x=cos(player2.angle);
-      velocity.y=sin(player2.angle);
+class RifleBullet extends Bullet {
+  RifleBullet(float x, float y, float angle) {
+    super(x, y, angle, 44, 80);
+    diameter = 15;
+    velocity.mult(20);
+  }
+}
 
-      if (gun2.type == "pistol") {
-        velocity.mult(10);
-        diameter = 10;
-        a = 44;
-        b = 20;
-      }
-
-      if (gun2.type == "rifle") {
-        velocity.mult(30);
-        diameter = 100;
-        a = 44;
-        b = 80;
-      }
-
-      position.x=position.x+a*cos(player2.angle+90)+b*cos(player2.angle);
-      position.y=position.y+a*sin(player2.angle+90)+b*sin(player2.angle);
-
-      bulletPlayer2InAir = true;
-      shoot2 = false;
-    }
-
-    if (bulletPlayer2InAir)
-      position.add(velocity);
-    //else
-    //  diameter = 0;
-
-    circle(position.x, position.y, diameter);
+class MachineGunBullet extends Bullet {
+  MachineGunBullet(float x, float y, float angle) {
+    super(x, y, angle, 44, 80);
+    diameter = 20;
+    velocity.mult(30);
   }
 }

@@ -50,4 +50,8 @@ class Enemy {
     rotate = random(PI/10);
     return rotate;
   }
+
+
+  void checkCollision() {
+  }
 }

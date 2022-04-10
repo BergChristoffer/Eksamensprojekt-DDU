@@ -16,12 +16,7 @@ Player player2;
 
 Enemy enemy1;
 
-Gun gun1;
-Gun gun2;
-Bullet1 bullet1;
-Bullet2 bullet2;
-
-
+Gun gun;
 //LevelController levelcontroller;
 
 boolean playSinglePlayer, playMultiPlayer = false;
@@ -35,8 +30,8 @@ void setup() {
   frameRate(60);
   size(1000, 1000);
   noStroke();
-  player1 = new Player(width/2, height/2);
-  player2 = new Player(width/2+100, height/2);
+  player1 = new Player(width/2, height/2, new MachineGun());
+  player2 = new Player(width/2+100, height/2, new Pistol());
   enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
   drawSingleplayerLoginTextBox();
@@ -51,13 +46,12 @@ void setup() {
     wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
     player1.speed.x=30;
     player2.speed.x=30;
-
   }
 }
 
 void draw() {
   background(255);
-
+  updateBullets();
   if (start) {
     drawStartScreen();
     singlePlayerButton.update();
