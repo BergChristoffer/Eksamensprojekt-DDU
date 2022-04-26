@@ -38,7 +38,7 @@ class PistolBullet extends Bullet {
 
 class RifleBullet extends Bullet {
   RifleBullet(float x, float y, float angle) {
-    super(x, y, angle, 44, 80);
+    super(x, y, angle, 44, 150);
     diameter = 15;
     velocity.mult(20);
   }
@@ -46,8 +46,8 @@ class RifleBullet extends Bullet {
 
 class MachineGunBullet extends Bullet {
   MachineGunBullet(float x, float y, float angle) {
-    super(x, y, angle, 44, 80);
-    diameter = 20;
-    velocity.mult(30);
+    super(x, y, angle, 44, 150);
+    diameter = 10;
+    velocity.mult(15);
   }
 }

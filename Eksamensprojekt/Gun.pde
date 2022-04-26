@@ -11,10 +11,12 @@ abstract class Gun {
 
 class Pistol extends Gun {
   boolean triggerReleased = true;
+  PImage pistol = loadImage("pistol.png");
 
   void display() {
     fill(0);
-    rect(x+20, y+40, 50, 10);
+    pistol.resize(200,200);
+    image(pistol,x+20,y+40);
   }
   void pullTrigger() {
     if (triggerReleased) {
@@ -29,9 +31,12 @@ class Pistol extends Gun {
 
 class Rifle extends Gun {
   boolean triggerReleased = true;
+  PImage rifle = loadImage("rifle.png");
+  
   void display() {
     fill(0);
-    rect(x+20, y+40, 100, 10);
+    rifle.resize(200,300);
+    image(rifle,x+40,y+40);
   }
   void pullTrigger() {
     if (triggerReleased) {
@@ -45,9 +50,12 @@ class Rifle extends Gun {
 }
 
 class MachineGun extends Gun {
+  PImage machineGun = loadImage("machinegun.png");
+  
   void display() {
     fill(0);
-    rect(x+20, y+40, 100, 20);
+    machineGun.resize(300,300);
+    image(machineGun,x+60,y+40);
   }
   void pullTrigger() {
     bulletList.add(new MachineGunBullet(x, y, angle));

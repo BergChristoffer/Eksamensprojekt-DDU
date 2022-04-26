@@ -31,7 +31,7 @@ void setup() {
   size(1000, 1000);
   noStroke();
   player1 = new Player(width/2, height/2, new MachineGun());
-  player2 = new Player(width/2+100, height/2, new Pistol());
+  player2 = new Player(width/2+100, height/2, new Rifle());
   enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
   drawSingleplayerLoginTextBox();
