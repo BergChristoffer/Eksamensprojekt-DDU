@@ -45,7 +45,7 @@ void setup() {
     player1.speed.x=30;
     player2.speed.x=30;
   }
-  for (int i = 0; i < 1; i++) {
+  for (int i = 0; i < 5; i++) {
     enemyList.add(new Enemy(random(width), random(height)));
   }
 }

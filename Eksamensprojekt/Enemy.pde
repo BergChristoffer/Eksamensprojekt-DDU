@@ -16,7 +16,7 @@ class Enemy {
     updateHealth();
     if (health > 0) {
       display();
-      //updateMovement();
+      updateMovement();
     }
   }
 

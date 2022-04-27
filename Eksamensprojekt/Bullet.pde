@@ -30,7 +30,6 @@ class Bullet {
   }
 
   void update() {
-    //wallcollision
     if (wallhit == false) {
       fill(0);
       circle(position.x, position.y, diameter);
@@ -40,7 +39,7 @@ class Bullet {
 
   void wallcolide() {
     for (int i = 0; i<wall.length; i++) {
-      if (dist(position.x, position.y, wall[i].x, wall[i].y)<wall[i].radius) {
+      if (dist(position.x, position.y, wall[i].x, wall[i].y)<wall[i].radius || position.x < 0 || position.x > width || position.y < 0 || position.y > height) {
         wallhit=true;
       }
     }
