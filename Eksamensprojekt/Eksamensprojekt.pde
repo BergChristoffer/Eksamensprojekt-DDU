@@ -25,6 +25,8 @@ boolean singlePlayerLoginScreen = false;
 boolean multiplayerLoginScreen = false;
 
 Wall[] wall = new Wall[20];
+ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+
 
 void setup() {
   frameRate(60);
@@ -32,20 +34,19 @@ void setup() {
   noStroke();
   player1 = new Player(width/2, height/2, new MachineGun());
   player2 = new Player(width/2+100, height/2, new Rifle());
-  enemy1 = new Enemy(width/2, height/2);
+  //enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
   drawSingleplayerLoginTextBox();
   drawMultiplayerLoginTextBox();
   singleplayerText.setVisible(false);
   multiplayerText.setVisible(false);
   for (int i = 0; i<wall.length; i++) {
-    //wall[0] = new Wall(400, 200, 50, color(0, 255, 0));
-    //wall[1] = new Wall(600, 200, 50, color(0, 255, 0));
-    //wall[2] = new Wall(800, 200, 50, color(0, 255, 0));
-    //wall[3] = new Wall(width/2,800,150,color(255,0,255));
     wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
     player1.speed.x=30;
     player2.speed.x=30;
+  }
+  for (int i = 0; i < 5; i++) {
+    enemyList.add(new Enemy(random(width), random(height)));
   }
 }
 
@@ -77,7 +78,9 @@ void draw() {
     player1.update();
     player1.display(color(255, 0, 0));
 
-    enemy1.update();
+    for (int i = 0; i < enemyList.size(); i++) {
+      enemyList.get(i).update();
+    }
 
     if (player1.wallcolision()==false)
       updateMovementPlayer1();

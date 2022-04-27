@@ -52,6 +52,7 @@ class Enemy {
   }
 
 
-  void checkCollision() {
-  }
+  //void ifHit() {
+  //  if ()
+  //}
 }

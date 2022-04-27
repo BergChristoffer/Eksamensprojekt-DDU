@@ -42,7 +42,7 @@ class Player { //<>//
     if (position.x<0) 
       position.x=width;
     if (position.x>width)
-      position.x=0;
+    position.x=0;
     if (position.y<0)
       position.y=height;
     if (position.y>height)
