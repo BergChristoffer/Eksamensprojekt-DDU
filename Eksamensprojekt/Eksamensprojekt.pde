@@ -14,10 +14,7 @@ Button playButton;
 Player player1;
 Player player2;
 
-Enemy enemy1;
-
 Gun gun;
-//LevelController levelcontroller;
 
 boolean playSinglePlayer, playMultiPlayer = false;
 boolean start = true;
@@ -45,7 +42,7 @@ void setup() {
     player1.speed.x=30;
     player2.speed.x=30;
   }
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 10; i++) {
     enemyList.add(new Enemy(random(width), random(height)));
   }
 }
@@ -53,6 +50,7 @@ void setup() {
 void draw() {
   background(255);
   updateBullets();
+  updateEnemy();
   if (start) {
     drawStartScreen();
     singlePlayerButton.update();
@@ -78,8 +76,12 @@ void draw() {
     player1.update();
     player1.display(color(255, 0, 0));
 
+    //opdater alle arrayliste af enemy objekter
     for (int i = 0; i < enemyList.size(); i++) {
       enemyList.get(i).update();
+
+      //hvis mængden af penge på skærmen
+      displayScore();
     }
 
     if (player1.wallcolision()==false)
@@ -104,4 +106,12 @@ void draw() {
       wall[i].display();
     }
   }
+}
+
+long money = 0;
+
+void displayScore() {
+  fill(0);
+  textSize(25);
+  text("Money: " + money, width/2, 20);
 }

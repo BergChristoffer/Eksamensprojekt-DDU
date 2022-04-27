@@ -13,6 +13,17 @@ void updateBullets() {
   }
 }
 
+void updateEnemy() {
+  for (int i = 0; i < enemyList.size(); i++) {
+    if (enemyList.get(i).health == 0) {
+      money += 10;
+      enemyList.remove(i);
+    }
+  }
+}
+
+
+
 class Bullet {
   PVector velocity, position;
   boolean bulletPlayerInAir, wallhit;

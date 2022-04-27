@@ -14,11 +14,10 @@ class Enemy {
 
   void update() {
     updateHealth();
-    if (health > 0) {
-      display();
-      updateMovement();
-    }
+    display();
+    updateMovement();
   }
+
 
   void display() {
     pushMatrix();
