@@ -1,11 +1,10 @@
 class Enemy {
-  float health;
+  int health = 100;
   int size;
   PVector position, speed;
   float heading;
   float rotation = 0;
-
-
+  boolean hit;
 
   Enemy(float positionX, float positionY) {
     position = new PVector(positionX, positionY);
@@ -14,8 +13,11 @@ class Enemy {
   }
 
   void update() {
-    display();
-    updateMovement();
+    updateHealth();
+    if (health > 0) {
+      display();
+      //updateMovement();
+    }
   }
 
   void display() {
@@ -52,7 +54,10 @@ class Enemy {
   }
 
 
-  //void ifHit() {
-  //  if ()
-  //}
+  void updateHealth() {
+    if (hit) {
+      health = health-20;
+      hit = false;
+    }
+  }
 }

@@ -5,12 +5,17 @@ void updateBullets() {
     bulletList.get(i).update();
     bulletList.get(i).wallcolide();
     bulletList.get(i).enemyColide();
+
+    if (bulletList.get(i).wallhit) {
+      bulletList.remove(i);
+      println("fjerner bullet");
+    }
   }
 }
 
 class Bullet {
   PVector velocity, position;
-  boolean bulletPlayerInAir, wallhit, enemyHit;
+  boolean bulletPlayerInAir, wallhit;
   float diameter, angle; 
 
   Bullet(float x, float y, float angle, float gunOffset1, float gunOffset2) {
@@ -31,10 +36,6 @@ class Bullet {
       circle(position.x, position.y, diameter);
       position.add(velocity);
     }
-    if (wallhit == true) {
-      wallhit = false;
-      //println(wallhit);
-    }
   }
 
   void wallcolide() {
@@ -46,9 +47,9 @@ class Bullet {
   }
   void enemyColide() {
     for (int i = 0; i < enemyList.size(); i++) {
-      if (dist(position.x, position.y, enemyList.get(i).position.x, enemyList.get(i).position.x)<enemyList.get(i).size) {
-        wallhit=true;
-        enemyHit=true;
+      if (dist(position.x, position.y, enemyList.get(i).position.x, enemyList.get(i).position.y) < enemyList.get(i).size/2) {
+        wallhit = true;
+        enemyList.get(i).hit = true;
       }
     }
   }

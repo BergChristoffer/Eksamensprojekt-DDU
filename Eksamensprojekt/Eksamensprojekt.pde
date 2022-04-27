@@ -33,7 +33,7 @@ void setup() {
   size(1000, 1000);
   noStroke();
   player1 = new Player(width/2, height/2, new MachineGun());
-  player2 = new Player(width/2+100, height/2, new Rifle());
+  player2 = new Player(width/2+100, height/2, new Pistol());
   //enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
   drawSingleplayerLoginTextBox();
@@ -45,7 +45,7 @@ void setup() {
     player1.speed.x=30;
     player2.speed.x=30;
   }
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 1; i++) {
     enemyList.add(new Enemy(random(width), random(height)));
   }
 }
