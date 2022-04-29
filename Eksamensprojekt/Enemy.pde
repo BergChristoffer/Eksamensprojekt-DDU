@@ -2,7 +2,7 @@ class Enemy {
   int health = 100;
   int size;
   PVector position, speed;
-  float heading, agroRange;
+  float heading, agroRange, theta;
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target, blocked;
   PVector v = new PVector();
@@ -16,15 +16,17 @@ class Enemy {
   }
 
   void update() {
+    theta = v.heading();
+    for (int i = 0; i < wall.length; i++) {
+      if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
+        blocked = true;
+      } 
+    }
+    updateMovement();
     updateHealth();
     enemyWallCollide();
     display();
-    for (int i = 0; i < wall.length; i++) {      
-      if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
-        blocked=true;
-      } else blocked =false;
-    }
-    updateMovement();
+    blocked=false;
   }
 
 
@@ -71,6 +73,9 @@ class Enemy {
     speed.add(v);
     speed.limit(1);
     position.add(speed);
+    if (blocked)
+      agroRange = 0;
+    else agroRange = 400;
   }
   float updateRotation() {
     float rotate = 0;
@@ -138,8 +143,7 @@ class Enemy {
 
     if (distance <= r) {
       return true;
-    }
-    return false;
+    } else return false;
   }
 
   boolean linePoint(float x1, float y1, float x2, float y2, float px, float py) {
@@ -161,7 +165,6 @@ class Enemy {
     // rather than one #
     if (d1+d2 >= lineLen-buffer && d1+d2 <= lineLen+buffer) {
       return true;
-    }
-    return false;
+    } else return false;
   }
 }
