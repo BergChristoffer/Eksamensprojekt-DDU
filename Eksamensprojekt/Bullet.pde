@@ -1,4 +1,4 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>//
 
 void updateBullets() {
   for (int i = 0; i < bulletList.size(); i++) {
@@ -8,7 +8,7 @@ void updateBullets() {
 
     if (bulletList.get(i).wallhit) {
       bulletList.remove(i);
-      println("fjerner bullet");
+      //println("fjerner bullet");
     }
   }
 }
@@ -17,6 +17,7 @@ void updateEnemy() {
   for (int i = 0; i < enemyList.size(); i++) {
     if (enemyList.get(i).health == 0) {
       money += 10;
+      totalMoney += 10;
       enemyList.remove(i);
     }
   }

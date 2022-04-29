@@ -10,6 +10,10 @@ Button multiPlayerButton;
 Button highScorePageButton;
 Button backButton;
 Button playButton;
+Button buyRifleButtonP1;
+Button buyMachineGunButtonP1;
+Button buyRifleButtonP2;
+Button buyMachineGunButtonP2;
 
 Player player1;
 Player player2;
@@ -24,12 +28,11 @@ boolean multiplayerLoginScreen = false;
 Wall[] wall = new Wall[20];
 ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
-
 void setup() {
   frameRate(60);
   size(1000, 1000);
   noStroke();
-  player1 = new Player(width/2, height/2, new MachineGun());
+  player1 = new Player(width/2, height/2, new Pistol());
   player2 = new Player(width/2+100, height/2, new Pistol());
   //enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
@@ -42,7 +45,7 @@ void setup() {
     player1.speed.x=30;
     player2.speed.x=30;
   }
-    for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 1; i++) {
     enemyList.add(new Enemy());
   }
 }
@@ -76,16 +79,25 @@ void draw() {
     player1.update();
     player1.display(color(255, 0, 0));
 
+
+
+    //vis mængden af penge på skærmen
+    displayScore();
+
+    if (enemyList.size() == 0) {
+      openShopP1();
+      buyRifleButtonP1.update();
+      buyMachineGunButtonP1.update();
+    }
+
+
     //opdater alle arrayliste af enemy objekter
     for (int i = 0; i < enemyList.size(); i++) {
       enemyList.get(i).update();
-
-      //hvis mængden af penge på skærmen
-      displayScore();
     }
 
     if (player1.wallcolision()==false)
-    updateMovementPlayer1();
+      updateMovementPlayer1();
     else {
       player1.position.x=player1.position.x-(player1.speed.x*0.5);
       player1.position.y=player1.position.y-(player1.speed.y*0.5);
@@ -94,8 +106,15 @@ void draw() {
     if (playMultiPlayer) {
       player2.update();
       player2.display(color(0, 0, 255));
+      
+      if (enemyList.size() == 0) {
+      openShopP2();
+      buyRifleButtonP2.update();
+      buyMachineGunButtonP2.update();
+    }
+      
       if (player2.wallcolision()==false)
-      updateMovementPlayer2();
+        updateMovementPlayer2();
       else {
         player2.position.x=player2.position.x-(player2.speed.x*0.5);
         player2.position.y=player2.position.y-(player2.speed.y*0.5);
@@ -109,6 +128,7 @@ void draw() {
 }
 
 long money = 0;
+long totalMoney = 0;
 
 void displayScore() {
   fill(0);

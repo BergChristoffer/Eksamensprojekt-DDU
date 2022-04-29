@@ -7,7 +7,7 @@ class Player { //<>//
   Gun gun;
 
 
-  Player(int positionX, int positionY, Gun gun) {
+  Player(float positionX, float positionY, Gun gun) {
     position = new PVector(positionX, positionY);
     speed = new PVector();
     this.gun = gun;

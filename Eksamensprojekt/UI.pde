@@ -60,6 +60,53 @@ void drawMultiplayerLoginButtons() {
   }
 }
 
+void openShopP1() {
+  int rifleCost = 10;
+  int machineGunCost = 10;
+  if (enemyList.size() == 0) {
+    buyRifleButtonP1 = new Button(125, height - 200, width/5, 200, color(255, 0, 0), "BUY RIFLE : 50$", 20);
+    if (buyRifleButtonP1.isClicked()) {
+      if (money >= 10) {
+        player1 = new Player(player1.position.x, player1.position.y, new Rifle());
+        money -= rifleCost;
+      }
+    }
+    buyMachineGunButtonP1 = new Button(350, height - 200, width/5, 200, color(255, 0, 0), "BUY MACHINEGUN : 100$", 20);
+    if (buyMachineGunButtonP1.isClicked()) {
+      if (money >= 10) {
+        player1 = new Player(player1.position.x, player1.position.y, new MachineGun());
+        money -= machineGunCost;
+      }
+    }
+  }
+}
+
+void openShopP2() {
+  int rifleCost = 10;
+  int machineGunCost = 10;
+  if (enemyList.size() == 0) {
+    buyRifleButtonP2 = new Button(650, height - 200, width/5, 200, color(0, 0, 255), "BUY RIFLE : 50$", 20);
+    if (buyRifleButtonP2.isClicked()) {
+      if (money >= 10) {
+        player1 = new Player(player2.position.x, player2.position.y, new Rifle());
+        money -= rifleCost;
+      }
+    }
+    buyMachineGunButtonP2 = new Button(875, height - 200, width/5, 200, color(0, 0, 255), "BUY MACHINEGUN : 100$", 20);
+    if (buyMachineGunButtonP1.isClicked()) {
+      if (money >= 10) {
+        player1 = new Player(player2.position.x, player2.position.y, new MachineGun());
+        money -= machineGunCost;
+      }
+    }
+  }
+}
+ 
+void drawEndScreen() {
+  rect(width/2, height/2, 100, 100);
+  text("total score: " + totalMoney, width/2, height/2);
+}
+
 //string variable til navn på spiller(ne)
 String singleplayerName;
 String multiplayerName;
@@ -67,7 +114,7 @@ String multiplayerName;
 //kontroller tekstfelt
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isAssignableFrom(Textfield.class)) {
-    
+
     //singleplayer
     if (theEvent.getName() == "create player") {
       singleplayerName = theEvent.getStringValue();
