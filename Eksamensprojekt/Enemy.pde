@@ -4,26 +4,26 @@ class Enemy {
   PVector position, speed;
   float heading, agroRange;
   float rotation = 0;
-  boolean hit, wallhit, player1target, player2target;
+  boolean hit, wallhit, player1target, player2target, blocked;
+  PVector v = new PVector();
 
   Enemy() {
-    position = new PVector(random(width),random(height));
+    position = new PVector(random(width), random(height));
     speed = new PVector(random(2, -2), random(2, -2));
     size = 50;
     wallhit = false;
     agroRange = 400;
-    for (int i = 0; i<wall.length; i++)
-      if(dist(position.x,position.y,wall[i].x,wall[i].y)<size/2+wall[i].radius){
-           //position = new PVector(random(width),random(height));
-           position.x=speed.x+10;
-           position.y=speed.y+10;
-      }
   }
 
   void update() {
     updateHealth();
-    display();
     enemyWallCollide();
+    display();
+    for (int i = 0; i < wall.length; i++) {      
+      if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
+        blocked=true;
+      } else blocked =false;
+    }
     updateMovement();
   }
 
@@ -49,20 +49,21 @@ class Enemy {
 
   void updateMovement() {
     //simple ai til enemy
-    PVector v = new PVector();
-    //hvis dist mellem player1 og enemy er mindre end player2 og enemy få fjende agro på player1
-    if (dist(position.x, position.y, player1.position.x, player1.position.y)<dist(position.x, position.y, player2.position.x, player2.position.y)&&player2target==false) 
-      //hvis dist mellem player1 og enemy er mindre end agro range bliver accelerationen, v, sat mod player1
-      if (dist(position.x, position.y, player1.position.x, player1.position.y)<agroRange) { 
-        v = PVector.sub(player1.position, position);
-        player1target = true;
-      } else 
-      player1target = false;
 
-    if (dist(position.x, position.y, player2.position.x, player2.position.y)<agroRange&&player1target==false) {
-      v = PVector.sub(player2.position, position);
-      player2target = true;
-    } else player2target = false;
+    //hvis dist mellem player1 og enemy er mindre end player2 og enemy få fjende agro på player1
+    //if (dist(position.x, position.y, player1.position.x, player1.position.y)<dist(position.x, position.y, player2.position.x, player2.position.y)&&player2target==false) 
+    //hvis dist mellem player1 og enemy er mindre end agro range bliver accelerationen, v, sat mod player1
+    if (dist(position.x, position.y, player1.position.x, player1.position.y)<agroRange&&player2target==false) { 
+      v = PVector.sub(player1.position, position);
+      player1target = true;
+    } else
+      player1target = false;
+    if (playMultiPlayer) {
+      if (dist(position.x, position.y, player2.position.x, player2.position.y)<agroRange&&player1target==false) {
+        v = PVector.sub(player2.position, position);
+        player2target = true;
+      } else player2target = false;
+    }
     v.normalize();
     //hvor hurtigt skal fjenden kunne dreje
     v.mult(0.1);
@@ -93,22 +94,9 @@ class Enemy {
         speed.y *= -1;
       }
       if (dist(position.x, position.y, wall[i].x, wall[i].y)<size/2+wall[i].radius) {
-        speed.x = speed.x*-20;
-        speed.y = speed.y*-20;
-        player1target=false;
-        player2target=false;
+        speed.x = speed.x*-2;
+        speed.y = speed.y*-2;
       }
-
-      //PVector dist = PVector.sub(wall[i].position, position);     
-      //float distmag = dist.mag();
-      //float mindist = radius + wall[i].radius;
-      //if (distmag < mindist) {
-      //  float theta = dist.heading();
-      //  float sin = sin(theta);
-      //  float cos = cos(theta);
-      //  speed.x = cos * speed.x + sin * speed.y;
-      //  speed.y = cos * speed.y - sin * speed.x;
-      //}
     }
   }
 
@@ -118,5 +106,62 @@ class Enemy {
       health = health-20;
       hit = false;
     }
+  }
+
+  boolean lineCircle(float x1, float y1, float x2, float y2, float cx, float cy, float r) {
+
+    // get length of the line
+    float distX = x1 - x2;
+    float distY = y1 - y2;
+    float len = sqrt( (distX*distX) + (distY*distY) );
+
+    // get dot product of the line and circle
+    float dot = ( ((cx-x1)*(x2-x1)) + ((cy-y1)*(y2-y1)) ) / pow(len, 2);
+
+    // find the closest point on the line
+    float closestX = x1 + (dot * (x2-x1));
+    float closestY = y1 + (dot * (y2-y1));
+
+    boolean onSegment = linePoint(x1, y1, x2, y2, closestX, closestY);
+    if (!onSegment) return false;
+
+    // optionally, draw a circle at the closest
+    // point on the line
+    fill(255, 0, 0);
+    noStroke();
+    ellipse(closestX, closestY, 20, 20);
+
+    // get distance to closest point
+    distX = closestX - cx;
+    distY = closestY - cy;
+    float distance = sqrt( (distX*distX) + (distY*distY) );
+
+    if (distance <= r) {
+      return true;
+    }
+    return false;
+  }
+
+  boolean linePoint(float x1, float y1, float x2, float y2, float px, float py) {
+
+    // get distance from the point to the two ends of the line
+    float d1 = dist(px, py, x1, y1);
+    float d2 = dist(px, py, x2, y2);
+
+    // get the length of the line
+    float lineLen = dist(x1, y1, x2, y2);
+
+    // since floats are so minutely accurate, add
+    // a little buffer zone that will give collision
+    float buffer = 0.1;    // higher # = less accurate
+
+    // if the two distances are equal to the line's
+    // length, the point is on the line!
+    // note we use the buffer here to give a range,
+    // rather than one #
+    if (d1+d2 >= lineLen-buffer && d1+d2 <= lineLen+buffer) {
+      return true;
+    }
+    return false;
   }
 }
