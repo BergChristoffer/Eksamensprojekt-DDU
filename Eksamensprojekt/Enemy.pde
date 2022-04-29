@@ -6,19 +6,25 @@ class Enemy {
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target;
 
-  Enemy(float positionX, float positionY) {
-    position = new PVector(positionX, positionY);
+  Enemy() {
+    position = new PVector(random(width),random(height));
     speed = new PVector(random(2, -2), random(2, -2));
     size = 50;
     wallhit = false;
     agroRange = 400;
+    for (int i = 0; i<wall.length; i++)
+      if(dist(position.x,position.y,wall[i].x,wall[i].y)<size/2+wall[i].radius){
+           //position = new PVector(random(width),random(height));
+           position.x=speed.x+10;
+           position.y=speed.y+10;
+      }
   }
 
   void update() {
     updateHealth();
     display();
-    updateMovement();
     enemyWallCollide();
+    updateMovement();
   }
 
 
@@ -62,7 +68,7 @@ class Enemy {
     v.mult(0.1);
     //tilføjer v til speed
     speed.add(v);
-    speed.limit(2);
+    speed.limit(1);
     position.add(speed);
   }
   float updateRotation() {
@@ -85,6 +91,12 @@ class Enemy {
       } else if (position.y < radius) {
         position.y = radius;
         speed.y *= -1;
+      }
+      if (dist(position.x, position.y, wall[i].x, wall[i].y)<size/2+wall[i].radius) {
+        speed.x = speed.x*-20;
+        speed.y = speed.y*-20;
+        player1target=false;
+        player2target=false;
       }
 
       //PVector dist = PVector.sub(wall[i].position, position);     

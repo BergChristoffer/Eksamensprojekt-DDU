@@ -42,8 +42,8 @@ void setup() {
     player1.speed.x=30;
     player2.speed.x=30;
   }
-  for (int i = 0; i < 10; i++) {
-    enemyList.add(new Enemy(random(width), random(height)));
+    for (int i = 0; i < 10; i++) {
+    enemyList.add(new Enemy());
   }
 }
 
@@ -85,7 +85,7 @@ void draw() {
     }
 
     if (player1.wallcolision()==false)
-      updateMovementPlayer1();
+    updateMovementPlayer1();
     else {
       player1.position.x=player1.position.x-(player1.speed.x*0.5);
       player1.position.y=player1.position.y-(player1.speed.y*0.5);
@@ -95,7 +95,7 @@ void draw() {
       player2.update();
       player2.display(color(0, 0, 255));
       if (player2.wallcolision()==false)
-        updateMovementPlayer2();
+      updateMovementPlayer2();
       else {
         player2.position.x=player2.position.x-(player2.speed.x*0.5);
         player2.position.y=player2.position.y-(player2.speed.y*0.5);
