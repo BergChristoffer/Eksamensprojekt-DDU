@@ -2,7 +2,7 @@ class Enemy {
   int health = 100;
   int size;
   PVector position, speed;
-  float heading, agroRange, theta;
+  float heading, agroRange, theta, speedlimit;
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target, blocked;
   PVector v = new PVector();
@@ -20,22 +20,20 @@ class Enemy {
     for (int i = 0; i < wall.length; i++) {
       if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
         blocked = true;
-      } 
+      }
     }
     updateMovement();
     updateHealth();
     enemyWallCollide();
     display();
     blocked=false;
+    speedlimit = 1;
   }
 
 
   void display() {
     pushMatrix();
-
     translate(position.x, position.y);
-
-
     rotation = rotation + updateRotation();
     rotate(rotation);
     translate(-position.x, -position.y);
@@ -70,12 +68,15 @@ class Enemy {
     //hvor hurtigt skal fjenden kunne dreje
     v.mult(0.1);
     //tilføjer v til speed
-    speed.add(v);
-    speed.limit(1);
+    if (blocked==false)
+      speed.add(v);
+    speed.limit(speedlimit);
     position.add(speed);
-    if (blocked)
+    if (blocked) {
       agroRange = 0;
-    else agroRange = 400;
+      speed.normalize();
+      speed = speed.mult(speedlimit);
+    } else agroRange = 400;
   }
   float updateRotation() {
     float rotate = 0;
@@ -99,8 +100,7 @@ class Enemy {
         speed.y *= -1;
       }
       if (dist(position.x, position.y, wall[i].x, wall[i].y)<size/2+wall[i].radius) {
-        speed.x = speed.x*-2;
-        speed.y = speed.y*-2;
+        speed = new PVector(speed.x*-2, speed.y*-2);
       }
     }
   }

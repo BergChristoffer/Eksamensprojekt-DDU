@@ -40,13 +40,13 @@ class Player { //<>//
 
   void checkedges() {
     if (position.x<0) 
-      position.x=width;
+      position.x=0;
     if (position.x>width)
-    position.x=0;
+    position.x=width;
     if (position.y<0)
-      position.y=height;
-    if (position.y>height)
       position.y=0;
+    if (position.y>height)
+      position.y=height;
   }
 
   boolean wallcolision() {
