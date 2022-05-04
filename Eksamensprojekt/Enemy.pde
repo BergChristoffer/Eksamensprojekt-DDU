@@ -4,7 +4,7 @@ class Enemy {
   PVector position, speed;
   float heading, agroRange, theta, speedlimit;
   float rotation = 0;
-  boolean hit, wallhit, player1target, player2target, blocked;
+  boolean hit, wallhit, player1target, player2target, player1blocked, player2blocked;
   PVector v = new PVector();
 
   Enemy() {
@@ -13,21 +13,25 @@ class Enemy {
     size = 50;
     wallhit = false;
     agroRange = 400;
+    speedlimit = 1;
   }
 
   void update() {
     theta = v.heading();
     for (int i = 0; i < wall.length; i++) {
       if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
-        blocked = true;
+        player1blocked = true;
+      }
+      if (lineCircle(position.x, position.y, player2.position.x, player2.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
+        player2blocked = true;
       }
     }
     updateMovement();
     updateHealth();
     enemyWallCollide();
     display();
-    blocked=false;
-    speedlimit = 1;
+    player1blocked = false;
+    player2blocked = false;
   }
 
 
@@ -53,13 +57,12 @@ class Enemy {
     //hvis dist mellem player1 og enemy er mindre end player2 og enemy få fjende agro på player1
     //if (dist(position.x, position.y, player1.position.x, player1.position.y)<dist(position.x, position.y, player2.position.x, player2.position.y)&&player2target==false) 
     //hvis dist mellem player1 og enemy er mindre end agro range bliver accelerationen, v, sat mod player1
-    if (dist(position.x, position.y, player1.position.x, player1.position.y)<agroRange&&player2target==false) { 
+    if (dist(position.x, position.y, player1.position.x, player1.position.y)<agroRange&&player2target==false&&player1blocked==false) { 
       v = PVector.sub(player1.position, position);
       player1target = true;
-    } else
-      player1target = false;
+    } else player1target = false;
     if (playMultiPlayer) {
-      if (dist(position.x, position.y, player2.position.x, player2.position.y)<agroRange&&player1target==false) {
+      if (dist(position.x, position.y, player2.position.x, player2.position.y)<agroRange&&player1target==false&&player2blocked==false) {
         v = PVector.sub(player2.position, position);
         player2target = true;
       } else player2target = false;
@@ -68,15 +71,14 @@ class Enemy {
     //hvor hurtigt skal fjenden kunne dreje
     v.mult(0.1);
     //tilføjer v til speed
-    if (blocked==false)
-      speed.add(v);
+    //if (player1blocked==false||player2blocked==false)
+    //  speed.add(v);
     speed.limit(speedlimit);
     position.add(speed);
-    if (blocked) {
-      agroRange = 0;
+    if (player1target==false&&player2target==false) {
       speed.normalize();
       speed = speed.mult(speedlimit);
-    } else agroRange = 400;
+    } else speed.add(v);
   }
   float updateRotation() {
     float rotate = 0;
