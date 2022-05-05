@@ -34,7 +34,7 @@ void setup() {
   frameRate(60);
   size(1000, 1000);
   noStroke();
-  player1 = new Player(width/2, height/2, new MachineGun());
+  player1 = new Player(width/2, height/2, new Pistol());
   player2 = new Player(width/2+100, height/2, new Pistol());
   //enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
@@ -84,6 +84,9 @@ void draw() {
   if (playSinglePlayer) {
     player1.update();
     player1.display(color(255, 0, 0));
+
+    updateEnemyShooting();
+
 
     //kontroller levels
     if (startLevel1) {
@@ -144,11 +147,11 @@ void draw() {
     }
 
     //if (player1.wallcolision() == false)
-      updateMovementPlayer1();
-    if (player1.wallcolision()){
+    updateMovementPlayer1();
+    if (player1.wallcolision()) {
       player1.position = new PVector(player1.tempPos.x, player1.tempPos.y);
       player1.colide = false;
-  }
+    }
 
 
     if (playMultiPlayer) {

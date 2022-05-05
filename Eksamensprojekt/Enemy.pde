@@ -8,6 +8,7 @@ class Enemy {
   PVector v = new PVector();
   Gun gun;
   String gunType;
+  int coolDown = 0;
 
   Enemy(PVector pos, String gunType) {
     position = new PVector(pos.x, pos.y);
@@ -60,7 +61,7 @@ class Enemy {
     rectMode(CENTER);
     fill(0); 
 
-    gun.angle = rotation;
+    gun.angle = speed.heading();
     gun.x = position.x;
     gun.y = position.y;
     gun.display();

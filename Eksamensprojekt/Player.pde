@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>//
   float health, angle;
   int size;
   PVector position, speed, tempPos;
@@ -6,7 +6,7 @@ class Player { //<>// //<>// //<>//
   float heading;
   boolean colide = false;
   Gun gun;
-
+  int gunCoolDown = 0;
 
   Player(float positionX, float positionY, Gun gun) {
     position = new PVector(positionX, positionY);

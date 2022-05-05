@@ -3,21 +3,34 @@ boolean startLevel1, startLevel2, startLevel3, startLevel4;
 boolean level1IsRunning, level2IsRunning;
 boolean wave1, wave2, wave3, wave4;
 
-//void updateEnemyShooting() {
-//  for (int i = 0; i < enemyList.size(); i++) {
-//    if (enemyList.get(i).gunType == "Pistol") {
-//    }
-//    if (enemyList.get(i).gunType == "Rifle") {
-//    }
-//    if (enemyList.get(i).gunType == "MachineGun") {
-//      if (enemyList.get(i).player1blocked == false || enemyList.get(i).player2blocked == false) {
-//        enemyList.get(i).gun.pullTrigger();
-//      } else if (enemyList.get(i).player1blocked || enemyList.get(i).player2blocked) {    
-//        enemyList.get(i).gun.releaseTrigger();
-//      }
-//    }
-//  }
-//}
+
+void updateEnemyShooting() {
+  for (int i = 0; i < enemyList.size(); i++) {
+    if (enemyList.get(i).gunType == "Pistol") {
+      if (enemyList.get(i).coolDown == 60) {
+        enemyList.get(i).gun.pullTrigger();
+        enemyList.get(i).gun.releaseTrigger();
+        enemyList.get(i).coolDown = 0;
+      } else
+        enemyList.get(i).coolDown++;
+    }
+    if (enemyList.get(i).gunType == "Rifle") {
+      if (enemyList.get(i).coolDown == 30) {
+        enemyList.get(i).gun.pullTrigger();
+        enemyList.get(i).gun.releaseTrigger();
+        enemyList.get(i).coolDown = 0;
+      } else
+        enemyList.get(i).coolDown++;
+    }
+    if (enemyList.get(i).gunType == "MachineGun") {
+      if (enemyList.get(i).player1target == true || enemyList.get(i).player2target == true) {
+        enemyList.get(i).gun.pullTrigger();
+      } else {    
+        enemyList.get(i).gun.releaseTrigger();
+      }
+    }
+  }
+}
 
 
 
