@@ -90,6 +90,7 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
+      player1 = new Player(width/2, height-100, new Pistol());
       startLevel1 = false;
       level1IsRunning = true;
       createLevel1();

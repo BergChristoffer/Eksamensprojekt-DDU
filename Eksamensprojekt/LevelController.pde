@@ -38,38 +38,42 @@ void updateEnemyShooting() {
 
 void spawnLevel1Enemies() {
   if (wave1) {
-    for (int i = 0; i < 1; i++) {
-      enemyList.add(new Enemy(new PVector(random(width), random(height)), "MachineGun"));
-    }
+      enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun"));
+      enemyList.add(new Enemy(new PVector(width/2+400, height/2), "MachineGun"));
+      enemyList.add(new Enemy(new PVector(width/2-400, height/2), "MachineGun"));
   }
 
   if (wave2) {
     for (int i = 0; i < 2; i++) {
-      //enemyList.add(new Enemy(new PVector(random(width), random(height)), new Pistol()));
+      enemyList.add(new Enemy(new PVector(random(width), random(height)), "Pistol"));
     }
   }
 }
 
 
+
 void createLevel1() { 
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
+  wallList.add(new Wall(0, 250, 50, color(150)));
+  wallList.add(new Wall(100, 200, 50, color(150)));
+  wallList.add(new Wall(200, 250, 50, color(150)));
+  wallList.add(new Wall(300, 200, 50, color(150)));
+  wallList.add(new Wall(width, 250, 50, color(150)));
+  wallList.add(new Wall(width-100, 200, 50, color(150)));
+  wallList.add(new Wall(width-200, 250, 50, color(150)));
+  wallList.add(new Wall(width-300, 200, 50, color(150)));
+
+  wallList.add(new Wall(0, height-250, 50, color(150)));
+  wallList.add(new Wall(100, height-200, 50, color(150)));
+  wallList.add(new Wall(200, height-250, 50, color(150)));
+  wallList.add(new Wall(300, height-200, 50, color(150)));
+  wallList.add(new Wall(width, height-250, 50, color(150)));
+  wallList.add(new Wall(width-100, height-200, 50, color(150)));
+  wallList.add(new Wall(width-200, height-250, 50, color(150)));
+  wallList.add(new Wall(width-300, height-200, 50, color(150)));
+
+  wallList.add(new Wall(width/2, height/2, 180, color(150)));
+  wallList.add(new Wall(width/2-250, height/2, 80, color(150)));
+  wallList.add(new Wall(width/2+250, height/2, 80, color(150)));
 }
 
 void createLevel2() {

@@ -12,7 +12,7 @@ class Enemy {
 
   Enemy(PVector pos, String gunType) {
     position = new PVector(pos.x, pos.y);
-    speed = new PVector(random(2, -2), random(2, -2));
+    speed = new PVector(random(-2, 2), random(-2, 2));
     size = 80;
     wallhit = false;
     agroRange = 400;
@@ -161,7 +161,7 @@ class Enemy {
     // point on the line
     fill(255, 0, 0);
     noStroke();
-    ellipse(closestX, closestY, 20, 20);
+    //ellipse(closestX, closestY, 20, 20);
 
     // get distance to closest point
     distX = closestX - cx;
