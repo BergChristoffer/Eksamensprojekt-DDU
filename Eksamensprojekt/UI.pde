@@ -52,6 +52,7 @@ void drawMultiplayerLoginButtons() {
     multiplayerLoginScreen = false;
     multiplayerText.setVisible(false);
     createMultiplayer();
+    startLevel1 = true;
   }
   backButton = new Button(100, 100, 100, 100, color(255, 0, 255), "BACK", 30);
   if (backButton.isClicked()) {

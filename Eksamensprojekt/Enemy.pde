@@ -2,23 +2,33 @@ class Enemy {
   int health = 100;
   int size;
   PVector position, speed;
-  float heading, agroRange, theta, speedlimit;
+  float agroRange, theta, speedlimit;
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target, player1blocked, player2blocked;
   PVector v = new PVector();
   Gun gun;
+  String gunType;
 
-  Enemy(PVector pos, Gun gun) {
+  Enemy(PVector pos, String gunType) {
     position = new PVector(pos.x, pos.y);
     speed = new PVector(random(2, -2), random(2, -2));
     size = 80;
     wallhit = false;
     agroRange = 400;
     speedlimit = 1;
-    this.gun = gun;
+    //this.gun = gun;
+    this.gunType = gunType;
+
+    if (gunType == "Pistol")
+      gun = new Pistol();
+    if (gunType == "Rifle")
+      gun = new Rifle();
+    if (gunType == "MachineGun")
+      gun = new MachineGun();
   }
 
   void update() {
+
     theta = v.heading();
     for (int i = 0; i < wallList.size(); i++) {
       if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wallList.get(i).x, wallList.get(i).y, wallList.get(i).radius)) {
@@ -39,24 +49,23 @@ class Enemy {
 
   void display() {
     pushMatrix();
-    translate(position.x, position.y);
-    rotation = rotation + updateRotation();
-    rotate(rotation);
+    translate(position.x, position.y);    
+
+    rotate(speed.heading());
     translate(-position.x, -position.y);
 
     //lav enemy
     fill(130, 0, 0);
     circle(position.x, position.y, size);
     rectMode(CENTER);
-    fill(0);
-    rect(position.x, position.y-20, 10, 10);  
-    
+    fill(0); 
+
     gun.angle = rotation;
     gun.x = position.x;
     gun.y = position.y;
     gun.display();
-    
-    
+
+
     popMatrix();
   }
 
@@ -89,11 +98,17 @@ class Enemy {
       speed = speed.mult(speedlimit);
     } else speed.add(v);
   }
+
+
+
   float updateRotation() {
     float rotate = 0;
     rotate = random(PI/10);
     return rotate;
   }
+
+
+
   void enemyWallCollide() {
     float radius = size/2;
     for (int i = 0; i<wallList.size(); i++) {
