@@ -1,5 +1,5 @@
 class Enemy {
-  int health = 100;
+  int health;
   int size;
   PVector position, speed;
   float agroRange, theta, speedlimit;
@@ -10,7 +10,7 @@ class Enemy {
   String gunType;
   int coolDown = 0;
 
-  Enemy(PVector pos, String gunType) {
+  Enemy(PVector pos, String gunType, int health) {
     position = new PVector(pos.x, pos.y);
     speed = new PVector(random(-2, 2), random(-2, 2));
     size = 80;
@@ -19,6 +19,7 @@ class Enemy {
     speedlimit = 1;
     //this.gun = gun;
     this.gunType = gunType;
+    this.health = health;
 
     if (gunType == "Pistol")
       gun = new Pistol();
@@ -56,10 +57,10 @@ class Enemy {
     translate(-position.x, -position.y);
 
     //lav enemy
-    fill(130, 0, 0);
+    fill(255, 255, 0);
     circle(position.x, position.y, size);
     rectMode(CENTER);
-    fill(0); 
+    fill(0);
 
     gun.angle = speed.heading();
     gun.x = position.x;
@@ -162,7 +163,6 @@ class Enemy {
 
     // optionally, draw a circle at the closest
     // point on the line
-    fill(255, 0, 0);
     noStroke();
     //ellipse(closestX, closestY, 20, 20);
 

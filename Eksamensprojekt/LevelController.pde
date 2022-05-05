@@ -31,29 +31,22 @@ void updateEnemyShooting() {
     }
   }
 }
-
-
-
-
-
+//level1
 void spawnLevel1Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun"));
-    enemyList.add(new Enemy(new PVector(200, height/2), "MachineGun"));
-    enemyList.add(new Enemy(new PVector(width-200, height/2), "MachineGun"));
+    //enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun", 20));
+    //enemyList.add(new Enemy(new PVector(200, height/2), "Pistol", 20));
+    //enemyList.add(new Enemy(new PVector(width-200, height/2), "Rifle", 20));
   }
 
   if (wave2) {
-    enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun"));
-    enemyList.add(new Enemy(new PVector(200, height/2), "MachineGun"));
-    enemyList.add(new Enemy(new PVector(width-200, height/2), "MachineGun"));
-    enemyList.add(new Enemy(new PVector(200,100), "MachineGun"));
-    enemyList.add(new Enemy(new PVector(width-200,100), "MachineGun"));
+    //enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun", 1));
+    //enemyList.add(new Enemy(new PVector(200, height/2), "MachineGun", 100));
+    //enemyList.add(new Enemy(new PVector(width-200, height/2), "MachineGun", 100));
+    //enemyList.add(new Enemy(new PVector(200, 100), "MachineGun", 100));
+    //enemyList.add(new Enemy(new PVector(width-200, 100), "MachineGun", 100));
   }
 }
-
-
-
 void createLevel1() { 
   wallList.add(new Wall(0, 250, 50, color(150)));
   wallList.add(new Wall(100, 200, 50, color(150)));
@@ -83,26 +76,26 @@ void createLevel1() {
   wallList.add(new Wall(width/2, height-50, 120, color(150)));
 }
 
-void createLevel2() {
-  for (int i = 0; i < 5; i++) {
-    //enemyList.add(new Enemy(new PVector(random(width), random(height)), new Pistol()));
+
+//level2
+void spawnLevel2Enemies() {
+  if (wave1) {
+    enemyList.add(new Enemy(new PVector(width-100, height-100), "Pistol", 255));
+    enemyList.add(new Enemy(new PVector(width-100, height-100), "Pistol", 100));
   }
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
-  wallList.add(new Wall(random(width), random(height), random(30, 80), color(150)));
+  if (wave2) {
+    enemyList.add(new Enemy(new PVector(100, 100), "Pistol", 1000));
+  }
+}
+void createLevel2() {
+  wallList.add(new Wall(width/2+170, height/2, 80, color(150)));
+  wallList.add(new Wall(width/2-170, height/2, 80, color(150)));
+  wallList.add(new Wall(width/2, height/2+220, 80, color(150)));
+  wallList.add(new Wall(width/2, height/2-220, 80, color(150)));
+  wallList.add(new Wall(width/2+500, height/2, 150, color(150)));
+  wallList.add(new Wall(width/2-500, height/2, 150, color(150)));
+  wallList.add(new Wall(200, 200, 30, color(150)));
+  wallList.add(new Wall(width-200, 200, 80, color(150)));
+  wallList.add(new Wall(width-430, height-200, 20, color(150)));
+  wallList.add(new Wall(300, height-100, 100, color(150)));
 }

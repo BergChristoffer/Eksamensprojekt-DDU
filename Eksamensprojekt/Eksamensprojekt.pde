@@ -99,11 +99,15 @@ void draw() {
       spawnLevel1Enemies();
     }
     if (startLevel2) {
+      player1 = new Player(100, 100, new Pistol());
+      player2 = new Player(100, 100, new Pistol());
       wallList.clear();
       levelOver = false;
       startLevel2 = false;
       level2IsRunning = true;
       createLevel2();
+      wave1 = true;
+      spawnLevel2Enemies();
     }
 
     //kontroler bølger af fjender
@@ -113,6 +117,15 @@ void draw() {
       spawnLevel1Enemies();
     }
     if (level1IsRunning && wave2 && enemyList.size() == 0)
+      levelOver = true;
+      
+      
+    if (level2IsRunning && wave1 && enemyList.size() == 0) {
+      wave1 = false;
+      wave2 = true;
+      spawnLevel2Enemies();
+    }
+    if (level2IsRunning && wave2 && enemyList.size() == 0)
       levelOver = true;
 
 
@@ -124,7 +137,7 @@ void draw() {
 
 
     if (levelOver) {     
-      if (time == 360)
+      if (time == 0)
         newLevel = true;
 
       time ++;
@@ -141,6 +154,7 @@ void draw() {
       openShopP1();
       buyRifleButtonP1.update();
       buyMachineGunButtonP1.update();
+      wave2=false;
     }
 
     //opdater alle arrayliste af enemy objekter
