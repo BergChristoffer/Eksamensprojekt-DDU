@@ -19,20 +19,22 @@ Player player1;
 Player player2;
 
 Gun gun;
+//LevelController levelController;
 
-boolean playSinglePlayer, playMultiPlayer = false;
+boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver;
 boolean start = true;
-boolean singlePlayerLoginScreen = false;
-boolean multiplayerLoginScreen = false;
+
 
 Wall[] wall = new Wall[20];
 ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+ArrayList<Wall> wallList = new ArrayList<Wall>();
 
+int time = 0;
 void setup() {
   frameRate(60);
   size(1000, 1000);
   noStroke();
-  player1 = new Player(width/2, height/2, new Pistol());
+  player1 = new Player(width/2, height/2, new MachineGun());
   player2 = new Player(width/2+100, height/2, new Pistol());
   //enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
@@ -40,14 +42,18 @@ void setup() {
   drawMultiplayerLoginTextBox();
   singleplayerText.setVisible(false);
   multiplayerText.setVisible(false);
-  for (int i = 0; i<wall.length; i++) {
-    wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
-    player1.speed.x=30;
-    player2.speed.x=30;
-  }
-  for (int i = 0; i < 1; i++) {
-    enemyList.add(new Enemy());
-  }
+
+
+  player1.speed.x=30;
+  player2.speed.x=30;
+
+
+  //for (int i = 0; i<wall.length; i++) {
+  //  wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
+  //}
+  //for (int i = 0; i < 5; i++) {
+  //  enemyList.add(new Enemy(new PVector(random(width), random(height)), new Pistol()));
+  //}
 }
 
 void draw() {
@@ -79,24 +85,65 @@ void draw() {
     player1.update();
     player1.display(color(255, 0, 0));
 
+    //kontroller levels
+    if (startLevel1) {
+      startLevel1 = false;
+      level1IsRunning = true;
+      createLevel1();
+      wave1 = true;
+      spawnLevel1Enemies();
+    }
+    if (startLevel2) {
+      wallList.clear();
+      levelOver = false;
+      startLevel2 = false;
+      level2IsRunning = true;
+      createLevel2();
+    }
+
+    //kontroler bølger af fjender
+    if (level1IsRunning && wave1 && enemyList.size() == 0) {
+      wave1 = false;
+      wave2 = true;
+      spawnLevel1Enemies();
+    }
+    if (level1IsRunning && wave2 && enemyList.size() == 0)
+      levelOver = true;
+
+
+
 
 
     //vis mængden af penge på skærmen
     displayScore();
 
-    if (enemyList.size() == 0) {
+
+    if (levelOver) {     
+      if (time == 360)
+        newLevel = true;
+
+      time ++;
+    }
+
+    if (newLevel) {
+      if (level1IsRunning) {
+        level1IsRunning = false;
+        startLevel2 = true;
+      }
+    }
+
+    if (levelOver) {
       openShopP1();
       buyRifleButtonP1.update();
       buyMachineGunButtonP1.update();
     }
-
 
     //opdater alle arrayliste af enemy objekter
     for (int i = 0; i < enemyList.size(); i++) {
       enemyList.get(i).update();
     }
 
-    if (player1.wallcolision()==false)
+    if (player1.wallcolision() == false)
       updateMovementPlayer1();
     else {
       player1.position.x=player1.position.x-(player1.speed.x*0.5);
@@ -106,13 +153,13 @@ void draw() {
     if (playMultiPlayer) {
       player2.update();
       player2.display(color(0, 0, 255));
-      
-      if (enemyList.size() == 0) {
-      openShopP2();
-      buyRifleButtonP2.update();
-      buyMachineGunButtonP2.update();
-    }
-      
+
+      if (levelOver) {
+        openShopP2();
+        buyRifleButtonP2.update();
+        buyMachineGunButtonP2.update();
+      }
+
       if (player2.wallcolision()==false)
         updateMovementPlayer2();
       else {
@@ -120,10 +167,15 @@ void draw() {
         player2.position.y=player2.position.y-(player2.speed.y*0.5);
       }
     }
-    for (int i = 0; i<wall.length; i++) {
-      wall[i].update();
-      wall[i].display();
+
+    for (int i = 0; i < wallList.size(); i++) {
+      wallList.get(i).update();
     }
+
+    //for (int i = 0; i<wall.length; i++) {
+    //  wall[i].update();
+    //  wall[i].display();
+    //}
   }
 }
 

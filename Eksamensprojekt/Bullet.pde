@@ -1,4 +1,4 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>//
 
 void updateBullets() {
   for (int i = 0; i < bulletList.size(); i++) {
@@ -50,8 +50,8 @@ class Bullet {
   }
 
   void wallcolide() {
-    for (int i = 0; i<wall.length; i++) {
-      if (dist(position.x, position.y, wall[i].x, wall[i].y)<wall[i].radius || position.x < 0 || position.x > width || position.y < 0 || position.y > height) {
+    for (int i = 0; i<wallList.size(); i++) {
+      if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y)<wallList.get(i).radius || position.x < 0 || position.x > width || position.y < 0 || position.y > height) {
         wallhit=true;
       }
     }

@@ -1,4 +1,4 @@
-class Player { //<>//
+class Player { //<>// //<>//
   float health, angle;
   int size;
   PVector position, speed;
@@ -42,7 +42,7 @@ class Player { //<>//
     if (position.x<0) 
       position.x=0;
     if (position.x>width)
-    position.x=width;
+      position.x=width;
     if (position.y<0)
       position.y=0;
     if (position.y>height)
@@ -51,8 +51,8 @@ class Player { //<>//
 
   boolean wallcolision() {
     boolean colide = false;
-    for (int i=0; i<wall.length; i++) {
-      if (dist(position.x, position.y, wall[i].x, wall[i].y)<player1.size/2+wall[i].radius)
+    for (int i=0; i<wallList.size(); i++) {
+      if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y) < size/2 + wallList.get(i).radius)
         colide = true;
     }
     if (colide==true)

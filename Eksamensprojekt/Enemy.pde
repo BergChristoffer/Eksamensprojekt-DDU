@@ -6,23 +6,25 @@ class Enemy {
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target, player1blocked, player2blocked;
   PVector v = new PVector();
+  Gun gun;
 
-  Enemy() {
-    position = new PVector(random(width), random(height));
+  Enemy(PVector pos, Gun gun) {
+    position = new PVector(pos.x, pos.y);
     speed = new PVector(random(2, -2), random(2, -2));
-    size = 50;
+    size = 80;
     wallhit = false;
     agroRange = 400;
     speedlimit = 1;
+    this.gun = gun;
   }
 
   void update() {
     theta = v.heading();
-    for (int i = 0; i < wall.length; i++) {
-      if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
+    for (int i = 0; i < wallList.size(); i++) {
+      if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wallList.get(i).x, wallList.get(i).y, wallList.get(i).radius)) {
         player1blocked = true;
       }
-      if (lineCircle(position.x, position.y, player2.position.x, player2.position.y, wall[i].x, wall[i].y, wall[i].radius)) {
+      if (lineCircle(position.x, position.y, player2.position.x, player2.position.y, wallList.get(i).x, wallList.get(i).y, wallList.get(i).radius)) {
         player2blocked = true;
       }
     }
@@ -48,6 +50,13 @@ class Enemy {
     rectMode(CENTER);
     fill(0);
     rect(position.x, position.y-20, 10, 10);  
+    
+    gun.angle = rotation;
+    gun.x = position.x;
+    gun.y = position.y;
+    gun.display();
+    
+    
     popMatrix();
   }
 
@@ -87,7 +96,7 @@ class Enemy {
   }
   void enemyWallCollide() {
     float radius = size/2;
-    for (int i = 0; i<wall.length; i++) {
+    for (int i = 0; i<wallList.size(); i++) {
       if (position.x > width-radius) {
         position.x = width-radius;
         speed.x *= -1;
@@ -101,7 +110,7 @@ class Enemy {
         position.y = radius;
         speed.y *= -1;
       }
-      if (dist(position.x, position.y, wall[i].x, wall[i].y)<size/2+wall[i].radius) {
+      if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y)<size/2+wallList.get(i).radius) {
         speed = new PVector(speed.x*-2, speed.y*-2);
       }
     }

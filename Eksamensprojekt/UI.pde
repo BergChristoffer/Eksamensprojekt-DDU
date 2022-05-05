@@ -28,6 +28,7 @@ void drawSinglePlayerLoginButtons() {
     singlePlayerLoginScreen = false;
     singleplayerText.setVisible(false);
     createSingleplayer();
+    startLevel1 = true;
   }
   backButton = new Button(100, 100, 100, 100, color(255, 0, 255), "BACK", 30);
   if (backButton.isClicked()) {
@@ -101,7 +102,7 @@ void openShopP2() {
     }
   }
 }
- 
+
 void drawEndScreen() {
   rect(width/2, height/2, 100, 100);
   text("total score: " + totalMoney, width/2, height/2);
