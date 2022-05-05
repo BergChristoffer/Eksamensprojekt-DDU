@@ -90,7 +90,8 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2, height-100, new Pistol());
+      player1 = new Player(width/2-100, height-100, new Pistol());
+      player2 = new Player(width/2+100, height-100, new Pistol());
       startLevel1 = false;
       level1IsRunning = true;
       createLevel1();
@@ -165,11 +166,10 @@ void draw() {
         buyMachineGunButtonP2.update();
       }
 
-      if (player2.wallcolision()==false)
-        updateMovementPlayer2();
-      else {
-        player2.position.x=player2.position.x-(player2.speed.x*0.5);
-        player2.position.y=player2.position.y-(player2.speed.y*0.5);
+      updateMovementPlayer2();
+      if (player2.wallcolision()) {
+        player2.position = new PVector(player2.tempPos.x, player2.tempPos.y);
+        player2.colide = false;
       }
     }
 
