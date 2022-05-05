@@ -38,15 +38,17 @@ void updateEnemyShooting() {
 
 void spawnLevel1Enemies() {
   if (wave1) {
-      enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun"));
-      enemyList.add(new Enemy(new PVector(width/2+400, height/2), "MachineGun"));
-      enemyList.add(new Enemy(new PVector(width/2-400, height/2), "MachineGun"));
+    enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun"));
+    enemyList.add(new Enemy(new PVector(200, height/2), "MachineGun"));
+    enemyList.add(new Enemy(new PVector(width-200, height/2), "MachineGun"));
   }
 
   if (wave2) {
-    for (int i = 0; i < 2; i++) {
-      enemyList.add(new Enemy(new PVector(random(width), random(height)), "Pistol"));
-    }
+    enemyList.add(new Enemy(new PVector(width/2, 100), "MachineGun"));
+    enemyList.add(new Enemy(new PVector(200, height/2), "MachineGun"));
+    enemyList.add(new Enemy(new PVector(width-200, height/2), "MachineGun"));
+    enemyList.add(new Enemy(new PVector(200,100), "MachineGun"));
+    enemyList.add(new Enemy(new PVector(width-200,100), "MachineGun"));
   }
 }
 
@@ -57,23 +59,28 @@ void createLevel1() {
   wallList.add(new Wall(100, 200, 50, color(150)));
   wallList.add(new Wall(200, 250, 50, color(150)));
   wallList.add(new Wall(300, 200, 50, color(150)));
+  wallList.add(new Wall(400, 200, 50, color(150)));
   wallList.add(new Wall(width, 250, 50, color(150)));
   wallList.add(new Wall(width-100, 200, 50, color(150)));
   wallList.add(new Wall(width-200, 250, 50, color(150)));
   wallList.add(new Wall(width-300, 200, 50, color(150)));
+  wallList.add(new Wall(width-400, 200, 50, color(150)));
 
   wallList.add(new Wall(0, height-250, 50, color(150)));
   wallList.add(new Wall(100, height-200, 50, color(150)));
   wallList.add(new Wall(200, height-250, 50, color(150)));
   wallList.add(new Wall(300, height-200, 50, color(150)));
+  wallList.add(new Wall(400, height-200, 50, color(150)));
   wallList.add(new Wall(width, height-250, 50, color(150)));
   wallList.add(new Wall(width-100, height-200, 50, color(150)));
   wallList.add(new Wall(width-200, height-250, 50, color(150)));
   wallList.add(new Wall(width-300, height-200, 50, color(150)));
+  wallList.add(new Wall(width-400, height-200, 50, color(150)));
 
   wallList.add(new Wall(width/2, height/2, 180, color(150)));
   wallList.add(new Wall(width/2-250, height/2, 80, color(150)));
   wallList.add(new Wall(width/2+250, height/2, 80, color(150)));
+  wallList.add(new Wall(width/2, height-50, 120, color(150)));
 }
 
 void createLevel2() {

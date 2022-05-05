@@ -93,7 +93,10 @@ class Enemy {
     //if (player1blocked==false||player2blocked==false)
     //  speed.add(v);
     speed.limit(speedlimit);
-    position.add(speed);
+    if (player1target||player2target) {
+      if (dist(player1.position.x, player1.position.y, position.x, position.y)>200&&dist(player2.position.x, player2.position.y, position.x, position.y)>200) 
+        position.add(speed);
+    } else position.add(speed);
     if (player1target==false&&player2target==false) {
       speed.normalize();
       speed = speed.mult(speedlimit);

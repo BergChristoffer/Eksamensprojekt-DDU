@@ -32,7 +32,7 @@ ArrayList<Wall> wallList = new ArrayList<Wall>();
 int time = 0;
 void setup() {
   frameRate(60);
-  size(1000, 1000);
+  size(1500, 900);
   noStroke();
   player1 = new Player(width/2, height/2, new Pistol());
   player2 = new Player(width/2+100, height/2, new Pistol());
@@ -90,8 +90,8 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-100, height-100, new Pistol());
-      player2 = new Player(width/2+100, height-100, new Pistol());
+      player1 = new Player(width/2-200, height-100, new Pistol());
+      player2 = new Player(width/2+200, height-100, new Pistol());
       startLevel1 = false;
       level1IsRunning = true;
       createLevel1();
