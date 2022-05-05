@@ -27,7 +27,7 @@ void drawSinglePlayerLoginButtons() {
     playSinglePlayer = true;
     singlePlayerLoginScreen = false;
     singleplayerText.setVisible(false);
-    createSingleplayer();
+    //createSingleplayer();
     startLevel1 = true;
   }
   backButton = new Button(100, 100, 100, 100, color(255, 0, 255), "BACK", 30);
@@ -51,7 +51,7 @@ void drawMultiplayerLoginButtons() {
     playMultiPlayer = true;
     multiplayerLoginScreen = false;
     multiplayerText.setVisible(false);
-    createMultiplayer();
+    //createMultiplayer();
     startLevel1 = true;
   }
   backButton = new Button(100, 100, 100, 100, color(255, 0, 255), "BACK", 30);
@@ -123,7 +123,7 @@ void controlEvent(ControlEvent theEvent) {
       playSinglePlayer = true;
       singlePlayerLoginScreen = false;
       singleplayerText.setVisible(false);
-      createSingleplayer();
+      //createSingleplayer();
     }
 
     //multiplayer
@@ -133,7 +133,7 @@ void controlEvent(ControlEvent theEvent) {
       playMultiPlayer = true;
       multiplayerLoginScreen = false;
       multiplayerText.setVisible(false);
-      createMultiplayer();
+      //createMultiplayer();
     }
   }
 }
