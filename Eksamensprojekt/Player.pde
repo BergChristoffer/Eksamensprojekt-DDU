@@ -1,9 +1,10 @@
-class Player { //<>// //<>//
+class Player { //<>// //<>// //<>//
   float health, angle;
   int size;
-  PVector position, speed;
+  PVector position, speed, tempPos;
   PImage img; 
   float heading;
+  boolean colide = false;
   Gun gun;
 
 
@@ -13,12 +14,17 @@ class Player { //<>// //<>//
     this.gun = gun;
     size = 80;
     img = loadImage("sunglasses.png");
+    tempPos = new PVector();
   }
 
 
   void update() {
     //checkedges();
     angle = heading-PI/2;
+    for (int i=0; i<wallList.size(); i++) {
+      if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y) >= size/2 + wallList.get(i).radius)
+        tempPos = new PVector(position.x, position.y);
+    }
   }
 
   void display(color c) {
@@ -50,14 +56,15 @@ class Player { //<>// //<>//
   }
 
   boolean wallcolision() {
-    boolean colide = false;
     for (int i=0; i<wallList.size(); i++) {
-      if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y) < size/2 + wallList.get(i).radius)
+      if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y) < size/2 + wallList.get(i).radius) {
         colide = true;
+      }
     }
-    if (colide==true)
+    if (colide==true) 
       return true;
-    else return false;
+    else 
+    return false;
   }
   void turn(float a) {
     heading+=a;

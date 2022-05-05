@@ -143,12 +143,13 @@ void draw() {
       enemyList.get(i).update();
     }
 
-    if (player1.wallcolision() == false)
+    //if (player1.wallcolision() == false)
       updateMovementPlayer1();
-    else {
-      player1.position.x=player1.position.x-(player1.speed.x*0.5);
-      player1.position.y=player1.position.y-(player1.speed.y*0.5);
-    }
+    if (player1.wallcolision()){
+      player1.position = new PVector(player1.tempPos.x, player1.tempPos.y);
+      player1.colide = false;
+  }
+
 
     if (playMultiPlayer) {
       player2.update();
