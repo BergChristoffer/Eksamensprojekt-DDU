@@ -1,10 +1,11 @@
 class Player { //<>//
-  float health, angle;
+  float angle;
+  int health = 100;
   int size;
   PVector position, speed, tempPos;
   PImage img; 
   float heading;
-  boolean colide = false;
+  boolean colide, hit;
   Gun gun;
   int gunCoolDown = 0;
   boolean shoot;
@@ -20,6 +21,7 @@ class Player { //<>//
 
 
   void update() {
+    updateHealth();
     gunCoolDown++;
     //println(gunCoolDown);
     //checkedges();
@@ -29,6 +31,14 @@ class Player { //<>//
         tempPos = new PVector(position.x, position.y);
     }
   }
+
+  void updateHealth() {
+    if (hit) {
+      println("playerhit");
+      hit = false;
+    }
+  }
+
 
   void display(color c) {
     pushMatrix();

@@ -15,11 +15,10 @@ void updateBullets() {
   for (int i = 0; i < enemyBulletList.size(); i++) {
     enemyBulletList.get(i).update();
     enemyBulletList.get(i).wallcolide();
-    enemyBulletList.get(i).enemyColide();
+    enemyBulletList.get(i).playerColide();
 
     if (enemyBulletList.get(i).wallhit) {
       enemyBulletList.remove(i);
-      println("fjerner bullet");
     }
   }
 }
@@ -33,7 +32,7 @@ void updateBullets() {
 
 void updateEnemy() {
   for (int i = 0; i < enemyList.size(); i++) {
-    if (enemyList.get(i).health == 0) {
+    if (enemyList.get(i).health <= 0) {
       money += 10;
       totalMoney += 10;
       enemyList.remove(i);
@@ -80,6 +79,16 @@ class Bullet {
         wallhit = true;
         enemyList.get(i).hit = true;
       }
+    }
+  }
+  void playerColide() {
+    if (dist(position.x, position.y, player1.position.x, player1.position.y) < player1.size/2) {
+      wallhit = true;
+      player1.hit = true;
+    }
+    if (dist(position.x, position.y, player2.position.x, player2.position.y) < player2.size/2) {
+      wallhit = true;
+      player2.hit = true;
     }
   }
 }
