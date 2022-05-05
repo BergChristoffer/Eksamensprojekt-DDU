@@ -1,4 +1,5 @@
 ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>//
+ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>(); //<>// //<>//
 
 void updateBullets() {
   for (int i = 0; i < bulletList.size(); i++) {
@@ -11,7 +12,24 @@ void updateBullets() {
       //println("fjerner bullet");
     }
   }
+  for (int i = 0; i < enemyBulletList.size(); i++) {
+    enemyBulletList.get(i).update();
+    enemyBulletList.get(i).wallcolide();
+    enemyBulletList.get(i).enemyColide();
+
+    if (enemyBulletList.get(i).wallhit) {
+      enemyBulletList.remove(i);
+      println("fjerner bullet bullet");
+    }
+  }
 }
+
+
+
+
+
+
+
 
 void updateEnemy() {
   for (int i = 0; i < enemyList.size(); i++) {
@@ -86,6 +104,6 @@ class MachineGunBullet extends Bullet {
   MachineGunBullet(float x, float y, float angle) {
     super(x, y, angle, 44, 150);
     diameter = 10;
-    velocity.mult(15);
+    velocity.mult(5);
   }
 }

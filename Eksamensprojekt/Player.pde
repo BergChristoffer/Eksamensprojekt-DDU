@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>// //<>//
+class Player { //<>//
   float health, angle;
   int size;
   PVector position, speed, tempPos;
@@ -7,6 +7,7 @@ class Player { //<>// //<>// //<>// //<>//
   boolean colide = false;
   Gun gun;
   int gunCoolDown = 0;
+  boolean shoot;
 
   Player(float positionX, float positionY, Gun gun) {
     position = new PVector(positionX, positionY);
@@ -19,6 +20,8 @@ class Player { //<>// //<>// //<>// //<>//
 
 
   void update() {
+    gunCoolDown++;
+    //println(gunCoolDown);
     //checkedges();
     angle = heading-PI/2;
     for (int i=0; i<wallList.size(); i++) {
@@ -139,6 +142,7 @@ void keyPressed() {
   }
   if (key == 'm') {
     player2.gun.pullTrigger();
+    player2.shoot = true;
   }
 
   if (key == 'w') {
@@ -159,6 +163,7 @@ void keyPressed() {
   }
   if (key == ' ') {
     player1.gun.pullTrigger();
+    player1.shoot = true;
   }
 }
 void keyReleased() {

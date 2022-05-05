@@ -1,5 +1,6 @@
 abstract class Gun {
   float x, y, angle;
+  int coolDown = 0;
 
   abstract void display();
 
@@ -24,6 +25,7 @@ class Pistol extends Gun {
       triggerReleased = false;
     }
   }
+
   void releaseTrigger() {
     triggerReleased = true;
   }
@@ -59,5 +61,25 @@ class MachineGun extends Gun {
   }
   void pullTrigger() {
     bulletList.add(new MachineGunBullet(x, y, angle));
+  }
+}
+
+class EnemyMachineGun extends Gun {
+  boolean triggerReleased = true;
+  PImage machineGun = loadImage("machinegun.png");
+
+  void display() {
+    fill(0);
+    machineGun.resize(300, 300);
+    image(machineGun, x+60, y+40);
+  }
+  void pullTrigger() {
+    if (triggerReleased) {
+      enemyBulletList.add(new MachineGunBullet(x, y, angle));
+      triggerReleased = false;
+    }
+  }
+  void releaseTrigger() {
+    triggerReleased = true;
   }
 }

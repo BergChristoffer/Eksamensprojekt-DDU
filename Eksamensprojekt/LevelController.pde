@@ -7,26 +7,29 @@ boolean wave1, wave2, wave3, wave4;
 void updateEnemyShooting() {
   for (int i = 0; i < enemyList.size(); i++) {
     if (enemyList.get(i).gunType == "Pistol") {
-      if (enemyList.get(i).coolDown == 60) {
+      if (enemyList.get(i).player1target == true && enemyList.get(i).coolDown >= 60 || enemyList.get(i).player2target == true && enemyList.get(i).coolDown >= 60 ) {
         enemyList.get(i).gun.pullTrigger();
         enemyList.get(i).gun.releaseTrigger();
         enemyList.get(i).coolDown = 0;
       } else
         enemyList.get(i).coolDown++;
     }
+
     if (enemyList.get(i).gunType == "Rifle") {
-      if (enemyList.get(i).coolDown == 30) {
+      if (enemyList.get(i).player1target == true && enemyList.get(i).coolDown >= 60 || enemyList.get(i).player2target == true && enemyList.get(i).coolDown >= 30 ) {
         enemyList.get(i).gun.pullTrigger();
         enemyList.get(i).gun.releaseTrigger();
         enemyList.get(i).coolDown = 0;
       } else
         enemyList.get(i).coolDown++;
     }
-    if (enemyList.get(i).gunType == "MachineGun") {
-      if (enemyList.get(i).player1target == true || enemyList.get(i).player2target == true) {
+    if (enemyList.get(i).gunType == "EnemyMachineGun") {
+      if (enemyList.get(i).player1target == true && enemyList.get(i).coolDown >= 10 || enemyList.get(i).player2target == true && enemyList.get(i).coolDown >= 10 ) {
         enemyList.get(i).gun.pullTrigger();
-      } else {    
         enemyList.get(i).gun.releaseTrigger();
+        enemyList.get(i).coolDown = 0;
+      } else {   
+        enemyList.get(i).coolDown++;
       }
     }
   }

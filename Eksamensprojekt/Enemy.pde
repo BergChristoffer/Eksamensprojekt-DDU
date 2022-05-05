@@ -9,6 +9,7 @@ class Enemy {
   Gun gun;
   String gunType;
   int coolDown = 0;
+  boolean shoot;
 
   Enemy(PVector pos, String gunType, int health) {
     position = new PVector(pos.x, pos.y);
@@ -25,8 +26,8 @@ class Enemy {
       gun = new Pistol();
     if (gunType == "Rifle")
       gun = new Rifle();
-    if (gunType == "MachineGun")
-      gun = new MachineGun();
+    if (gunType == "EnemyMachineGun")
+      gun = new EnemyMachineGun();
   }
 
   void update() {
