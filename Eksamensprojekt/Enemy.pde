@@ -57,9 +57,11 @@ class Enemy {
     rotate(speed.heading());
     translate(-position.x, -position.y);
 
-    //lav enemy
-    fill(255, 255, 0);
+    //lav enemy som viser liv
+    fill(255, 0, 0);
     circle(position.x, position.y, size);
+    fill(255,255,0,health);
+    circle(position.x,position.y,size);
     rectMode(CENTER);
     fill(0);
 
