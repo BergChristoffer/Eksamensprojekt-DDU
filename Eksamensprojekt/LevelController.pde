@@ -83,10 +83,10 @@ void createLevel1() {
 //level2
 void spawnLevel2Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50));
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyRifle", 100));
-    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 40));
-    enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100));
+    //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50));
+    //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyRifle", 100));
+    //enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 40));
+    //enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100));
   }
   if (wave2) {
     enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50));
@@ -94,7 +94,7 @@ void spawnLevel2Enemies() {
     enemyList.add(new Enemy(new PVector(width/2, height/2-50), "EnemyMachineGun", 40));
     enemyList.add(new Enemy(new PVector(width/2, height/2+50), "EnemyMachineGun", 40));
     enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100));
-    
+    enemyList.add(new Enemy(new PVector(width-300, 80), "EnemyPistol", 100));
   }
 }
 void createLevel2() {
@@ -104,7 +104,7 @@ void createLevel2() {
   wallList.add(new Wall(width/2, height/2-220, 80, color(150)));
   wallList.add(new Wall(width/2+500, height/2, 150, color(150)));
   wallList.add(new Wall(width/2-500, height/2, 150, color(150)));
-  wallList.add(new Wall(200, 200, 30, color(150)));
+  wallList.add(new Wall(200, 180, 30, color(150)));
   wallList.add(new Wall(width-200, 200, 80, color(150)));
   wallList.add(new Wall(width-430, height-200, 20, color(150)));
   wallList.add(new Wall(300, height-100, 100, color(150)));

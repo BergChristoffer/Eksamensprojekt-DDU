@@ -1,7 +1,7 @@
 class Enemy {
   int health;
   int size;
-  PVector position, speed;
+  PVector position, speed, tempPosEnemy;
   float agroRange, theta, speedlimit;
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target, player1blocked, player2blocked;
@@ -18,6 +18,7 @@ class Enemy {
     wallhit = false;
     agroRange = 400;
     speedlimit = 1;
+    tempPosEnemy = new PVector(0, 0);
     //this.gun = gun;
     this.gunType = gunType;
     this.health = health;
@@ -31,9 +32,10 @@ class Enemy {
   }
 
   void update() {
-
     theta = v.heading();
     for (int i = 0; i < wallList.size(); i++) {
+      if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y) >= size/2 + wallList.get(i).radius) 
+        tempPosEnemy = new PVector(position.x, position.y);
       if (lineCircle(position.x, position.y, player1.position.x, player1.position.y, wallList.get(i).x, wallList.get(i).y, wallList.get(i).radius)) {
         player1blocked = true;
       }
@@ -60,8 +62,8 @@ class Enemy {
     //lav enemy som viser liv
     fill(255, 0, 0);
     circle(position.x, position.y, size);
-    fill(255,255,0,health);
-    circle(position.x,position.y,size);
+    fill(255, 255, 0, health);
+    circle(position.x, position.y, size);
     rectMode(CENTER);
     fill(0);
 
@@ -132,8 +134,11 @@ class Enemy {
       } else if (position.y < radius) {
         position.y = radius;
         speed.y *= -1;
-      }
+      } 
       if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y)<size/2+wallList.get(i).radius) {
+        if (player1target||player2target)
+          position = new PVector(tempPosEnemy.x, tempPosEnemy.y);
+        else 
         speed = new PVector(speed.x*-2, speed.y*-2);
       }
     }
