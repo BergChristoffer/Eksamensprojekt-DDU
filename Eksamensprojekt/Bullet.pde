@@ -1,4 +1,4 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>//
 ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>(); //<>// //<>//
 
 void updateBullets() {
@@ -19,7 +19,7 @@ void updateBullets() {
 
     if (enemyBulletList.get(i).wallhit) {
       enemyBulletList.remove(i);
-      println("fjerner bullet bullet");
+      println("fjerner bullet");
     }
   }
 }

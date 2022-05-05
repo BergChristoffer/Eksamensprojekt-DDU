@@ -22,10 +22,10 @@ class Enemy {
     this.gunType = gunType;
     this.health = health;
 
-    if (gunType == "Pistol")
-      gun = new Pistol();
-    if (gunType == "Rifle")
-      gun = new Rifle();
+    if (gunType == "EnemyPistol")
+      gun = new EnemyPistol();
+    if (gunType == "EnemyRifle")
+      gun = new EnemyRifle();
     if (gunType == "EnemyMachineGun")
       gun = new EnemyMachineGun();
   }

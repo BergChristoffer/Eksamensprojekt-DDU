@@ -6,7 +6,7 @@ boolean wave1, wave2, wave3, wave4;
 
 void updateEnemyShooting() {
   for (int i = 0; i < enemyList.size(); i++) {
-    if (enemyList.get(i).gunType == "Pistol") {
+    if (enemyList.get(i).gunType == "EnemyPistol") {
       if (enemyList.get(i).player1target == true && enemyList.get(i).coolDown >= 60 || enemyList.get(i).player2target == true && enemyList.get(i).coolDown >= 60 ) {
         enemyList.get(i).gun.pullTrigger();
         enemyList.get(i).gun.releaseTrigger();
@@ -15,7 +15,7 @@ void updateEnemyShooting() {
         enemyList.get(i).coolDown++;
     }
 
-    if (enemyList.get(i).gunType == "Rifle") {
+    if (enemyList.get(i).gunType == "EnemyRifle") {
       if (enemyList.get(i).player1target == true && enemyList.get(i).coolDown >= 60 || enemyList.get(i).player2target == true && enemyList.get(i).coolDown >= 30 ) {
         enemyList.get(i).gun.pullTrigger();
         enemyList.get(i).gun.releaseTrigger();
@@ -83,8 +83,8 @@ void createLevel1() {
 //level2
 void spawnLevel2Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "Pistol", 255));
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "Pistol", 100));
+    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 255));
+    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 100));
   }
   if (wave2) {
     enemyList.add(new Enemy(new PVector(100, 100), "Pistol", 1000));
