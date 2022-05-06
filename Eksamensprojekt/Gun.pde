@@ -13,10 +13,11 @@ abstract class Gun {
 class Pistol extends Gun {
   boolean triggerReleased = true;
   PImage pistol = loadImage("pistol.png");
-
+  Pistol() {
+    pistol.resize(200, 200);
+  }
   void display() {
     fill(0);
-    pistol.resize(200, 200);
     image(pistol, x+20, y+40);
   }
   void pullTrigger() {
@@ -35,9 +36,12 @@ class Rifle extends Gun {
   boolean triggerReleased = true;
   PImage rifle = loadImage("rifle.png");
 
+  Rifle() {
+    rifle.resize(200, 300);
+  }
+
   void display() {
     fill(0);
-    rifle.resize(200, 300);
     image(rifle, x+40, y+40);
   }
   void pullTrigger() {
@@ -54,9 +58,12 @@ class Rifle extends Gun {
 class MachineGun extends Gun {
   PImage machineGun = loadImage("machinegun.png");
 
+  MachineGun() {
+    machineGun.resize(300, 300);
+  }
+
   void display() {
     fill(0);
-    machineGun.resize(300, 300);
     image(machineGun, x+60, y+40);
   }
   void pullTrigger() {
@@ -67,10 +74,12 @@ class MachineGun extends Gun {
 class EnemyPistol extends Gun {
   boolean triggerReleased = true;
   PImage pistol = loadImage("pistol.png");
+  EnemyPistol() {
+    pistol.resize(200, 200);
+  }
 
   void display() {
     fill(0);
-    pistol.resize(200, 200);
     image(pistol, x+20, y+40);
   }
   void pullTrigger() {
@@ -90,10 +99,12 @@ class EnemyPistol extends Gun {
 class EnemyRifle extends Gun {
   boolean triggerReleased = true;
   PImage rifle = loadImage("rifle.png");
+  EnemyRifle() {
+    rifle.resize(200, 300);
+  }
 
   void display() {
     fill(0);
-    rifle.resize(200, 300);
     image(rifle, x+40, y+40);
   }
   void pullTrigger() {
@@ -111,9 +122,12 @@ class EnemyMachineGun extends Gun {
   boolean triggerReleased = true;
   PImage machineGun = loadImage("machinegun.png");
 
+  EnemyMachineGun() {
+    machineGun.resize(300, 300);
+  }
+
   void display() {
     fill(0);
-    machineGun.resize(300, 300);
     image(machineGun, x+60, y+40);
   }
   void pullTrigger() {

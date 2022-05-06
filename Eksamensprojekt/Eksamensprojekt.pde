@@ -21,7 +21,7 @@ Button buyMachineGunButtonP2;
 Button placeholderP2a;
 Button placeholderP2b;
 Button placeholderP2c;
-PImage background;
+PImage background, red, blue;
 
 Player player1;
 Player player2;
@@ -39,6 +39,10 @@ ArrayList<Wall> wallList = new ArrayList<Wall>();
 
 int time = 0;
 void setup() {
+  red = loadImage("red.png");
+  blue = loadImage("blue.png");
+  red.resize(250,250);
+  blue.resize(250,250);
   imageMode(CENTER);
   frameRate(60);
   size(1500, 900);
@@ -94,7 +98,7 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, "MachineGun", color(255, 0, 0));
+      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
       player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;

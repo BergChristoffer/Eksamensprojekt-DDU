@@ -1,4 +1,4 @@
-class Player { //<>//
+class Player { //<>// //<>//
   float angle;
   int health = 100;
   int size;
@@ -27,6 +27,7 @@ class Player { //<>//
       gun = new Rifle();
     if (gunType == "MachineGun")
       gun = new MachineGun();
+    img.resize(0, size+25);
   }
 
 
@@ -59,7 +60,6 @@ class Player { //<>//
     imageMode(CENTER);
     translate(-position.x, -position.y);
     circle(position.x, position.y, size);
-    img.resize(0, size+25);
     image(img, position.x, position.y);
     gun.angle = angle;
     gun.x = position.x;
