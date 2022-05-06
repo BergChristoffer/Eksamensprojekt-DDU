@@ -1,5 +1,6 @@
 //metode til startskærm
 void drawStartScreen() {
+  background(50);
   singlePlayerButton = new Button(width * 1/4, height/2-100, width/2, height-200, color(255, 0, 0), "SINGLEPLAYER", 50);
   if (singlePlayerButton.isClicked()) {
     start = false;
@@ -119,7 +120,7 @@ void openShopP2() {
     }
   }
   buyMachineGunButtonP2 = new Button(width-width/4,500, width/2-90, 90, color(0, 0, 255), "BUY MACHINEGUN : 100$", 30);
-  if (buyMachineGunButtonP1.isClicked()) {
+  if (buyMachineGunButtonP2.isClicked()) {
     if (money >= 10) {
       player2 = new Player(player2.position.x, player2.position.y, "MachineGun", color(0, 0, 255));
       money -= machineGunCost;
