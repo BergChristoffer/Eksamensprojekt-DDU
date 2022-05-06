@@ -12,8 +12,15 @@ Button backButton;
 Button playButton;
 Button buyRifleButtonP1;
 Button buyMachineGunButtonP1;
+Button placeholderP1a;
+Button placeholderP1b;
+Button placeholderP1c;
+
 Button buyRifleButtonP2;
 Button buyMachineGunButtonP2;
+Button placeholderP2a;
+Button placeholderP2b;
+Button placeholderP2c;
 PImage background;
 
 Player player1;
@@ -135,7 +142,6 @@ void draw() {
 
 
     //vis mængden af penge på skærmen
-    displayScore();
 
 
     if (levelOver) {     
@@ -156,6 +162,9 @@ void draw() {
       openShopP1();
       buyRifleButtonP1.update();
       buyMachineGunButtonP1.update();
+      placeholderP1a.update();
+      placeholderP1b.update();
+      placeholderP1c.update();
       wave2=false;
     }
 
@@ -179,6 +188,9 @@ void draw() {
         openShopP2();
         buyRifleButtonP2.update();
         buyMachineGunButtonP2.update();
+        placeholderP2a.update();
+        placeholderP2b.update();
+        placeholderP2c.update();
       }
 
       updateMovementPlayer2();
@@ -189,7 +201,7 @@ void draw() {
     }
 
 
-
+    displayScore();
     //for (int i = 0; i<wall.length; i++) {
     //  wall[i].update();
     //  wall[i].display();
@@ -201,7 +213,12 @@ long money = 0;
 long totalMoney = 0;
 
 void displayScore() {
+  fill(255);
+  strokeWeight(5);
+  stroke(50);
+  rect(width/2,30,250,100);
+  noStroke();
   fill(0);
-  textSize(25);
-  text("Money: " + money, width/2, 20);
+  textSize(40);
+  text("Money: " + money, width/2, 25);
 }

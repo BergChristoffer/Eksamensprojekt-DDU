@@ -77,45 +77,55 @@ void drawMultiplayerLoginButtons() {
 }
 
 void openShopP1() {
+  fill(50);
+  rect(width/4, height/2, width/2-60, height-60);
+  fill(255);
+  rect(width/4,190,width/2-90,280);
   int rifleCost = 10;
   int machineGunCost = 10;
-  if (enemyList.size() == 0) {
-    buyRifleButtonP1 = new Button(125, height - 200, width/5, 200, color(255, 0, 0), "BUY RIFLE : 50$", 20);
-    if (buyRifleButtonP1.isClicked()) {
-      if (money >= 10) {
-        player1 = new Player(player1.position.x, player1.position.y, "Rifle", color(255, 0, 0));
-        money -= rifleCost;
-      }
-    }
-    buyMachineGunButtonP1 = new Button(350, height - 200, width/5, 200, color(255, 0, 0), "BUY MACHINEGUN : 100$", 20);
-    if (buyMachineGunButtonP1.isClicked()) {
-      if (money >= 10) {
-        player1 = new Player(player1.position.x, player1.position.y, "MachineGun", color(255, 0, 0));
-        money -= machineGunCost;
-      }
+  buyRifleButtonP1 = new Button(width/4, 400, width/2-90, 90, color(255, 0, 0), "BUY RIFLE : 50$", 30);
+  if (buyRifleButtonP1.isClicked()) {
+    if (money >= 10) {
+      player1 = new Player(player1.position.x, player1.position.y, "Rifle", color(255, 0, 0));
+      money -= rifleCost;
     }
   }
+  buyMachineGunButtonP1 = new Button(width/4, 500, width/2-90, 90, color(255, 0, 0), "BUY MACHINEGUN : 100$", 30);
+  if (buyMachineGunButtonP1.isClicked()) {
+    if (money >= 10) {
+      player1 = new Player(player1.position.x, player1.position.y, "MachineGun", color(255, 0, 0));
+      money -= machineGunCost;
+    }
+  }
+  placeholderP1a = new Button(width/4, 600, width/2-90, 90, color(255, 0, 0), "BUY placeholder : xx$", 30);
+  placeholderP1b = new Button(width/4, 700, width/2-90, 90, color(255, 0, 0), "BUY placeholder : xx$", 30);
+  placeholderP1c = new Button(width/4, 800, width/2-90, 90, color(255, 0, 0), "BUY placeholder : xx$", 30);
 }
 
 void openShopP2() {
+  fill(50);
+  rect(width-width/4, height/2, width/2-60, height-60);
+  fill(255);
+  rect(width-width/4,190,width/2-90,280);
   int rifleCost = 10;
   int machineGunCost = 10;
-  if (enemyList.size() == 0) {
-    buyRifleButtonP2 = new Button(650, height - 200, width/5, 200, color(0, 0, 255), "BUY RIFLE : 50$", 20);
-    if (buyRifleButtonP2.isClicked()) {
-      if (money >= 10) {
-        player2 = new Player(player2.position.x, player2.position.y, "Rifle", color(0, 0, 255));
-        money -= rifleCost;
-      }
-    }
-    buyMachineGunButtonP2 = new Button(875, height - 200, width/5, 200, color(0, 0, 255), "BUY MACHINEGUN : 100$", 20);
-    if (buyMachineGunButtonP1.isClicked()) {
-      if (money >= 10) {
-        player2 = new Player(player2.position.x, player2.position.y, "MachineGun", color(0, 0, 255));
-        money -= machineGunCost;
-      }
+  buyRifleButtonP2 = new Button(width-width/4, 400, width/2-90, 90, color(0, 0, 255), "BUY RIFLE : 50$", 30);
+  if (buyRifleButtonP2.isClicked()) {
+    if (money >= 10) {
+      player2 = new Player(player2.position.x, player2.position.y, "Rifle", color(0, 0, 255));
+      money -= rifleCost;
     }
   }
+  buyMachineGunButtonP2 = new Button(width-width/4,500, width/2-90, 90, color(0, 0, 255), "BUY MACHINEGUN : 100$", 30);
+  if (buyMachineGunButtonP1.isClicked()) {
+    if (money >= 10) {
+      player2 = new Player(player2.position.x, player2.position.y, "MachineGun", color(0, 0, 255));
+      money -= machineGunCost;
+    }
+  }
+  placeholderP2a = new Button(width-width/4, 600, width/2-90, 90, color(0, 0, 255), "BUY placeholder : xx$", 30);
+  placeholderP2b = new Button(width-width/4, 700, width/2-90, 90, color(0, 0, 255), "BUY placeholder : xx$", 30);
+  placeholderP2c = new Button(width-width/4, 800, width/2-90, 90, color(0, 0, 255), "BUY placeholder : xx$", 30);
 }
 
 void drawEndScreen() {
