@@ -1,4 +1,4 @@
-class Player { //<>// //<>//
+class Player { //<>//
   float angle;
   int health = 100;
   int size;
@@ -7,11 +7,13 @@ class Player { //<>// //<>//
   float heading;
   boolean colide, hit;
   Gun gun;
-  int gunCoolDown = 0;
+  int pistolGunCooldownTimer, rifleGunCooldownTimer = 0;
   boolean shoot;
   String gunType;
   color col;
-
+  Pistol pistol;
+  Rifle rifle;
+  
   Player(float positionX, float positionY, String gunType, color col) {
     position = new PVector(positionX, positionY);
     speed = new PVector();
@@ -34,8 +36,18 @@ class Player { //<>// //<>//
   void update() {
     display();
     updateHealth();
-    gunCoolDown++;
-    //println(gunCoolDown);
+
+
+    if (pistolGunCooldownTimer != pistolCooldown)
+      pistolGunCooldownTimer++;
+
+    if (rifleGunCooldownTimer != rifleCooldown)
+      rifleGunCooldownTimer++;
+      
+      
+      
+
+
     //checkedges();
     angle = heading-PI/2;
     for (int i=0; i<wallList.size(); i++) {

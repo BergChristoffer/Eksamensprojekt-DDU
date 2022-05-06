@@ -16,7 +16,7 @@ void updateEnemyShooting() {
     }
 
     if (enemyList.get(i).gunType == "EnemyRifle") {
-      if (enemyList.get(i).player1target == true && enemyList.get(i).coolDown >= 60 || enemyList.get(i).player2target == true && enemyList.get(i).coolDown >= 30 ) {
+      if (enemyList.get(i).player1target == true && enemyList.get(i).coolDown >= 30 || enemyList.get(i).player2target == true && enemyList.get(i).coolDown >= 30 ) {
         enemyList.get(i).gun.pullTrigger();
         enemyList.get(i).gun.releaseTrigger();
         enemyList.get(i).coolDown = 0;
@@ -43,7 +43,7 @@ void spawnLevel1Enemies() {
   }
 
   if (wave2) {
-    enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 40, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 40, 80, 400));
     enemyList.add(new Enemy(new PVector(200, height/2), "EnemyPistol", 40, 80, 400));
     enemyList.add(new Enemy(new PVector(width-200, height/2), "EnemyPistol", 40, 80, 400));
     enemyList.add(new Enemy(new PVector(200, 100), "EnemyMachineGun", 20, 80, 400));
@@ -54,6 +54,8 @@ void spawnLevel1Enemies() {
     enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyMachineGun", 350, 120, 1000));
   }
 }
+
+
 void createLevel1() { 
   wallList.add(new Wall(0, 250, 50, color(150)));
   wallList.add(new Wall(100, 200, 50, color(150)));

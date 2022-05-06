@@ -98,7 +98,7 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
+      player1 = new Player(width/2-200, height-100, "Rifle", color(255, 0, 0));
       player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;

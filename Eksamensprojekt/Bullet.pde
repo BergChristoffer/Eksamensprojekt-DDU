@@ -116,3 +116,26 @@ class MachineGunBullet extends Bullet {
     velocity.mult(10);
   }
 }
+class EnemyPistolBullet extends Bullet {
+  EnemyPistolBullet(float x, float y, float angle) {
+    super(x, y, angle, 0, 80);
+    diameter = 10;
+    velocity.mult(5);
+  }
+}
+
+class EnemyRifleBullet extends Bullet {
+  EnemyRifleBullet(float x, float y, float angle) {
+    super(x, y, angle, 0, 150);
+    diameter = 15;
+    velocity.mult(20);
+  }
+}
+
+class EnemyMachineGunBullet extends Bullet {
+  EnemyMachineGunBullet(float x, float y, float angle) {
+    super(x, y, angle, 0, 150);
+    diameter = 10;
+    velocity.mult(10);
+  }
+}
