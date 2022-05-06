@@ -32,6 +32,7 @@ ArrayList<Wall> wallList = new ArrayList<Wall>();
 
 int time = 0;
 void setup() {
+  imageMode(CENTER);
   frameRate(60);
   size(1500, 900);
   background = loadImage("background.png");
@@ -53,7 +54,7 @@ void setup() {
 
 void draw() {
   background(255);
-  image(background,width/2,height/2);
+  image(background, width/2, height/2);
   updateBullets();
   updateEnemy();
   if (start) {
@@ -80,7 +81,9 @@ void draw() {
   if (playSinglePlayer) {
 
     updateEnemyShooting();
-
+    for (int i = 0; i < wallList.size(); i++) {
+      wallList.get(i).update();
+    }
 
     //kontroller levels
     if (startLevel1) {
@@ -100,7 +103,6 @@ void draw() {
     if (startLevel2) {
       player1.position = new PVector(100, 100);
       player2.position = new PVector(100, 100);
-
       wallList.clear();
       levelOver = false;
       startLevel2 = false;
@@ -186,9 +188,7 @@ void draw() {
       }
     }
 
-    for (int i = 0; i < wallList.size(); i++) {
-      wallList.get(i).update();
-    }
+
 
     //for (int i = 0; i<wall.length; i++) {
     //  wall[i].update();
