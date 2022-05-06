@@ -77,10 +77,13 @@ void drawMultiplayerLoginButtons() {
 }
 
 void openShopP1() {
+  PImage red = loadImage("red.png");
   fill(50);
   rect(width/4, height/2, width/2-60, height-60);
   fill(255);
   rect(width/4,190,width/2-90,280);
+  red.resize(250,250);
+  image(red,width/4,190);
   int rifleCost = 10;
   int machineGunCost = 10;
   buyRifleButtonP1 = new Button(width/4, 400, width/2-90, 90, color(255, 0, 0), "BUY RIFLE : 50$", 30);
@@ -103,10 +106,13 @@ void openShopP1() {
 }
 
 void openShopP2() {
+  PImage blue = loadImage("blue.png");
   fill(50);
   rect(width-width/4, height/2, width/2-60, height-60);
   fill(255);
   rect(width-width/4,190,width/2-90,280);
+  blue.resize(250,250);
+  image(blue, width-width/4, 190);
   int rifleCost = 10;
   int machineGunCost = 10;
   buyRifleButtonP2 = new Button(width-width/4, 400, width/2-90, 90, color(0, 0, 255), "BUY RIFLE : 50$", 30);
