@@ -20,15 +20,13 @@ class Player { //<>//
     img = loadImage("sunglasses.png");
     tempPos = new PVector();
     this.col = col;
-    
-     if (gunType == "Pistol")
+
+    if (gunType == "Pistol")
       gun = new Pistol();
     if (gunType == "Rifle")
       gun = new Rifle();
     if (gunType == "MachineGun")
       gun = new MachineGun();
-    
-    
   }
 
 
@@ -164,8 +162,10 @@ void keyPressed() {
     left = false;
   }
   if (key == 'm') {
-    player2.gun.pullTrigger();
-    player2.shoot = true;
+    if (playMultiPlayer) {
+      player2.gun.pullTrigger();
+      player2.shoot = true;
+    }
   }
 
   if (key == 'w') {
@@ -185,8 +185,10 @@ void keyPressed() {
     a = false;
   }
   if (key == ' ') {
-    player1.gun.pullTrigger();
-    player1.shoot = true;
+    if (playSinglePlayer) {
+      player1.gun.pullTrigger();
+      player1.shoot = true;
+    }
   }
 }
 void keyReleased() {
@@ -203,7 +205,8 @@ void keyReleased() {
     right = false;
   }
   if (key == 'm') {
-    player2.gun.releaseTrigger();
+    if (playMultiPlayer)
+      player2.gun.releaseTrigger();
   }
   if (key == 'w') {
     w = false;
@@ -218,6 +221,7 @@ void keyReleased() {
     d = false;
   }
   if (key == ' ') {
-    player1.gun.releaseTrigger();
+    if (playSinglePlayer)
+      player1.gun.releaseTrigger();
   }
 }

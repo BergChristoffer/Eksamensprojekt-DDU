@@ -18,10 +18,17 @@ void drawStartScreen() {
 //singePlayerLoginScreen metoder
 Textfield singleplayerText;
 void drawSingleplayerLoginTextBox() {
-  singleplayerText = cp5.addTextfield("create player").setPosition(300, 200).setSize(200, 40).setFont(createFont("arial", 20)).setColorCaptionLabel(color(0));
+  singleplayerText = cp5.addTextfield("create player")
+    .setPosition(width/2-250, height/2-150)
+    .setSize(500, 100)
+    .setFont(createFont("arial", 50))
+    .setColorCaptionLabel(color(0))
+    .setColorActive(color(255, 0, 0))
+    .setColorBackground(color(255, 0, 0))
+    .setColorForeground(color(150, 0, 0));
 }
 void drawSinglePlayerLoginButtons() {
-  playButton = new Button(400, 300, 200, 40, color(125), "PLAY", 25);
+  playButton = new Button(width/2, height/2+75, 500, 75, color(125), "PLAY", 35);
   if (playButton.isClicked()) {
     singleplayerName = cp5.get(Textfield.class, "create player").getText();
     playSinglePlayer = true;
@@ -30,7 +37,7 @@ void drawSinglePlayerLoginButtons() {
     //createSingleplayer();
     startLevel1 = true;
   }
-  backButton = new Button(100, 100, 100, 100, color(255, 0, 255), "BACK", 30);
+  backButton = new Button(150, 100, 200, 100, color(125), "BACK", 30);
   if (backButton.isClicked()) {
     start = true;
     singlePlayerLoginScreen = false;
@@ -41,10 +48,17 @@ void drawSinglePlayerLoginButtons() {
 //multiplayerLoginScreen metoder
 Textfield multiplayerText;
 void drawMultiplayerLoginTextBox() {
-  multiplayerText = cp5.addTextfield("create team").setPosition(300, 200).setSize(200, 40).setFont(createFont("arial", 20)).setColorCaptionLabel(color(0));
+  multiplayerText = cp5.addTextfield("create team")
+    .setPosition(width/2-250, height/2-150)
+    .setSize(500, 100)
+    .setFont(createFont("arial", 50))
+    .setColorCaptionLabel(color(0))
+    .setColorActive(color(0, 0, 255))
+    .setColorBackground(color(0, 0, 255))
+    .setColorForeground(color(0, 0, 150));
 }
 void drawMultiplayerLoginButtons() {
-  playButton = new Button(400, 300, 200, 40, color(125), "PLAY", 25);
+  playButton = new Button(width/2, height/2+75, 500, 75, color(125), "PLAY", 35);
   if (playButton.isClicked()) {
     multiplayerName = cp5.get(Textfield.class, "create team").getText();
     playSinglePlayer = true;
@@ -54,7 +68,7 @@ void drawMultiplayerLoginButtons() {
     //createMultiplayer();
     startLevel1 = true;
   }
-  backButton = new Button(100, 100, 100, 100, color(255, 0, 255), "BACK", 30);
+  backButton = new Button(150, 100, 200, 100, color(125), "BACK", 30);
   if (backButton.isClicked()) {
     start = true;
     multiplayerLoginScreen = false;
@@ -124,6 +138,7 @@ void controlEvent(ControlEvent theEvent) {
       singlePlayerLoginScreen = false;
       singleplayerText.setVisible(false);
       //createSingleplayer();
+      startLevel1 = true;
     }
 
     //multiplayer
@@ -134,6 +149,7 @@ void controlEvent(ControlEvent theEvent) {
       multiplayerLoginScreen = false;
       multiplayerText.setVisible(false);
       //createMultiplayer();
+      startLevel1 = true;
     }
   }
 }
