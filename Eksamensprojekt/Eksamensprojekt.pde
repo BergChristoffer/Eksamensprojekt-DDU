@@ -14,6 +14,7 @@ Button buyRifleButtonP1;
 Button buyMachineGunButtonP1;
 Button buyRifleButtonP2;
 Button buyMachineGunButtonP2;
+PImage background;
 
 Player player1;
 Player player2;
@@ -33,6 +34,7 @@ int time = 0;
 void setup() {
   frameRate(60);
   size(1500, 900);
+  background = loadImage("background.png");
   noStroke();
   //enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
@@ -51,6 +53,7 @@ void setup() {
 
 void draw() {
   background(255);
+  image(background,width/2,height/2);
   updateBullets();
   updateEnemy();
   if (start) {
