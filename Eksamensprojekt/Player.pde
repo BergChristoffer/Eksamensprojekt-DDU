@@ -9,18 +9,31 @@ class Player { //<>//
   Gun gun;
   int gunCoolDown = 0;
   boolean shoot;
+  String gunType;
+  color col;
 
-  Player(float positionX, float positionY, Gun gun) {
+  Player(float positionX, float positionY, String gunType, color col) {
     position = new PVector(positionX, positionY);
     speed = new PVector();
-    this.gun = gun;
+    //this.gun = gun;
     size = 80;
     img = loadImage("sunglasses.png");
     tempPos = new PVector();
+    this.col = col;
+    
+     if (gunType == "Pistol")
+      gun = new Pistol();
+    if (gunType == "Rifle")
+      gun = new Rifle();
+    if (gunType == "MachineGun")
+      gun = new MachineGun();
+    
+    
   }
 
 
   void update() {
+    display();
     updateHealth();
     gunCoolDown++;
     //println(gunCoolDown);
@@ -40,11 +53,11 @@ class Player { //<>//
   }
 
 
-  void display(color c) {
+  void display() {
     pushMatrix();
     translate(position.x, position.y);
     rotate(angle);
-    fill(c);
+    fill(col);
     imageMode(CENTER);
     translate(-position.x, -position.y);
     circle(position.x, position.y, size);

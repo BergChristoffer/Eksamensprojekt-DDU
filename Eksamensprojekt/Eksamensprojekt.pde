@@ -34,19 +34,12 @@ void setup() {
   frameRate(60);
   size(1500, 900);
   noStroke();
-  player1 = new Player(width/2, height/2, new Pistol());
-  player2 = new Player(width/2+100, height/2, new Pistol());
   //enemy1 = new Enemy(width/2, height/2);
   cp5 = new ControlP5(this);
   drawSingleplayerLoginTextBox();
   drawMultiplayerLoginTextBox();
   singleplayerText.setVisible(false);
   multiplayerText.setVisible(false);
-
-
-  player1.speed.x=30;
-  player2.speed.x=30;
-
 
   //for (int i = 0; i<wall.length; i++) {
   //  wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
@@ -82,25 +75,29 @@ void draw() {
   }
 
   if (playSinglePlayer) {
-    player1.update();
-    player1.display(color(255, 0, 0));
 
     updateEnemyShooting();
 
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, new Pistol());
-      player2 = new Player(width/2+200, height-100, new Pistol());
+      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
+      player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;
       createLevel1();
       wave1 = true;
       spawnLevel1Enemies();
     }
+    player1.update();
+
+
+
+
     if (startLevel2) {
-      player1 = new Player(100, 100, new Pistol());
-      player2 = new Player(100, 100, new Pistol());
+      player1.position = new PVector(100, 100);
+      player2.position = new PVector(100, 100);
+
       wallList.clear();
       levelOver = false;
       startLevel2 = false;
@@ -118,8 +115,8 @@ void draw() {
     }
     if (level1IsRunning && wave2 && enemyList.size() == 0)
       levelOver = true;
-      
-      
+
+
     if (level2IsRunning && wave1 && enemyList.size() == 0) {
       wave1 = false;
       wave2 = true;
@@ -137,7 +134,7 @@ void draw() {
 
 
     if (levelOver) {     
-      if (time == 0)
+      if (time == 360)
         newLevel = true;
 
       time ++;
@@ -172,7 +169,6 @@ void draw() {
 
     if (playMultiPlayer) {
       player2.update();
-      player2.display(color(0, 0, 255));
 
       if (levelOver) {
         openShopP2();

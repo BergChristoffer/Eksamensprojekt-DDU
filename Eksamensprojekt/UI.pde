@@ -69,14 +69,14 @@ void openShopP1() {
     buyRifleButtonP1 = new Button(125, height - 200, width/5, 200, color(255, 0, 0), "BUY RIFLE : 50$", 20);
     if (buyRifleButtonP1.isClicked()) {
       if (money >= 10) {
-        player1 = new Player(player1.position.x, player1.position.y, new Rifle());
+        player1 = new Player(player1.position.x, player1.position.y, "Rifle", color(255, 0, 0));
         money -= rifleCost;
       }
     }
     buyMachineGunButtonP1 = new Button(350, height - 200, width/5, 200, color(255, 0, 0), "BUY MACHINEGUN : 100$", 20);
     if (buyMachineGunButtonP1.isClicked()) {
       if (money >= 10) {
-        player1 = new Player(player1.position.x, player1.position.y, new MachineGun());
+        player1 = new Player(player1.position.x, player1.position.y, "MachineGun", color(255, 0, 0));
         money -= machineGunCost;
       }
     }
@@ -90,14 +90,14 @@ void openShopP2() {
     buyRifleButtonP2 = new Button(650, height - 200, width/5, 200, color(0, 0, 255), "BUY RIFLE : 50$", 20);
     if (buyRifleButtonP2.isClicked()) {
       if (money >= 10) {
-        player1 = new Player(player2.position.x, player2.position.y, new Rifle());
+        player2 = new Player(player2.position.x, player2.position.y, "Rifle", color(0, 0, 255));
         money -= rifleCost;
       }
     }
     buyMachineGunButtonP2 = new Button(875, height - 200, width/5, 200, color(0, 0, 255), "BUY MACHINEGUN : 100$", 20);
     if (buyMachineGunButtonP1.isClicked()) {
       if (money >= 10) {
-        player1 = new Player(player2.position.x, player2.position.y, new MachineGun());
+        player2 = new Player(player2.position.x, player2.position.y, "MachineGun", color(0, 0, 255));
         money -= machineGunCost;
       }
     }
