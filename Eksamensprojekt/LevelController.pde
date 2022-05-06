@@ -83,10 +83,10 @@ void createLevel1() {
 //level2
 void spawnLevel2Enemies() {
   if (wave1) {
-    //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50));
-    //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyRifle", 100));
-    //enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 40));
-    //enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100));
+    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50));
+    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyRifle", 100));
+    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 40));
+    enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100));
   }
   if (wave2) {
     enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50));
