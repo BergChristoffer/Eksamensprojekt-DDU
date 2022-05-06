@@ -94,7 +94,7 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
+      player1 = new Player(width/2-200, height-100, "MachineGun", color(255, 0, 0));
       player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;
@@ -103,9 +103,6 @@ void draw() {
       spawnLevel1Enemies();
     }
     player1.update();
-
-
-
 
     if (startLevel2) {
       player1.position = new PVector(100, 100);
@@ -125,8 +122,17 @@ void draw() {
       wave2 = true;
       spawnLevel1Enemies();
     }
-    if (level1IsRunning && wave2 && enemyList.size() == 0)
+    if (level1IsRunning && wave2 && enemyList.size() == 0) {
+      wave2 = false;
+      wave3 = true;
+      spawnLevel1Enemies();
+    }
+
+    if (level1IsRunning && wave3 && enemyList.size() == 0)
       levelOver = true;
+
+
+
 
 
     if (level2IsRunning && wave1 && enemyList.size() == 0) {
@@ -134,6 +140,7 @@ void draw() {
       wave2 = true;
       spawnLevel2Enemies();
     }
+
     if (level2IsRunning && wave2 && enemyList.size() == 0)
       levelOver = true;
 
@@ -165,7 +172,10 @@ void draw() {
       placeholderP1a.update();
       placeholderP1b.update();
       placeholderP1c.update();
+      wave1=false;
       wave2=false;
+      wave3=false;
+      wave4=false;
     }
 
     //opdater alle arrayliste af enemy objekter
@@ -216,7 +226,7 @@ void displayScore() {
   fill(255);
   strokeWeight(5);
   stroke(50);
-  rect(width/2,30,250,100);
+  rect(width/2, 30, 250, 100);
   noStroke();
   fill(0);
   textSize(40);

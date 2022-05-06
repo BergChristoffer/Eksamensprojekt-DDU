@@ -113,6 +113,6 @@ class MachineGunBullet extends Bullet {
   MachineGunBullet(float x, float y, float angle) {
     super(x, y, angle, 44, 150);
     diameter = 10;
-    velocity.mult(5);
+    velocity.mult(10);
   }
 }

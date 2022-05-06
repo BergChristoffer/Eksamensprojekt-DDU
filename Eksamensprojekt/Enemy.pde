@@ -1,8 +1,7 @@
 class Enemy {
-  int health;
-  int size;
+  int size, agroRange, health;
   PVector position, speed, tempPosEnemy;
-  float agroRange, theta, speedlimit;
+  float theta, speedlimit;
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target, player1blocked, player2blocked;
   PVector v = new PVector();
@@ -11,12 +10,12 @@ class Enemy {
   int coolDown = 0;
   boolean shoot;
 
-  Enemy(PVector pos, String gunType, int health) {
+  Enemy(PVector pos, String gunType, int health, int size, int agroRange) {
     position = new PVector(pos.x, pos.y);
     speed = new PVector(random(-2, 2), random(-2, 2));
-    size = 80;
+    this.size = size;
     wallhit = false;
-    agroRange = 400;
+    this.agroRange = agroRange;
     speedlimit = 1;
     tempPosEnemy = new PVector(0, 0);
     //this.gun = gun;
