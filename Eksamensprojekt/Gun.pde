@@ -11,14 +11,13 @@ abstract class Gun {
 }
 
 
-int pistolCooldown = 60;
+int pistolCooldown = 45;
 class Pistol extends Gun {
   boolean triggerReleased = true;
   PImage pistol = loadImage("pistol.png");
   Pistol() {
     pistol.resize(200, 200);
     cooldown = 90;
-    damage = 10;
   }
   void display() {
     fill(0);
@@ -42,7 +41,7 @@ class Pistol extends Gun {
   }
 }
 
-int rifleCooldown = 45;
+int rifleCooldown = 30;
 class Rifle extends Gun {
   boolean triggerReleased = true;
   PImage rifle = loadImage("rifle.png");

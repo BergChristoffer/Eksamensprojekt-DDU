@@ -29,6 +29,8 @@ class Player { //<>//
       gun = new Rifle();
     if (gunType == "MachineGun")
       gun = new MachineGun();
+      
+      
     img.resize(0, size+25);
   }
 

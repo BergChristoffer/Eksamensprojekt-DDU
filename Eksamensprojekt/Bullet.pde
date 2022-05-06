@@ -1,5 +1,5 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>//
-ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>(); //<>// //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>//
+ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>(); //<>//
 
 void updateBullets() {
   for (int i = 0; i < bulletList.size(); i++) {
@@ -46,6 +46,7 @@ class Bullet {
   PVector velocity, position;
   boolean bulletPlayerInAir, wallhit;
   float diameter, angle; 
+  int damage;
 
   Bullet(float x, float y, float angle, float gunOffset1, float gunOffset2) {
     position = new PVector(x, y);
@@ -77,7 +78,7 @@ class Bullet {
     for (int i = 0; i < enemyList.size(); i++) {
       if (dist(position.x, position.y, enemyList.get(i).position.x, enemyList.get(i).position.y) < enemyList.get(i).size/2) {
         wallhit = true;
-        enemyList.get(i).hit = true;
+        enemyList.get(i).hit = true;      
       }
     }
   }
@@ -98,6 +99,7 @@ class PistolBullet extends Bullet {
     super(x, y, angle, 44, 80);
     diameter = 10;
     velocity.mult(5);
+    damage = 10;
   }
 }
 
