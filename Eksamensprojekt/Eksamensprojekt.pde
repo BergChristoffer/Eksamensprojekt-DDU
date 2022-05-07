@@ -210,7 +210,7 @@ void draw() {
 
 
     if (levelOver) {     
-      if (time == 1) {
+      if (time == 360) {
         newLevel = true;
         time = 0;
       }
