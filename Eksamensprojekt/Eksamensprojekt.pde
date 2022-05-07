@@ -123,7 +123,7 @@ void draw() {
 
     if (startLevel3) {
       player1.position = new PVector(100, 100);
-      player2.position = new PVector(100, 100);
+      player2.position = new PVector(width-100, 100);
       wallList.clear();
       levelOver = false;
       startLevel3 = false;
@@ -143,6 +143,18 @@ void draw() {
       wave1 = true;
       createLevel4();
       spawnLevel4Enemies();
+    }
+
+    if (startLevel5) {
+      player1.position = new PVector(100, 70);
+      player2.position = new PVector(width-100, 70);
+      wallList.clear();
+      levelOver = false;
+      startLevel5 = false;
+      level5IsRunning = true;
+      wave1 = true;
+      createLevel5();
+      spawnLevel5Enemies();
     }
 
     //kontroler bølger af fjender
@@ -209,9 +221,24 @@ void draw() {
       levelOver = true;
 
 
+    if (level5IsRunning && wave1 && enemyList.size() == 0) {
+      wave1 = false;
+      wave2 = true;
+      spawnLevel5Enemies();
+    }
+    if (level5IsRunning && wave2 && enemyList.size() == 0) {
+      wave2 = false;
+      wave3 = true;
+      spawnLevel5Enemies();
+      wallList.clear();
+      createLevel5();
+    }
+    if (level5IsRunning && wave3 && enemyList.size() == 0)
+      levelOver = true;
+
 
     if (levelOver) {
-      totaltime = 300;
+      totaltime = 360;
       fill(0, 255, 0);
       rect(width/2, height-10, width-(time*(width/totaltime))-50, 20);
       time ++;
@@ -236,6 +263,11 @@ void draw() {
         level3IsRunning = false;
         startLevel4 = true;
         newLevel = false;
+      }
+      if (level4IsRunning) {
+        level4IsRunning = false;
+        startLevel5 = true;
+        newLevel = false;   
       }
     }
 

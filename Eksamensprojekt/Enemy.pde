@@ -1,5 +1,5 @@
 class Enemy {
-  int size, agroRange, health, type;
+  int size, agroRange, health, type, totalhealth;
   PVector position, speed, tempPosEnemy;
   float theta, speedlimit;
   float rotation = 0;
@@ -22,6 +22,7 @@ class Enemy {
     this.gunType = gunType;
     this.health = health;
     this.type = type;
+    totalhealth = health;
 
     if (gunType == "EnemyPistol")
       gun = new EnemyPistol();
@@ -55,24 +56,35 @@ class Enemy {
   void display() {
     pushMatrix();
     translate(position.x, position.y);    
-
     rotate(speed.heading());
     translate(-position.x, -position.y);
 
     //lav enemy som viser liv
-    fill(255, 0, 0);
-    circle(position.x, position.y, size);
+    if (type!=3) {
+      fill(255, 0, 0);
+      circle(position.x, position.y, size);
+    }
     fill(255, 255, 0, health);
+    if (type == 3)
+      fill(255, 0, 255);
     circle(position.x, position.y, size);
     rectMode(CENTER);
     fill(0);
-
     gun.angle = speed.heading();
     gun.x = position.x;
     gun.y = position.y;
     gun.display();
-
-
+    popMatrix();
+    pushMatrix();
+    if (type == 3) {
+      rectMode(CORNER);
+      text("BIG GUY", width/2, height-80);
+      fill(90);
+      rect(45, height-45, (totalhealth*(width/totalhealth))-40, 20);
+      fill(220, 220, 30);
+      rect(50, height-40, (health*(width/totalhealth))-50, 10);
+      rectMode(CENTER);
+    }
     popMatrix();
   }
 
@@ -99,10 +111,12 @@ class Enemy {
     //if (player1blocked==false||player2blocked==false)
     //  speed.add(v);
     speed.limit(speedlimit);
+    if (type ==3)
+      speedlimit=0;
     if (player1target||player2target) {
       if (dist(player1.position.x, player1.position.y, position.x, position.y)>200&&dist(player2.position.x, player2.position.y, position.x, position.y)>200) 
         position.add(speed);
-    } else if(type==1) position.add(speed);
+    } else if (type==1) position.add(speed);
     if (player1target==false&&player2target==false) {
       speed.normalize();
       speed = speed.mult(speedlimit);

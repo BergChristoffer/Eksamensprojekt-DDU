@@ -1,6 +1,6 @@
 
-boolean startLevel1, startLevel2, startLevel3, startLevel4;
-boolean level1IsRunning, level2IsRunning, level3IsRunning, level4IsRunning;
+boolean startLevel1, startLevel2, startLevel3, startLevel4, startLevel5;
+boolean level1IsRunning, level2IsRunning, level3IsRunning, level4IsRunning, level5IsRunning;
 boolean wave1, wave2, wave3, wave4;
 
 
@@ -179,7 +179,7 @@ void spawnLevel4Enemies() {
     enemyList.add(new Enemy(new PVector(400, 330), "EnemyPistol", 3, 80, 1000, 1));
     enemyList.add(new Enemy(new PVector(width-100, 330), "EnemyRifle", 3, 80, 1000, 1));
     enemyList.add(new Enemy(new PVector(width/2+30, 330), "EnemyMachineGun", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2+30, height-100), "EnemyMachineGun", 400, 120, 1000,2 ));
+    enemyList.add(new Enemy(new PVector(width/2+30, height-100), "EnemyMachineGun", 400, 120, 1000, 2 ));
   }
 }
 void createLevel4() {
@@ -241,5 +241,66 @@ void createLevel4() {
     wallList.add(new Wall(width/2+80*9, 700, 40, color(255, 100, 100)));
     wallList.add(new Wall(width/2+80*4, 700, 40, color(255, 100, 100)));
     wallList.add(new Wall(width/2+80*5, 700, 40, color(255, 100, 100)));
+  }
+}
+
+
+void spawnLevel5Enemies() {
+  if (wave1) {
+    enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 3, 80, 1000, 1));
+  }
+  if (wave2) {
+    enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 3, 80, 1000, 1));
+  }
+  if (wave3) {
+    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 200, 240, 1000, 3));
+    enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 3, 80, 1000, 1));
+  }
+}
+void createLevel5() {
+  wallList.add(new Wall(width/2, 150, 40, color(150)));
+  wallList.add(new Wall(width/2+80, 150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*2, 150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*3, 150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*4, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*2, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*3, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*4, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*5, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*6, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150+80, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150+80*2, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150+80*3, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150+80*6, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150+80*7, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150+80*8, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 150+80*9, 40, color(150)));
+  wallList.add(new Wall(width/2-320, 360, 70, color(150)));
+
+  wallList.add(new Wall(width/2, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2-80, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*2, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*3, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2-80*4, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*2, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*3, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*4, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*5, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*6, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150-80, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150-80*2, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150-80*3, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150-80*6, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150-80*7, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150-80*8, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, height-150-80*9, 40, color(150)));
+  wallList.add(new Wall(width/2+320, height-360, 70, color(150)));
+
+  if (wave1||wave2) {
+    wallList.add(new Wall(width/2, height/2, 120, color(255, 100, 100)));
   }
 }
