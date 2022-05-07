@@ -1,6 +1,6 @@
 
 boolean startLevel1, startLevel2, startLevel3, startLevel4;
-boolean level1IsRunning, level2IsRunning;
+boolean level1IsRunning, level2IsRunning, level3IsRunning, level4IsRunning;
 boolean wave1, wave2, wave3, wave4;
 
 
@@ -37,21 +37,21 @@ void updateEnemyShooting() {
 //level1
 void spawnLevel1Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 40, 80, 400));
-    enemyList.add(new Enemy(new PVector(200, height/2), "EnemyPistol", 40, 80, 400));
-    enemyList.add(new Enemy(new PVector(width-200, height/2), "EnemyRifle", 100, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 1, 80, 400));
+    //enemyList.add(new Enemy(new PVector(200, height/2), "EnemyPistol", 40, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width-200, height/2), "EnemyRifle", 100, 80, 400));
   }
 
   if (wave2) {
-    //enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 40, 80, 400));
-    enemyList.add(new Enemy(new PVector(200, height/2), "EnemyPistol", 40, 80, 400));
-    enemyList.add(new Enemy(new PVector(width-200, height/2), "EnemyPistol", 40, 80, 400));
-    enemyList.add(new Enemy(new PVector(200, 100), "EnemyMachineGun", 20, 80, 400));
-    enemyList.add(new Enemy(new PVector(width-200, 100), "EnemyRifle", 100, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 1, 80, 400));
+    //enemyList.add(new Enemy(new PVector(200, height/2), "EnemyPistol", 40, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width-200, height/2), "EnemyPistol", 40, 80, 400));
+    //enemyList.add(new Enemy(new PVector(200, 100), "EnemyMachineGun", 20, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width-200, 100), "EnemyRifle", 100, 80, 400));
   }
 
   if (wave3) {
-    enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyMachineGun", 350, 120, 1000));
+    //enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyMachineGun", 1, 120, 1000));
   }
 }
 
@@ -89,18 +89,18 @@ void createLevel1() {
 //level2
 void spawnLevel2Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50, 80, 400));
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyRifle", 100, 80, 400));
-    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 40, 80, 400));
-    enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 1, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyRifle", 100, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 40, 80, 400));
+    //enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100, 80, 400));
   }
   if (wave2) {
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 1, 80, 400));
     //enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyRifle", 100, 80, 400));
-    enemyList.add(new Enemy(new PVector(width/2, height/2-50), "EnemyMachineGun", 40, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width/2, height/2-50), "EnemyMachineGun", 40, 80, 400));
     //enemyList.add(new Enemy(new PVector(width/2, height/2+50), "EnemyMachineGun", 40, 80, 400));
-    enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100, 80, 400));
-    enemyList.add(new Enemy(new PVector(width-300, 80), "EnemyPistol", 100, 80, 400));
+    //enemyList.add(new Enemy(new PVector(450, height-100), "EnemyRifle", 100, 80, 400));
+    //enemyList.add(new Enemy(new PVector(width-300, 80), "EnemyPistol", 100, 80, 400));
   }
 }
 void createLevel2() {
@@ -114,4 +114,122 @@ void createLevel2() {
   wallList.add(new Wall(width-200, 200, 80, color(150)));
   wallList.add(new Wall(width-430, height-200, 20, color(150)));
   wallList.add(new Wall(300, height-100, 100, color(150)));
+}
+
+void spawnLevel3Enemies() {
+  if (wave1) {
+    //enemyList.add(new Enemy(new PVector(0, height), "EnemyMachineGun", 3, 120, 1000));
+  }
+  if (wave2) {
+    //enemyList.add(new Enemy(new PVector(0, height), "EnemyMachineGun", 3, 120, 1000));
+  }
+  if (wave3) {
+    // enemyList.add(new Enemy(new PVector(0, height), "EnemyMachineGun", 3, 120, 1000));
+  }
+}
+void createLevel3() {
+  wallList.add(new Wall(width/2, 0, 90, color(150)));
+  wallList.add(new Wall(width/2, 150, 90, color(150)));
+  wallList.add(new Wall(width/2, 300, 90, color(150)));
+  wallList.add(new Wall(width/2, height, 90, color(150)));
+  wallList.add(new Wall(width/2, height-150, 90, color(150)));
+  wallList.add(new Wall(width/2, height-300, 90, color(150)));
+
+  wallList.add(new Wall(300, 200, 100, color(150)));
+  wallList.add(new Wall(300, height-200, 100, color(150)));
+  wallList.add(new Wall(150, height/2, 60, color(150)));
+  wallList.add(new Wall(width-300, 200, 100, color(150)));
+  wallList.add(new Wall(width-300, height-200, 100, color(150)));
+  wallList.add(new Wall(width-150, height/2, 60, color(150)));
+}
+
+
+void spawnLevel4Enemies() {
+  if (wave1) {
+    enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(400, 330), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(width-100, 330), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(width/2+30, 330), "EnemyPistol", 3, 80, 1000));
+  }
+  if (wave2) {
+    enemyList.add(new Enemy(new PVector(100, 580), "EnemyRifle", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(400, 580), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(width-200, 580), "EnemyRifle", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(width/2, 580), "EnemyPistol", 3, 80, 1000));
+  }
+  if (wave3) {
+    enemyList.add(new Enemy(new PVector(100, height-120), "EnemyMachineGun", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(300, height-120), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(500, height-120), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(800, height-120), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(900, height-120), "EnemyPistol", 3, 80, 1000));
+  }
+  if (wave4) {
+    enemyList.add(new Enemy(new PVector(100, 330), "EnemyMachineGun", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(400, 330), "EnemyPistol", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(width-100, 330), "EnemyRifle", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(width/2+30, 330), "EnemyMachineGun", 3, 80, 1000));
+    enemyList.add(new Enemy(new PVector(width/2+30, height-100), "EnemyMachineGun", 400, 120, 1000));
+  }
+}
+void createLevel4() {
+  wallList.add(new Wall(width/2, 200, 70, color(150)));
+  wallList.add(new Wall(width/2-140, 200, 70, color(150)));
+  wallList.add(new Wall(width/2-140*2, 200, 70, color(150)));
+  wallList.add(new Wall(width/2-140*4, 200, 70, color(150)));
+  wallList.add(new Wall(width/2-140*5, 200, 70, color(150)));
+  wallList.add(new Wall(width/2+140*2, 200, 70, color(150)));
+  wallList.add(new Wall(width/2+140*3, 200, 70, color(150)));
+  wallList.add(new Wall(width/2+140*4, 200, 70, color(150)));
+  wallList.add(new Wall(width/2+140*5, 200, 70, color(150)));
+  wallList.add(new Wall(width/2, 70, 70, color(150)));
+
+  //wave1
+  wallList.add(new Wall(width/2, 450, 40, color(150)));
+  wallList.add(new Wall(width/2-80, 450, 40, color(150)));
+  wallList.add(new Wall(width/2-80*2, 450, 40, color(150)));
+  wallList.add(new Wall(width/2-80*3, 450, 40, color(150)));
+  wallList.add(new Wall(width/2-80*4, 450, 40, color(150)));
+  wallList.add(new Wall(width/2-80*5, 450, 40, color(150)));
+
+  wallList.add(new Wall(width/2-80*8, 450, 40, color(150)));
+  wallList.add(new Wall(width/2-80*9, 450, 40, color(150)));
+  wallList.add(new Wall(width/2+80, 450, 40, color(150)));
+  wallList.add(new Wall(width/2+80*5, 450, 40, color(150)));
+  wallList.add(new Wall(width/2+80*6, 450, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, 450, 40, color(150)));
+  if (wave1) {
+    wallList.add(new Wall(width/2-80*6, 450, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2-80*7, 450, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*2, 450, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*3, 450, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*4, 450, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*8, 450, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*9, 450, 40, color(255, 100, 100)));
+  }
+
+  //wave2
+  wallList.add(new Wall(width/2, 700, 40, color(150)));
+  wallList.add(new Wall(width/2-80, 700, 40, color(150)));
+  wallList.add(new Wall(width/2-80*5, 700, 40, color(150)));
+  wallList.add(new Wall(width/2-80*6, 700, 40, color(150)));
+  wallList.add(new Wall(width/2-80*7, 700, 40, color(150)));
+
+  wallList.add(new Wall(width/2+80, 700, 40, color(150)));
+  wallList.add(new Wall(width/2+80*2, 700, 40, color(150)));
+  wallList.add(new Wall(width/2+80*3, 700, 40, color(150)));
+  wallList.add(new Wall(width/2+80*6, 700, 40, color(150)));
+  wallList.add(new Wall(width/2+80*7, 700, 40, color(150)));
+
+  if (wave2||wave1) {
+    wallList.add(new Wall(width/2-80*2, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2-80*3, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2-80*4, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2-80*9, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2-80*8, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*8, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*9, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*4, 700, 40, color(255, 100, 100)));
+    wallList.add(new Wall(width/2+80*5, 700, 40, color(255, 100, 100)));
+  }
 }

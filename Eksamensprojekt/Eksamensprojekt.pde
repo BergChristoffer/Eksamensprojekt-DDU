@@ -41,8 +41,8 @@ int time = 0;
 void setup() {
   red = loadImage("red.png");
   blue = loadImage("blue.png");
-  red.resize(250,250);
-  blue.resize(250,250);
+  red.resize(250, 250);
+  blue.resize(250, 250);
   imageMode(CENTER);
   frameRate(60);
   size(1500, 900, P2D);
@@ -120,6 +120,30 @@ void draw() {
       spawnLevel2Enemies();
     }
 
+    if (startLevel3) {
+      player1.position = new PVector(100, 100);
+      player2.position = new PVector(100, 100);
+      wallList.clear();
+      levelOver = false;
+      startLevel3 = false;
+      level3IsRunning = true;
+      createLevel3();
+      wave1 = true;
+      spawnLevel3Enemies();
+    }
+
+    if (startLevel4) {
+      player1.position = new PVector(100, 70);
+      player2.position = new PVector(width-100, 70);
+      wallList.clear();
+      levelOver = false;
+      startLevel4 = false;
+      level4IsRunning = true;
+      wave1 = true;
+      createLevel4();
+      spawnLevel4Enemies();
+    }
+
     //kontroler bølger af fjender
     if (level1IsRunning && wave1 && enemyList.size() == 0) {
       wave1 = false;
@@ -131,11 +155,8 @@ void draw() {
       wave3 = true;
       spawnLevel1Enemies();
     }
-
     if (level1IsRunning && wave3 && enemyList.size() == 0)
       levelOver = true;
-
-
 
 
 
@@ -144,21 +165,55 @@ void draw() {
       wave2 = true;
       spawnLevel2Enemies();
     }
-
-    if (level2IsRunning && wave2 && enemyList.size() == 0)
+    if (level2IsRunning && wave2 && enemyList.size() == 0) 
       levelOver = true;
 
 
 
+    if (level3IsRunning && wave1 && enemyList.size() == 0) {
+      wave1 = false;
+      wave2 = true;
+      spawnLevel3Enemies();
+    }
+    if (level3IsRunning && wave2 && enemyList.size() == 0) {
+      wave2 = false;
+      wave3 = true;
+      spawnLevel3Enemies();
+    }
+    if (level3IsRunning && wave3 && enemyList.size() == 0)
+      levelOver = true;
 
 
-    //vis mængden af penge på skærmen
+
+    if (level4IsRunning && wave1 && enemyList.size() == 0) {
+      wave1 = false;
+      wave2 = true;
+      spawnLevel4Enemies();
+      wallList.clear();
+      createLevel4();
+    }
+    if (level4IsRunning && wave2 && enemyList.size() == 0) {
+      wave2 = false;
+      wave3 = true;
+      spawnLevel4Enemies();
+      wallList.clear();
+      createLevel4();
+    }
+    if (level4IsRunning && wave3 && enemyList.size() == 0) {
+      wave3 = false;
+      wave4 = true;
+      spawnLevel4Enemies();
+    }
+    if (level4IsRunning && wave4 && enemyList.size() == 0)
+      levelOver = true;
+
 
 
     if (levelOver) {     
-      if (time == 360)
+      if (time == 1) {
         newLevel = true;
-
+        time = 0;
+      }
       time ++;
     }
 
@@ -166,6 +221,17 @@ void draw() {
       if (level1IsRunning) {
         level1IsRunning = false;
         startLevel2 = true;
+        newLevel = false;
+      }
+      if (level2IsRunning) {
+        level2IsRunning = false;
+        startLevel3 = true;
+        newLevel = false;
+      }
+      if (level3IsRunning) {
+        level3IsRunning = false;
+        startLevel4 = true;
+        newLevel = false;
       }
     }
 
