@@ -38,7 +38,7 @@ ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 ArrayList<Wall> wallList = new ArrayList<Wall>();
 
 int time = 0;
-int totaltime = 360;
+int totaltime;
 void setup() {
   red = loadImage("red.png");
   blue = loadImage("blue.png");
@@ -210,7 +210,8 @@ void draw() {
 
 
 
-    if (levelOver) {     
+    if (levelOver) {
+      totaltime = 300;
       fill(0, 255, 0);
       rect(width/2, height-10, width-(time*(width/totaltime))-50, 20);
       time ++;

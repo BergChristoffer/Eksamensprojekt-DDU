@@ -1,5 +1,5 @@
 class Enemy {
-  int size, agroRange, health;
+  int size, agroRange, health, type;
   PVector position, speed, tempPosEnemy;
   float theta, speedlimit;
   float rotation = 0;
@@ -10,7 +10,7 @@ class Enemy {
   int coolDown = 0;
   boolean shoot;
 
-  Enemy(PVector pos, String gunType, int health, int size, int agroRange) {
+  Enemy(PVector pos, String gunType, int health, int size, int agroRange, int type) {
     position = new PVector(pos.x, pos.y);
     speed = new PVector(random(-2, 2), random(-2, 2));
     this.size = size;
@@ -21,6 +21,7 @@ class Enemy {
     //this.gun = gun;
     this.gunType = gunType;
     this.health = health;
+    this.type = type;
 
     if (gunType == "EnemyPistol")
       gun = new EnemyPistol();
@@ -101,7 +102,7 @@ class Enemy {
     if (player1target||player2target) {
       if (dist(player1.position.x, player1.position.y, position.x, position.y)>200&&dist(player2.position.x, player2.position.y, position.x, position.y)>200) 
         position.add(speed);
-    } else position.add(speed);
+    } else if(type==1) position.add(speed);
     if (player1target==false&&player2target==false) {
       speed.normalize();
       speed = speed.mult(speedlimit);
