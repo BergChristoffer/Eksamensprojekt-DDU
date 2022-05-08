@@ -40,6 +40,11 @@ class Player { //<>// //<>//
     updateHealth();
 
 
+    if (health <= 0) {
+      position = new PVector(-1000, -1000);
+      health = 0;
+    }
+
     if (pistolGunCooldownTimer != pistolCooldown)
       pistolGunCooldownTimer++;
 

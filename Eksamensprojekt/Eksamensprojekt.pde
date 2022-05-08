@@ -14,12 +14,13 @@ Button buyRifleButtonP1;
 Button buyMachineGunButtonP1;
 Button placeholderP1a;
 Button placeholderP1b;
-Button placeholderP1c;
+Button buyHealthButtonP1;
+
 Button buyRifleButtonP2;
 Button buyMachineGunButtonP2;
 Button placeholderP2a;
 Button placeholderP2b;
-Button placeholderP2c;
+Button buyHealthButtonP2;
 Button gameOverButton;
 PImage background, red, blue;
 
@@ -58,6 +59,8 @@ void setup() {
 }
 
 void draw() {
+  money = 10000;
+
   background(255);
   image(background, width/2, height/2);
   updateBullets();
@@ -102,6 +105,11 @@ void draw() {
     player1.update();
     displayHealthPlayer1();
     println(player1.pistolGunCooldownTimer);
+
+
+
+
+
 
     if (startLevel2) {
       player1.position = new PVector(100, 100);
@@ -243,6 +251,18 @@ void draw() {
     }
 
     if (newLevel) {
+      if (extraHealthBuffP1)
+        player1.health = 400;
+      else
+        player1.health = 200;
+
+
+      if (extraHealthBuffP2)
+        player2.health = 400;
+      else
+        player2.health = 200;
+
+
       if (level1IsRunning) {
         level1IsRunning = false;
         startLevel2 = true;
@@ -271,7 +291,7 @@ void draw() {
       buyMachineGunButtonP1.update();
       placeholderP1a.update();
       placeholderP1b.update();
-      placeholderP1c.update();
+      buyHealthButtonP1.update();
       wave1=false;
       wave2=false;
       wave3=false;
@@ -301,7 +321,7 @@ void draw() {
         buyMachineGunButtonP2.update();
         placeholderP2a.update();
         placeholderP2b.update();
-        placeholderP2c.update();
+        buyHealthButtonP2.update();
       }
 
       updateMovementPlayer2();
@@ -311,11 +331,14 @@ void draw() {
       }
     }
 
-
-    if (player1.health <= 0 && player1.health <= 0) {
+    if (playSinglePlayer == true && playMultiPlayer == false && player1.health <= 0) {
+      gameOver = true;
+      gameOverScreen = true;
+    } else if (player1.health <= 0 && player2.health <= 0) {
       gameOver = true;
       gameOverScreen = true;
     }
+
 
     if (gameOver) {
       player1.position = new PVector(-1000, -1000);
