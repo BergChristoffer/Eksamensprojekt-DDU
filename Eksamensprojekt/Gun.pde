@@ -18,6 +18,7 @@ class Pistol extends Gun {
   Pistol() {
     pistol.resize(200, 200);
     cooldown = 90;
+    damage = 10;
   }
   void display() {
     fill(0);
@@ -48,7 +49,7 @@ class Rifle extends Gun {
 
   Rifle() {
     rifle.resize(200, 300);
-    damage = 30;
+    damage = 15;
     cooldown = 60;
   }
 
@@ -79,6 +80,7 @@ class MachineGun extends Gun {
 
   MachineGun() {
     machineGun.resize(300, 300);
+    damage = 3;
   }
 
   void display() {
@@ -95,6 +97,7 @@ class EnemyPistol extends Gun {
   PImage pistol = loadImage("pistol.png");
   EnemyPistol() {
     pistol.resize(200, 200);
+    damage = 10;
   }
 
   void display() {
@@ -122,6 +125,7 @@ class EnemyRifle extends Gun {
   PImage rifle = loadImage("rifle.png");
   EnemyRifle() {
     rifle.resize(200, 300);
+    damage = 15;
   }
 
   void display() {
@@ -147,6 +151,7 @@ class EnemyMachineGun extends Gun {
 
   EnemyMachineGun() {
     machineGun.resize(300, 300);
+    damage = 3;
   }
 
   void display() {

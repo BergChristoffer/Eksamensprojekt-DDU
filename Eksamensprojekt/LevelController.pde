@@ -51,7 +51,7 @@ void spawnLevel1Enemies() {
   }
 
   if (wave3) {
-    enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyMachineGun", 1, 120, 1000, 2));
+    enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyMachineGun", 200, 120, 1000, 2));
   }
 }
 

@@ -1,6 +1,6 @@
-class Player { //<>//
+class Player { //<>// //<>//
   float angle;
-  int health = 100;
+  int health = 200;
   int size;
   PVector position, speed, tempPos;
   PImage img; 
@@ -13,7 +13,7 @@ class Player { //<>//
   color col;
   Pistol pistol;
   Rifle rifle;
-  
+
   Player(float positionX, float positionY, String gunType, color col) {
     position = new PVector(positionX, positionY);
     speed = new PVector();
@@ -29,8 +29,8 @@ class Player { //<>//
       gun = new Rifle();
     if (gunType == "MachineGun")
       gun = new MachineGun();
-      
-      
+
+
     img.resize(0, size+25);
   }
 
@@ -45,9 +45,9 @@ class Player { //<>//
 
     if (rifleGunCooldownTimer != rifleCooldown)
       rifleGunCooldownTimer++;
-      
-      
-      
+
+
+
 
 
     //checkedges();
@@ -60,7 +60,7 @@ class Player { //<>//
 
   void updateHealth() {
     if (hit) {
-      println("playerhit");
+      health -= damage;
       hit = false;
     }
   }

@@ -81,8 +81,8 @@ void openShopP1() {
   fill(50);
   rect(width/4, height/2, width/2-60, height-60);
   fill(255);
-  rect(width/4,190,width/2-90,280);
-  image(red,width/4,190);
+  rect(width/4, 190, width/2-90, 280);
+  image(red, width/4, 190);
   int rifleCost = 10;
   int machineGunCost = 10;
   buyRifleButtonP1 = new Button(width/4, 400, width/2-90, 90, color(255, 0, 0), "BUY RIFLE : 50$", 30);
@@ -108,7 +108,7 @@ void openShopP2() {
   fill(50);
   rect(width-width/4, height/2, width/2-60, height-60);
   fill(255);
-  rect(width-width/4,190,width/2-90,280);
+  rect(width-width/4, 190, width/2-90, 280);
   image(blue, width-width/4, 190);
   int rifleCost = 10;
   int machineGunCost = 10;
@@ -119,7 +119,7 @@ void openShopP2() {
       money -= rifleCost;
     }
   }
-  buyMachineGunButtonP2 = new Button(width-width/4,500, width/2-90, 90, color(0, 0, 255), "BUY MACHINEGUN : 100$", 30);
+  buyMachineGunButtonP2 = new Button(width-width/4, 500, width/2-90, 90, color(0, 0, 255), "BUY MACHINEGUN : 100$", 30);
   if (buyMachineGunButtonP2.isClicked()) {
     if (money >= 10) {
       player2 = new Player(player2.position.x, player2.position.y, "MachineGun", color(0, 0, 255));
@@ -132,9 +132,34 @@ void openShopP2() {
 }
 
 void drawEndScreen() {
-  rect(width/2, height/2, 100, 100);
+  fill(150);
+  strokeWeight(20);
+  stroke(50);
+  rect(width/2, height/2, width/2, height/2);
+  noStroke();
+  fill(0);
   text("total score: " + totalMoney, width/2, height/2);
+
+
+  gameOverButton = new Button(width/2, height/2+120, 450, 90, color(255, 0, 0), "BACK TO MENU", 30);
+  if (gameOverButton.isClicked()) {
+    start = true;
+    playSinglePlayer= false; 
+    playMultiPlayer = false; 
+    level1IsRunning = false; 
+    level2IsRunning = false; 
+    level3IsRunning = false; 
+    level4IsRunning = false; 
+    level5IsRunning = false;
+    wave1 = false; 
+    wave2 = false; 
+    wave3 = false; 
+    wave4 = false;
+    gameOverScreen = false;
+  }
 }
+
+
 
 //string variable til navn på spiller(ne)
 String singleplayerName;

@@ -160,10 +160,11 @@ class Enemy {
 
 
   void updateHealth() {
-    if (hit) {
-      health = health-20;
-      hit = false;
-    }
+    //if (hit) {
+    //  health -= damage;
+    //  println(health);
+    //  hit = false;
+    //}
   }
 
   boolean lineCircle(float x1, float y1, float x2, float y2, float cx, float cy, float r) {

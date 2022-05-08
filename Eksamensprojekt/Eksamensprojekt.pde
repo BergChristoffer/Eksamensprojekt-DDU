@@ -15,12 +15,12 @@ Button buyMachineGunButtonP1;
 Button placeholderP1a;
 Button placeholderP1b;
 Button placeholderP1c;
-
 Button buyRifleButtonP2;
 Button buyMachineGunButtonP2;
 Button placeholderP2a;
 Button placeholderP2b;
 Button placeholderP2c;
+Button gameOverButton;
 PImage background, red, blue;
 
 Player player1;
@@ -29,7 +29,7 @@ Player player2;
 Gun gun;
 //LevelController levelController;
 
-boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver;
+boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver, gameOver, gameOverScreen;
 boolean start = true;
 
 
@@ -55,13 +55,6 @@ void setup() {
   drawMultiplayerLoginTextBox();
   singleplayerText.setVisible(false);
   multiplayerText.setVisible(false);
-
-  //for (int i = 0; i<wall.length; i++) {
-  //  wall[i]=new Wall(random(width), random(height), random(5, 80), color(0, 255, 0));
-  //}
-  //for (int i = 0; i < 5; i++) {
-  //  enemyList.add(new Enemy(new PVector(random(width), random(height)), new Pistol()));
-  //}
 }
 
 void draw() {
@@ -91,7 +84,6 @@ void draw() {
   }
 
   if (playSinglePlayer) {
-
     updateEnemyShooting();
     for (int i = 0; i < wallList.size(); i++) {
       wallList.get(i).update();
@@ -108,6 +100,8 @@ void draw() {
       spawnLevel1Enemies();
     }
     player1.update();
+    displayHealthPlayer1();
+    println(player1.pistolGunCooldownTimer);
 
     if (startLevel2) {
       player1.position = new PVector(100, 100);
@@ -267,7 +261,7 @@ void draw() {
       if (level4IsRunning) {
         level4IsRunning = false;
         startLevel5 = true;
-        newLevel = false;   
+        newLevel = false;
       }
     }
 
@@ -299,6 +293,7 @@ void draw() {
 
     if (playMultiPlayer) {
       player2.update();
+      displayHealthPlayer2();
 
       if (levelOver) {
         openShopP2();
@@ -317,11 +312,23 @@ void draw() {
     }
 
 
+    if (player1.health <= 0 && player1.health <= 0) {
+      gameOver = true;
+      gameOverScreen = true;
+    }
+
+    if (gameOver) {
+      player1.position = new PVector(-1000, -1000);
+      player2.position = new PVector(-1000, -1000);
+      gameOver = false;
+    }
+
+    if (gameOverScreen) {
+      drawEndScreen();
+      gameOverButton.update();
+    }
+
     displayScore();
-    //for (int i = 0; i<wall.length; i++) {
-    //  wall[i].update();
-    //  wall[i].display();
-    //}
   }
 }
 
@@ -337,4 +344,25 @@ void displayScore() {
   fill(0);
   textSize(40);
   text("Money: " + money, width/2, 25);
+}
+
+void displayHealthPlayer1() {
+  fill(255, 0, 0 );
+  strokeWeight(5);
+  stroke(50);
+  rect(120, 30, 250, 100);
+  noStroke();
+  fill(0);
+  textSize(40);
+  text("Health " + player1.health, 120, 35);
+}
+void displayHealthPlayer2() {
+  fill(0, 0, 255);
+  strokeWeight(5);
+  stroke(50);
+  rect(width - 120, 30, 250, 100);
+  noStroke();
+  fill(0);
+  textSize(40);
+  text("Health " + player2.health, width - 120, 35);
 }
