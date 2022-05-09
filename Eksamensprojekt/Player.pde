@@ -1,4 +1,4 @@
-class Player { //<>// //<>//
+class Player { //<>// //<>// //<>//
   float angle;
   int health = 200;
   int size;
@@ -7,7 +7,7 @@ class Player { //<>// //<>//
   float heading;
   boolean colide, hit;
   Gun gun;
-  int pistolGunCooldownTimer, rifleGunCooldownTimer = 0;
+  int pistolGunCooldownTimer, rifleGunCooldownTimer, sniperCooldownTimer, rocketLauncherCooldownTimer = 0;
   boolean shoot;
   String gunType;
   color col;
@@ -29,6 +29,10 @@ class Player { //<>// //<>//
       gun = new Rifle();
     if (gunType == "MachineGun")
       gun = new MachineGun();
+    if (gunType == "Sniper")
+      gun = new Sniper();
+    if (gunType == "RocketLauncher")
+      gun = new RocketLauncher();
 
 
     img.resize(0, size+25);
@@ -51,8 +55,11 @@ class Player { //<>// //<>//
     if (rifleGunCooldownTimer != rifleCooldown)
       rifleGunCooldownTimer++;
 
+    if (sniperCooldownTimer != sniperCooldown)
+      sniperCooldownTimer++;
 
-
+    if (rocketLauncherCooldownTimer != rocketLauncerCooldown)
+      rocketLauncherCooldownTimer++;
 
 
     //checkedges();
@@ -128,9 +135,9 @@ void updateMovementPlayer1() {
     player1.position.add(player1.speed);
   }
   if (a) 
-    player1.turn(-0.05);
+    player1.turn(-0.075);
   if (d) 
-    player1.turn(0.05);
+    player1.turn(0.075);
   player1.checkedges();
 }
 
@@ -148,9 +155,9 @@ void updateMovementPlayer2() {
     player2.position.add(player2.speed);
   }
   if (left)
-    player2.turn(-0.05);
+    player2.turn(-0.075);
   if (right)
-    player2.turn(0.05);
+    player2.turn(0.075);
   player2.checkedges();
 }
 

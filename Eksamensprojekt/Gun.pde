@@ -18,7 +18,6 @@ class Pistol extends Gun {
   Pistol() {
     pistol.resize(200, 200);
     cooldown = 90;
-    damage = 10;
   }
   void display() {
     fill(0);
@@ -28,6 +27,8 @@ class Pistol extends Gun {
     if (triggerReleased && player1.pistolGunCooldownTimer == pistolCooldown) {
       player1.pistolGunCooldownTimer = 0;
       bulletList.add(new PistolBullet(x, y, angle));
+      //shootSound.play();
+
       triggerReleased = false;
     }
     if (triggerReleased && player2.pistolGunCooldownTimer == pistolCooldown) {
@@ -49,7 +50,6 @@ class Rifle extends Gun {
 
   Rifle() {
     rifle.resize(200, 300);
-    damage = 15;
     cooldown = 60;
   }
 
@@ -80,7 +80,6 @@ class MachineGun extends Gun {
 
   MachineGun() {
     machineGun.resize(300, 300);
-    damage = 3;
   }
 
   void display() {
@@ -92,19 +91,88 @@ class MachineGun extends Gun {
   }
 }
 
+int sniperCooldown = 50;
+class Sniper extends Gun {
+  boolean triggerReleased = true;
+
+  //PImage machineGun = loadImage("machinegun.png");
+
+  Sniper() {
+    //machineGun.resize(300, 300);
+  }
+  void display() {
+    fill(0);
+    rect(x, y, 10, 10);
+    //image(Sniper, x+40, y+40);
+  }
+  void pullTrigger() {
+    if (triggerReleased && player1.sniperCooldownTimer == sniperCooldown) {
+      player1.sniperCooldownTimer = 0;
+      bulletList.add(new SniperBullet(x, y, angle));
+
+      triggerReleased = false;
+    }
+    if (triggerReleased && player2.sniperCooldownTimer == sniperCooldown) {
+      player2.sniperCooldownTimer = 0;
+      bulletList.add(new SniperBullet(x, y, angle));
+      triggerReleased = false;
+    }
+  }
+
+  void releaseTrigger() {
+    triggerReleased = true;
+  }
+}
+
+
+int rocketLauncerCooldown = 85;
+class RocketLauncher extends Gun {
+  boolean triggerReleased = true;
+
+  //PImage machineGun = loadImage("machinegun.png");
+
+  RocketLauncher() {
+    //machineGun.resize(300, 300);
+  }
+  void display() {
+    fill(0);
+    circle(x, y, 10);
+    //image(RocketLauncer, x+40, y+40);
+  }
+  void pullTrigger() {
+    if (triggerReleased && player1.rocketLauncherCooldownTimer == rocketLauncerCooldown) {
+      player1.rocketLauncherCooldownTimer = 0;
+      bulletList.add(new RocketLauncherBullet(x, y, angle));
+
+      triggerReleased = false;
+    }
+    if (triggerReleased && player2.rocketLauncherCooldownTimer == rocketLauncerCooldown) {
+      player2.rocketLauncherCooldownTimer = 0;
+      bulletList.add(new RocketLauncherBullet(x, y, angle));
+      triggerReleased = false;
+    }
+  }
+
+  void releaseTrigger() {
+    triggerReleased = true;
+  }
+}
+
+
+
+
+
 class EnemyPistol extends Gun {
   boolean triggerReleased = true;
   PImage pistol = loadImage("pistol.png");
   EnemyPistol() {
     pistol.resize(200, 200);
-    damage = 10;
   }
 
   void display() {
     fill(0);
     //image(pistol, x+20, y+40);
-        image(pistol, x+20, y);
-
+    image(pistol, x+20, y);
   }
   void pullTrigger() {
     if (triggerReleased) {
@@ -125,14 +193,12 @@ class EnemyRifle extends Gun {
   PImage rifle = loadImage("rifle.png");
   EnemyRifle() {
     rifle.resize(200, 300);
-    damage = 15;
   }
 
   void display() {
     fill(0);
     //image(rifle, x+40, y+40);
-        image(rifle, x+40, y);
-
+    image(rifle, x+40, y);
   }
   void pullTrigger() {
     if (triggerReleased) {
@@ -151,14 +217,12 @@ class EnemyMachineGun extends Gun {
 
   EnemyMachineGun() {
     machineGun.resize(300, 300);
-    damage = 3;
   }
 
   void display() {
     fill(0);
     //image(machineGun, x+60, y+40);
-        image(machineGun, x+60, y);
-
+    image(machineGun, x+60, y);
   }
   void pullTrigger() {
     if (triggerReleased) {

@@ -1,5 +1,5 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>// //<>//
-ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>(); //<>// //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>(); //<>//
 int damage;
 void updateBullets() {
   for (int i = 0; i < bulletList.size(); i++) {
@@ -23,13 +23,6 @@ void updateBullets() {
   }
 }
 
-
-
-
-
-
-
-
 void updateEnemy() {
   for (int i = 0; i < enemyList.size(); i++) {
     if (enemyList.get(i).health <= 0) {
@@ -39,8 +32,6 @@ void updateEnemy() {
     }
   }
 }
-
-
 
 class Bullet {
   PVector velocity, position;
@@ -80,7 +71,7 @@ class Bullet {
 
   void enemyColide() {
     for (int i = 0; i < enemyList.size(); i++) {
-      if (dist(position.x, position.y, enemyList.get(i).position.x, enemyList.get(i).position.y) < enemyList.get(i).size/2) {
+      if (dist(position.x, position.y, enemyList.get(i).position.x, enemyList.get(i).position.y) < enemyList.get(i).size/2 + diameter/2) {
         enemyHit = true;
         enemyList.get(i).health -= damage;
       }
@@ -125,12 +116,30 @@ class MachineGunBullet extends Bullet {
     damage = 3;
   }
 }
+class SniperBullet extends Bullet {
+  SniperBullet(float x, float y, float angle) {
+    super(x, y, angle, 44, 150);
+    diameter = 13;
+    velocity.mult(30);
+    damage = 30;
+  }
+}
+
+class RocketLauncherBullet extends Bullet {
+  RocketLauncherBullet(float x, float y, float angle) {
+    super(x, y, angle, 44, 150);
+    diameter = 30;
+    velocity.mult(5);
+    damage = 50;
+  }
+}
+
 class EnemyPistolBullet extends Bullet {
   EnemyPistolBullet(float x, float y, float angle) {
     super(x, y, angle, 0, 80);
     diameter = 10;
     velocity.mult(5);
-    damage = 10;
+    damage = 6;
   }
 }
 
@@ -139,7 +148,7 @@ class EnemyRifleBullet extends Bullet {
     super(x, y, angle, 0, 150);
     diameter = 15;
     velocity.mult(20);
-    damage = 15;
+    damage = 10;
   }
 }
 
@@ -148,6 +157,6 @@ class EnemyMachineGunBullet extends Bullet {
     super(x, y, angle, 0, 150);
     diameter = 10;
     velocity.mult(10);
-    damage = 3;
+    damage = 2;
   }
 }

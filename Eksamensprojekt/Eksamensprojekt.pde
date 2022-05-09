@@ -1,6 +1,7 @@
 import controlP5.*;
 import de.bezier.data.sql.*;
 import de.bezier.data.sql.mapper.*;
+import processing.sound.*;
 
 ControlP5 cp5;
 SQLite db;
@@ -12,14 +13,14 @@ Button backButton;
 Button playButton;
 Button buyRifleButtonP1;
 Button buyMachineGunButtonP1;
-Button placeholderP1a;
-Button placeholderP1b;
+Button buySniperButtonP1;
+Button buyRocketLauncherButtonP1;
 Button buyHealthButtonP1;
 
 Button buyRifleButtonP2;
 Button buyMachineGunButtonP2;
-Button placeholderP2a;
-Button placeholderP2b;
+Button buySniperButtonP2;
+Button buyRocketLauncherButtonP2;
 Button buyHealthButtonP2;
 Button gameOverButton;
 PImage background, red, blue;
@@ -28,6 +29,14 @@ Player player1;
 Player player2;
 
 Gun gun;
+
+SoundFile backgroundMusic;
+SoundFile gameOverSound;
+SoundFile shootSound;
+SoundFile enemyDead;
+SoundFile playerDead;
+SoundFile changeLevel;
+
 //LevelController levelController;
 
 boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver, gameOver, gameOverScreen;
@@ -40,6 +49,7 @@ ArrayList<Wall> wallList = new ArrayList<Wall>();
 
 int time = 0;
 int totaltime;
+
 void setup() {
   red = loadImage("red.png");
   blue = loadImage("blue.png");
@@ -56,10 +66,21 @@ void setup() {
   drawMultiplayerLoginTextBox();
   singleplayerText.setVisible(false);
   multiplayerText.setVisible(false);
+
+
+  backgroundMusic = new SoundFile(Eksamensprojekt.this, "bmusic.mp3");
+  //gameOverSound = new SoundFile(Eksamensprojekt.this, "gameover");
+  //shootSound = new SoundFile(Eksamensprojekt.this, "gun-shot-6178.mp3");
+  shootSound = new SoundFile(Eksamensprojekt.this, "ShootSound (2).mp3");
+
+
+  backgroundMusic.loop();
+  //gameOverSound.loop();
 }
 
 void draw() {
-  money = 10000;
+
+  //money = 10000;
 
   background(255);
   image(background, width/2, height/2);
@@ -94,7 +115,7 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
+      player1 = new Player(width/2-200, height-100, "RocketLauncher", color(255, 0, 0));
       player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;
@@ -104,7 +125,7 @@ void draw() {
     }
     player1.update();
     displayHealthPlayer1();
-    println(player1.pistolGunCooldownTimer);
+    //println(player1.pistolGunCooldownTimer);
 
 
 
@@ -289,8 +310,8 @@ void draw() {
       openShopP1();
       buyRifleButtonP1.update();
       buyMachineGunButtonP1.update();
-      placeholderP1a.update();
-      placeholderP1b.update();
+      buySniperButtonP1.update();
+      buyRocketLauncherButtonP1.update();
       buyHealthButtonP1.update();
       wave1=false;
       wave2=false;
@@ -319,8 +340,8 @@ void draw() {
         openShopP2();
         buyRifleButtonP2.update();
         buyMachineGunButtonP2.update();
-        placeholderP2a.update();
-        placeholderP2b.update();
+        buySniperButtonP2.update();
+        buyRocketLauncherButtonP2.update();
         buyHealthButtonP2.update();
       }
 
@@ -343,6 +364,7 @@ void draw() {
     if (gameOver) {
       player1.position = new PVector(-1000, -1000);
       player2.position = new PVector(-1000, -1000);
+      //gameOverSound.play();
       gameOver = false;
     }
 
