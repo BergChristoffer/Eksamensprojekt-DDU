@@ -55,7 +55,7 @@ class Enemy {
 
   void display() {
     pushMatrix();
-    translate(position.x, position.y);    
+    translate(position.x, position.y);
     rotate(speed.heading());
     translate(-position.x, -position.y);
 
@@ -68,6 +68,10 @@ class Enemy {
     if (type == 3)
       fill(255, 0, 255);
     circle(position.x, position.y, size);
+    if (type == 1) {
+      fill(0);
+      rect(position.x,position.y,40,20);
+    }
     rectMode(CENTER);
     fill(0);
     gun.angle = speed.heading();

@@ -95,15 +95,15 @@ int sniperCooldown = 50;
 class Sniper extends Gun {
   boolean triggerReleased = true;
 
-  //PImage machineGun = loadImage("machinegun.png");
+  PImage Sniper = loadImage("sniper.png");
 
   Sniper() {
-    //machineGun.resize(300, 300);
+    Sniper.resize(300, 300);
   }
   void display() {
     fill(0);
     rect(x, y, 10, 10);
-    //image(Sniper, x+40, y+40);
+    image(Sniper, x+40, y+40);
   }
   void pullTrigger() {
     if (triggerReleased && player1.sniperCooldownTimer == sniperCooldown) {
@@ -125,19 +125,19 @@ class Sniper extends Gun {
 }
 
 
-int rocketLauncerCooldown = 85;
+int rocketLauncerCooldown = 110;
 class RocketLauncher extends Gun {
   boolean triggerReleased = true;
 
-  //PImage machineGun = loadImage("machinegun.png");
+  PImage RocketLauncher = loadImage("bazooka.png");
 
   RocketLauncher() {
-    //machineGun.resize(300, 300);
+    RocketLauncher.resize(300, 300);
   }
   void display() {
     fill(0);
     circle(x, y, 10);
-    //image(RocketLauncer, x+40, y+40);
+    image(RocketLauncher, x+40, y+40);
   }
   void pullTrigger() {
     if (triggerReleased && player1.rocketLauncherCooldownTimer == rocketLauncerCooldown) {

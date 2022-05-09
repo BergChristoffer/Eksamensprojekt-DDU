@@ -116,7 +116,7 @@ void draw() {
     //kontroller levels
     if (startLevel1) {
       player1 = new Player(width/2-200, height-100, "RocketLauncher", color(255, 0, 0));
-      player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
+      player2 = new Player(width/2+200, height-100, "Sniper", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;
       createLevel1();
@@ -124,7 +124,8 @@ void draw() {
       spawnLevel1Enemies();
     }
     player1.update();
-    displayHealthPlayer1();
+    if (playMultiPlayer) 
+      player2.update();
     //println(player1.pistolGunCooldownTimer);
 
 
@@ -318,6 +319,7 @@ void draw() {
       wave3=false;
       wave4=false;
     }
+    displayHealthPlayer1();
 
     //opdater alle arrayliste af enemy objekter
     for (int i = 0; i < enemyList.size(); i++) {
@@ -333,8 +335,7 @@ void draw() {
 
 
     if (playMultiPlayer) {
-      player2.update();
-      displayHealthPlayer2();
+      //player2.update();
 
       if (levelOver) {
         openShopP2();
@@ -344,7 +345,7 @@ void draw() {
         buyRocketLauncherButtonP2.update();
         buyHealthButtonP2.update();
       }
-
+      displayHealthPlayer2();
       updateMovementPlayer2();
       if (player2.wallcolision()) {
         player2.position = new PVector(player2.tempPos.x, player2.tempPos.y);

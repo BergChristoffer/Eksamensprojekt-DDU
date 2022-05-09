@@ -1,5 +1,5 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>(); //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>();
 int damage;
 void updateBullets() {
   for (int i = 0; i < bulletList.size(); i++) {
@@ -42,6 +42,8 @@ class Bullet {
   Bullet(float x, float y, float angle, float gunOffset1, float gunOffset2) {
     position = new PVector(x, y);
     this.angle = angle;
+    float accuracy = random(-0.07, 0.07);
+    angle = angle+accuracy;
     velocity = new PVector();
     position.x=position.x+gunOffset1*cos(angle+90)+gunOffset2*cos(angle);
     position.y=position.y+gunOffset1*sin(angle+90)+gunOffset2*sin(angle);
@@ -129,8 +131,8 @@ class RocketLauncherBullet extends Bullet {
   RocketLauncherBullet(float x, float y, float angle) {
     super(x, y, angle, 44, 150);
     diameter = 30;
-    velocity.mult(5);
-    damage = 50;
+    velocity.mult(3);
+    damage = 80;
   }
 }
 
@@ -154,7 +156,7 @@ class EnemyRifleBullet extends Bullet {
 
 class EnemyMachineGunBullet extends Bullet {
   EnemyMachineGunBullet(float x, float y, float angle) {
-    super(x, y, angle, 0, 150);
+    super(x, y, angle, 0, 140);
     diameter = 10;
     velocity.mult(10);
     damage = 2;
