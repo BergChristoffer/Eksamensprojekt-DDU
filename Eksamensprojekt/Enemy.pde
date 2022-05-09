@@ -70,7 +70,7 @@ class Enemy {
     circle(position.x, position.y, size);
     if (type == 1) {
       fill(0);
-      rect(position.x,position.y,40,20);
+      rect(position.x, position.y, 40, 20);
     }
     rectMode(CENTER);
     fill(0);

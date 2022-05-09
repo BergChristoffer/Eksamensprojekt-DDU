@@ -5,12 +5,11 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
-
-
 import controlP5.*;
 import de.bezier.data.sql.*;
 import de.bezier.data.sql.mapper.*;
 import processing.sound.*;
+
 
 ControlP5 cp5;
 SQLite db;
@@ -38,6 +37,8 @@ Player player1;
 Player player2;
 
 Gun gun;
+
+SoundFile changeLevel;
 
 AudioSnippet pistolSound;
 AudioSnippet rifleSound;
@@ -79,15 +80,17 @@ void setup() {
   singleplayerText.setVisible(false);
   multiplayerText.setVisible(false);
 
-
   minim = new Minim(this);
-  pistolSound = minim.loadSnippet("gun-gunshot-01.wav");
+  pistolSound = minim.loadSnippet("gun-gunshot-01 (mp3cut.net).wav");
   rifleSound = minim.loadSnippet("gun-shot-1-7069.mp3");
+
   sniperSound = minim.loadSnippet("Awm Sniper - Sound Effect (mp3cut.net).wav");
   rocketLauncherSound = minim.loadSnippet("rocket.wav");
   gameOverSound = minim.loadSnippet("game-over-arcade-6435.mp3");
   backgroundMusic = minim.loadSnippet("bmusic.mp3");
+
   levelComplete = minim.loadSnippet("pleasing-bell.wav");
+
   enemyDeathSound= minim.loadSnippet("203607003 (mp3cut.net).wav");
 
   backgroundMusic.loop();
@@ -130,8 +133,8 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, "RocketLauncher", color(255, 0, 0));
-      player2 = new Player(width/2+200, height-100, "Sniper", color(0, 0, 255));
+      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
+      player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;
       createLevel1();
@@ -139,8 +142,7 @@ void draw() {
       spawnLevel1Enemies();
     }
     player1.update();
-    if (playMultiPlayer) 
-      player2.update();
+    displayHealthPlayer1();
     //println(player1.pistolGunCooldownTimer);
 
 
@@ -334,7 +336,6 @@ void draw() {
       wave3=false;
       wave4=false;
     }
-    displayHealthPlayer1();
 
     //opdater alle arrayliste af enemy objekter
     for (int i = 0; i < enemyList.size(); i++) {
@@ -350,7 +351,8 @@ void draw() {
 
 
     if (playMultiPlayer) {
-      //player2.update();
+      player2.update();
+      displayHealthPlayer2();
 
       if (levelOver) {
         openShopP2();
@@ -360,7 +362,7 @@ void draw() {
         buyRocketLauncherButtonP2.update();
         buyHealthButtonP2.update();
       }
-      displayHealthPlayer2();
+
       updateMovementPlayer2();
       if (player2.wallcolision()) {
         player2.position = new PVector(player2.tempPos.x, player2.tempPos.y);

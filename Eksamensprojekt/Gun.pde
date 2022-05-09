@@ -91,7 +91,7 @@ class MachineGun extends Gun {
   }
 }
 
-int sniperCooldown = 50;
+int sniperCooldown = 70;
 class Sniper extends Gun {
   boolean triggerReleased = true;
 
@@ -101,8 +101,11 @@ class Sniper extends Gun {
     Sniper.resize(300, 300);
   }
   void display() {
+    rectMode(CORNER);
+    fill(255, 0, 0);
+    rect(x+40, y+39, 10000, 2);
+    rectMode(CENTER);
     fill(0);
-    rect(x, y, 10, 10);
     image(Sniper, x+40, y+40);
   }
   void pullTrigger() {
@@ -136,7 +139,6 @@ class RocketLauncher extends Gun {
   }
   void display() {
     fill(0);
-    circle(x, y, 10);
     image(RocketLauncher, x+40, y+40);
   }
   void pullTrigger() {

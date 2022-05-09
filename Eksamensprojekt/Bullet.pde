@@ -1,4 +1,4 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>();
 int damage;
 void updateBullets() {
@@ -26,6 +26,8 @@ void updateBullets() {
 void updateEnemy() {
   for (int i = 0; i < enemyList.size(); i++) {
     if (enemyList.get(i).health <= 0) {
+      enemyDeathSound.rewind();
+      enemyDeathSound.play();
       money += 10;
       totalMoney += 10;
       enemyList.remove(i);
@@ -98,6 +100,8 @@ class PistolBullet extends Bullet {
     diameter = 10;
     velocity.mult(5);
     damage = 10;
+    pistolSound.rewind();
+    pistolSound.play();
   }
 }
 
@@ -107,6 +111,8 @@ class RifleBullet extends Bullet {
     diameter = 15;
     velocity.mult(20);
     damage = 15;
+    rifleSound.rewind();
+    rifleSound.play();
   }
 }
 
@@ -116,6 +122,8 @@ class MachineGunBullet extends Bullet {
     diameter = 10;
     velocity.mult(10);
     damage = 3;
+    pistolSound.rewind();
+    pistolSound.play();
   }
 }
 class SniperBullet extends Bullet {
@@ -124,6 +132,8 @@ class SniperBullet extends Bullet {
     diameter = 13;
     velocity.mult(30);
     damage = 30;
+    sniperSound.rewind();
+    sniperSound.play();
   }
 }
 
@@ -133,6 +143,8 @@ class RocketLauncherBullet extends Bullet {
     diameter = 30;
     velocity.mult(3);
     damage = 80;
+    rocketLauncherSound.rewind();
+    rocketLauncherSound.play();
   }
 }
 
