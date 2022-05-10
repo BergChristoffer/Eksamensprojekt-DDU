@@ -5,11 +5,15 @@ void drawStartScreen() {
   if (singlePlayerButton.isClicked()) {
     start = false;
     singlePlayerLoginScreen = true;
+    singleplayerName = "";
+    multiplayerName = "";
   }
   multiPlayerButton = new Button(width * 3/4, height/2-100, width/2, height-200, color(0, 0, 255), "MULTIPLAYER", 50);
   if (multiPlayerButton.isClicked()) {
     start = false;
     multiplayerLoginScreen = true;
+    singleplayerName = "";
+    multiplayerName = "";
   }
   highScorePageButton = new Button(width/2, height-100, width, 200, color(125), "HIGHSCORES", 50);
   if (highScorePageButton.isClicked())
@@ -37,6 +41,8 @@ void drawSinglePlayerLoginButtons() {
     singleplayerText.setVisible(false);
     //createSingleplayer();
     startLevel1 = true;
+    highscoreTimer = 0;
+    highscoreTimerCounter = 0;
   }
   backButton = new Button(150, 100, 200, 100, color(125), "BACK", 30);
   if (backButton.isClicked()) {
@@ -68,6 +74,8 @@ void drawMultiplayerLoginButtons() {
     multiplayerText.setVisible(false);
     //createMultiplayer();
     startLevel1 = true;
+    highscoreTimer = 0;
+    highscoreTimerCounter = 0;
   }
   backButton = new Button(150, 100, 200, 100, color(125), "BACK", 30);
   if (backButton.isClicked()) {
@@ -222,6 +230,8 @@ void controlEvent(ControlEvent theEvent) {
       singleplayerText.setVisible(false);
       //createSingleplayer();
       startLevel1 = true;
+      highscoreTimer = 0;
+      highscoreTimerCounter = 0;
     }
 
     //multiplayer
@@ -233,55 +243,8 @@ void controlEvent(ControlEvent theEvent) {
       multiplayerText.setVisible(false);
       //createMultiplayer();
       startLevel1 = true;
-    }
-  }
-}
-
-String sql;
-//indsæt singleplayer navn i database
-void createSingleplayer() {
-  db = new SQLite( this, "database.sqlite" );
-  // Connect to database
-  if ( db.connect() )
-  {
-    try {
-
-      if (singleplayerName != "") {
-        // Insert username into database
-        sql = "INSERT INTO singleplayer (name,score) VALUES ('" + singleplayerName + "', '" + 0 + "');";
-        db.execute(sql);
-
-        //singleplayerName = "";
-
-        db.close();
-      }
-    }
-    catch (Exception e) {
-      System.out.println("Exception: "+e);
-    }
-  }
-}
-
-//indsæt multiplayer navn i database
-void createMultiplayer() {
-  db = new SQLite( this, "database.sqlite" );
-  // Connect to database
-  if ( db.connect() )
-  {
-    try {
-
-      if (singleplayerName != "") {
-        // Insert username into database
-        sql = "INSERT INTO multiplayer (name,score) VALUES ('" + multiplayerName + "', '" + 0 + "');";
-        db.execute(sql);
-
-        //multiplayerName = "";
-
-        db.close();
-      }
-    }
-    catch (Exception e) {
-      System.out.println("Exception: "+e);
+      highscoreTimer = 0;
+      highscoreTimerCounter = 0;
     }
   }
 }

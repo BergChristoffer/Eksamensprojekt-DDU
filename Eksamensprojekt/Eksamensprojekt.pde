@@ -51,7 +51,7 @@ Minim minim;
 
 //LevelController levelController;
 
-boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver, gameOver, gameOverScreen;
+boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver, gameOver, gameOverScreen, gameComplete;
 boolean start = true;
 
 
@@ -130,23 +130,23 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, "RocketLauncher", color(255, 0, 0));
-      player2 = new Player(width/2+200, height-100, "Sniper", color(0, 0, 255));
+      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
+      player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;
       createLevel1();
       wave1 = true;
       spawnLevel1Enemies();
     }
+    if (gameComplete == false)
+      createTimer();
+
+    displayScore();
+
     player1.update();
     if (playMultiPlayer) 
       player2.update();
     //println(player1.pistolGunCooldownTimer);
-
-
-
-
-
 
     if (startLevel2) {
       player1.position = new PVector(100, 100);
@@ -233,7 +233,7 @@ void draw() {
       spawnLevel3Enemies();
     }
     if (level3IsRunning && wave3 && enemyList.size() == 0)
-      levelOver = true;
+      gameComplete = true;
 
 
 
@@ -275,17 +275,22 @@ void draw() {
     if (level5IsRunning && wave3 && enemyList.size() == 0)
       levelOver = true;
 
-
-    if (levelOver) {
-      totaltime = 360;
-      fill(0, 255, 0);
-      rect(width/2, height-10, width-(time*(width/totaltime))-50, 20);
-      time ++;
-      if (time == totaltime) {
-        newLevel = true;
-        time = 0;
-      }
+    if (gameComplete) {
+      //tegn en slutskærm
+      //upload score til database
     }
+
+
+    //if (levelOver) {
+    //  totaltime = 360;
+    //  fill(0, 255, 0);
+    //  rect(width/2, height-10, width-(time*(width/totaltime))-50, 20);
+    //  time ++;
+    //  if (time == totaltime) {
+    //    newLevel = true;
+    //    time = 0;
+    //  }
+    //}
 
     if (newLevel) {
       if (extraHealthBuffP1)
@@ -323,6 +328,14 @@ void draw() {
     }
 
     if (levelOver) {
+      totaltime = 360;
+      fill(0, 255, 0);
+      rect(width/2, height-10, width-(time*(width/totaltime))-50, 20);
+      time ++;
+      if (time == totaltime) {
+        newLevel = true;
+        time = 0;
+      }
       openShopP1();
       buyRifleButtonP1.update();
       buyMachineGunButtonP1.update();
@@ -390,8 +403,6 @@ void draw() {
       drawEndScreen();
       gameOverButton.update();
     }
-
-    displayScore();
   }
 }
 
@@ -402,11 +413,11 @@ void displayScore() {
   fill(255);
   strokeWeight(5);
   stroke(50);
-  rect(width/2, 30, 250, 100);
+  rect(width/2-100, 30, 200, 100);
   noStroke();
   fill(0);
-  textSize(40);
-  text("Money: " + money, width/2, 25);
+  textSize(30);
+  text("Money: " + money, width/2-100, 30);
 }
 
 void displayHealthPlayer1() {
@@ -428,4 +439,23 @@ void displayHealthPlayer2() {
   fill(0);
   textSize(40);
   text("Health " + player2.health, width - 120, 35);
+}
+
+int highscoreTimerCounter = 0;
+int highscoreTimer = 0;
+void createTimer() {
+  highscoreTimerCounter++;
+
+  if (highscoreTimerCounter == 60) {
+    highscoreTimerCounter = 0;
+    highscoreTimer += 1;
+  }
+  fill(255);
+  strokeWeight(5);
+  stroke(50);
+  rect(width/2+100, 30, 200, 100);
+  noStroke();
+  fill(0);
+  textSize(30);
+  text("TIME: " + highscoreTimer, width/2+100, 30);
 }
