@@ -138,10 +138,6 @@ void draw() {
       wave1 = true;
       spawnLevel1Enemies();
     }
-    if (gameComplete == false)
-      createTimer();
-
-    displayScore();
 
     player1.update();
     if (playMultiPlayer) 
@@ -280,18 +276,6 @@ void draw() {
       //upload score til database
     }
 
-
-    //if (levelOver) {
-    //  totaltime = 360;
-    //  fill(0, 255, 0);
-    //  rect(width/2, height-10, width-(time*(width/totaltime))-50, 20);
-    //  time ++;
-    //  if (time == totaltime) {
-    //    newLevel = true;
-    //    time = 0;
-    //  }
-    //}
-
     if (newLevel) {
       if (extraHealthBuffP1)
         player1.health = 400;
@@ -403,6 +387,10 @@ void draw() {
       drawEndScreen();
       gameOverButton.update();
     }
+    if (gameComplete == false)
+      createTimer();
+
+    displayScore();
   }
 }
 

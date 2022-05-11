@@ -26,9 +26,17 @@ void updateBullets() {
 void updateEnemy() {
   for (int i = 0; i < enemyList.size(); i++) {
     if (enemyList.get(i).health <= 0) {
+      if (enemyList.get(i).type == 1) 
+        money += 10;
+
+      if (enemyList.get(i).type == 2) 
+        money += 40;
+
+      if (enemyList.get(i).type == 3) 
+        money += 100;
+
       enemyDeathSound.rewind();
       enemyDeathSound.play();
-      money += 10;
       totalMoney += 10;
       enemyList.remove(i);
     }
@@ -120,8 +128,8 @@ class MachineGunBullet extends Bullet {
   MachineGunBullet(float x, float y, float angle) {
     super(x, y, angle, 44, 150);
     diameter = 10;
-    velocity.mult(10);
-    damage = 3;
+    velocity.mult(7.5);
+    damage = 7;
     pistolSound.rewind();
     pistolSound.play();
   }
@@ -130,8 +138,8 @@ class SniperBullet extends Bullet {
   SniperBullet(float x, float y, float angle) {
     super(x, y, angle, 44, 150);
     diameter = 13;
-    velocity.mult(30);
-    damage = 30;
+    velocity.mult(40);
+    damage = 40;
     sniperSound.rewind();
     sniperSound.play();
   }

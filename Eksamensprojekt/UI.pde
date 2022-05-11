@@ -84,11 +84,11 @@ void drawMultiplayerLoginButtons() {
     multiplayerText.setVisible(false);
   }
 }
-int rifleCost = 10;
-int machineGunCost = 10;
-int sniperCost = 10;
-int rocketLauncherCost = 10;
-int healthCost = 10;
+int rifleCost = 50;
+int machineGunCost = 120;
+int sniperCost = 200;
+int rocketLauncherCost = 250;
+int healthCost = 100;
 boolean extraHealthBuffP1;
 boolean extraHealthBuffP2;
 
@@ -106,7 +106,7 @@ void openShopP1() {
       money -= rifleCost;
     }
   }
-  buyMachineGunButtonP1 = new Button(width/4, 500, width/2-90, 90, color(255, 0, 0), "BUY MACHINEGUN : 100$", 30);
+  buyMachineGunButtonP1 = new Button(width/4, 500, width/2-90, 90, color(255, 0, 0), "BUY MACHINEGUN : 120$", 30);
   if (buyMachineGunButtonP1.isClicked()) {
     if (money >= machineGunCost) {
       player1 = new Player(player1.position.x, player1.position.y, "MachineGun", color(255, 0, 0));
@@ -122,7 +122,7 @@ void openShopP1() {
     }
   }
 
-  buyRocketLauncherButtonP1 = new Button(width/4, 700, width/2-90, 90, color(255, 0, 0), "BUY ROCKET LAUNCHER : 500$", 30);
+  buyRocketLauncherButtonP1 = new Button(width/4, 700, width/2-90, 90, color(255, 0, 0), "BUY ROCKET LAUNCHER : 250$", 30);
   if (buyRocketLauncherButtonP1.isClicked()) {
     if (money >= rocketLauncherCost) {
       player1 = new Player(player1.position.x, player1.position.y, "RocketLauncher", color(255, 0, 0));
@@ -130,7 +130,7 @@ void openShopP1() {
     }
   }
 
-  buyHealthButtonP1 = new Button(width/4, 800, width/2-90, 90, color(255, 0, 0), "BUY extra health + 200: 200$", 30);
+  buyHealthButtonP1 = new Button(width/4, 800, width/2-90, 90, color(255, 0, 0), "BUY extra health + 200: 100$", 30);
   if (buyHealthButtonP1.isClicked()) {
     if (money >= healthCost) {
       money -= healthCost;
@@ -152,7 +152,7 @@ void openShopP2() {
       money -= rifleCost;
     }
   }
-  buyMachineGunButtonP2 = new Button(width-width/4, 500, width/2-90, 90, color(0, 0, 255), "BUY MACHINEGUN : 100$", 30);
+  buyMachineGunButtonP2 = new Button(width-width/4, 500, width/2-90, 90, color(0, 0, 255), "BUY MACHINEGUN : 120$", 30);
   if (buyMachineGunButtonP2.isClicked()) {
     if (money >= machineGunCost) {
       player2 = new Player(player2.position.x, player2.position.y, "MachineGun", color(0, 0, 255));
@@ -167,7 +167,7 @@ void openShopP2() {
     }
   }
 
-  buyRocketLauncherButtonP2 = new Button(width-width/4, 700, width/2-90, 90, color(0, 0, 255), "BUY ROCKET LAUNCHER : 500$", 30);
+  buyRocketLauncherButtonP2 = new Button(width-width/4, 700, width/2-90, 90, color(0, 0, 255), "BUY ROCKET LAUNCHER : 250$", 30);
   if (buyRocketLauncherButtonP2.isClicked()) {
     if (money >= rocketLauncherCost) {
       player2 = new Player(player2.position.x, player2.position.y, "RocketLauncher", color(0, 0, 255));
@@ -175,7 +175,7 @@ void openShopP2() {
     }
   }
 
-  buyHealthButtonP2 = new Button(width-width/4, 800, width/2-90, 90, color(0, 0, 255), "BUY extra health + 200: 200$", 30);
+  buyHealthButtonP2 = new Button(width-width/4, 800, width/2-90, 90, color(0, 0, 255), "BUY extra health + 200: 100$", 30);
   if (buyHealthButtonP2.isClicked()) {
     if (money >= healthCost) {
       money -= healthCost;
