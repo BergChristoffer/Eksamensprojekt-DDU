@@ -83,9 +83,9 @@ class Enemy {
       rectMode(CORNER);
       text("BIG GUY", width/2, height-80);
       fill(90);
-      rect(45, height-45, (totalhealth*(width/totalhealth))-40, 20);
+      rect(45, height-45, width-90, 20);
       fill(220, 220, 30);
-      rect(50, height-40, (health*(width/totalhealth))-50, 10);
+      rect(50, height-40, (health*(width/totalhealth))-100, 10);
       rectMode(CENTER);
     }
     popMatrix();
