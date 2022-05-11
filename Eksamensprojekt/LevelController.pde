@@ -37,9 +37,9 @@ void updateEnemyShooting() {
 //level1
 void spawnLevel1Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 1, 80, 400, 1));
-    enemyList.add(new Enemy(new PVector(200, height/2), "EnemyPistol", 30, 80, 400, 1));
-    enemyList.add(new Enemy(new PVector(width-200, height/2), "EnemyRifle", 30, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(width/2, 100), "EnemyPistol", 100, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(200, height/2), "EnemyPistol", 100, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(width-200, height/2), "EnemyRifle", 255, 80, 400, 1));
   }
 
   if (wave2) {
@@ -118,19 +118,19 @@ void createLevel2() {
 
 void spawnLevel3Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(100, height-100), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(400, height-100), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(500, height-300), "EnemyRifle", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width-400, height-100), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width-500, height-300), "EnemyRifle", 3, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(100, height-100), "EnemyPistol", 50, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(400, height-100), "EnemyPistol", 50, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(500, height-300), "EnemyRifle", 50, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(width-100, height-100), "EnemyPistol", 50, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(width-400, height-100), "EnemyPistol", 50, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(width-500, height-300), "EnemyRifle", 50, 80, 1000, 1));
   }
   if (wave2) {
-    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2+20, height/2), "EnemyMachineGun", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2+40, height/2), "EnemyMachineGun", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2-20, height/2), "EnemyMachineGun", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2-40, height/2), "EnemyMachineGun", 3, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 20, 80, 300, 1));
+    enemyList.add(new Enemy(new PVector(width/2+20, height/2), "EnemyMachineGun", 20, 80, 300, 1));
+    enemyList.add(new Enemy(new PVector(width/2+40, height/2), "EnemyMachineGun", 20, 80, 300, 1));
+    enemyList.add(new Enemy(new PVector(width/2-20, height/2), "EnemyMachineGun", 20, 80, 300, 1));
+    enemyList.add(new Enemy(new PVector(width/2-40, height/2), "EnemyMachineGun", 20, 80, 300, 1));
   }
   if (wave3) {
     enemyList.add(new Enemy(new PVector(width/2+100, height/2), "EnemyMachineGun", 300, 120, 1000, 2));
@@ -156,29 +156,29 @@ void createLevel3() {
 
 void spawnLevel4Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(400, 330), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width-100, 330), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2+30, 330), "EnemyPistol", 3, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 50, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(400, 330), "EnemyPistol", 50, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(width-100, 330), "EnemyPistol", 50, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(width/2+30, 330), "EnemyPistol", 50, 80, 400, 1));
   }
   if (wave2) {
-    enemyList.add(new Enemy(new PVector(100, 580), "EnemyRifle", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(400, 580), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width-200, 580), "EnemyRifle", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2, 580), "EnemyPistol", 3, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(100, 580), "EnemyRifle", 70, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(400, 580), "EnemyPistol", 70, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(width-200, 580), "EnemyRifle", 70, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(width/2, 580), "EnemyPistol", 70, 80, 400, 1));
   }
   if (wave3) {
-    enemyList.add(new Enemy(new PVector(100, height-120), "EnemyMachineGun", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(300, height-120), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(500, height-120), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(800, height-120), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(900, height-120), "EnemyPistol", 3, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(100, height-120), "EnemyMachineGun", 100, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(300, height-120), "EnemyPistol", 100, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(500, height-120), "EnemyPistol", 100, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(800, height-120), "EnemyPistol", 100, 80, 400, 1));
+    enemyList.add(new Enemy(new PVector(900, height-120), "EnemyPistol", 100, 80, 400, 1));
   }
   if (wave4) {
-    enemyList.add(new Enemy(new PVector(100, 330), "EnemyMachineGun", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(400, 330), "EnemyPistol", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width-100, 330), "EnemyRifle", 3, 80, 1000, 1));
-    enemyList.add(new Enemy(new PVector(width/2+30, 330), "EnemyMachineGun", 3, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(100, 330), "EnemyMachineGun", 100, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(400, 330), "EnemyPistol", 100, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(width-100, 330), "EnemyRifle", 100, 80, 1000, 1));
+    enemyList.add(new Enemy(new PVector(width/2+30, 330), "EnemyMachineGun", 100, 80, 1000, 1));
     enemyList.add(new Enemy(new PVector(width/2+30, height-100), "EnemyMachineGun", 400, 120, 1000, 2 ));
   }
 }
@@ -253,7 +253,7 @@ void spawnLevel5Enemies() {
     enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 3, 80, 1000, 1));
   }
   if (wave3) {
-    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 200, 240, 1000, 3));
+    enemyList.add(new Enemy(new PVector(width/2, height/2), "EnemyMachineGun", 1000, 240, 1000, 3));
     enemyList.add(new Enemy(new PVector(100, 330), "EnemyPistol", 3, 80, 1000, 1));
   }
 }

@@ -233,7 +233,7 @@ void draw() {
       spawnLevel3Enemies();
     }
     if (level3IsRunning && wave3 && enemyList.size() == 0)
-      gameComplete = true;
+      levelOver = true;
 
 
 
@@ -273,7 +273,7 @@ void draw() {
       createLevel5();
     }
     if (level5IsRunning && wave3 && enemyList.size() == 0)
-      levelOver = true;
+      gameComplete = true;
 
     if (gameComplete) {
       //tegn en slutskærm
