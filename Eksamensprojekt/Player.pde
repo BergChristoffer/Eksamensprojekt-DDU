@@ -135,9 +135,9 @@ void updateMovementPlayer1() {
     player1.position.add(player1.speed);
   }
   if (a) 
-    player1.turn(-0.075);
+    player1.turn(-0.0625);
   if (d) 
-    player1.turn(0.075);
+    player1.turn(0.0625);
   player1.checkedges();
 }
 
