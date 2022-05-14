@@ -1,4 +1,4 @@
-ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>(); //<>//
 ArrayList<Bullet> enemyBulletList = new ArrayList<Bullet>();
 int damage;
 void updateBullets() {

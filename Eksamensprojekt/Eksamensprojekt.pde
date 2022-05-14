@@ -94,9 +94,6 @@ void setup() {
 }
 
 void draw() {
-
-  //money = 10000;
-
   background(255);
   image(background, width/2, height/2);
   updateBullets();
@@ -142,7 +139,6 @@ void draw() {
     player1.update();
     if (playMultiPlayer) 
       player2.update();
-    //println(player1.pistolGunCooldownTimer);
 
     if (startLevel2) {
       player1.position = new PVector(100, 100);
@@ -338,7 +334,6 @@ void draw() {
       enemyList.get(i).update();
     }
 
-    //if (player1.wallcolision() == false)
     updateMovementPlayer1();
     if (player1.wallcolision()) {
       player1.position = new PVector(player1.tempPos.x, player1.tempPos.y);
@@ -347,7 +342,6 @@ void draw() {
 
 
     if (playMultiPlayer) {
-      //player2.update();
 
       if (levelOver) {
         openShopP2();

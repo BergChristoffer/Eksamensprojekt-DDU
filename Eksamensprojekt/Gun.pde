@@ -173,7 +173,6 @@ class EnemyPistol extends Gun {
 
   void display() {
     fill(0);
-    //image(pistol, x+20, y+40);
     image(pistol, x+20, y);
   }
   void pullTrigger() {
@@ -199,7 +198,6 @@ class EnemyRifle extends Gun {
 
   void display() {
     fill(0);
-    //image(rifle, x+40, y+40);
     image(rifle, x+40, y);
   }
   void pullTrigger() {
@@ -223,7 +221,6 @@ class EnemyMachineGun extends Gun {
 
   void display() {
     fill(0);
-    //image(machineGun, x+60, y+40);
     image(machineGun, x+60, y);
   }
   void pullTrigger() {

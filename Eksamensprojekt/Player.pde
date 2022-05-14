@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>//
+class Player { //<>//
   float angle;
   int health = 200;
   int size;
@@ -61,8 +61,6 @@ class Player { //<>// //<>// //<>//
     if (rocketLauncherCooldownTimer != rocketLauncerCooldown)
       rocketLauncherCooldownTimer++;
 
-
-    //checkedges();
     angle = heading-PI/2;
     for (int i=0; i<wallList.size(); i++) {
       if (dist(position.x, position.y, wallList.get(i).x, wallList.get(i).y) >= size/2 + wallList.get(i).radius)
@@ -160,9 +158,6 @@ void updateMovementPlayer2() {
     player2.turn(0.075);
   player2.checkedges();
 }
-
-
-
 
 //player 1
 boolean w, a, s, d, shoot1;
