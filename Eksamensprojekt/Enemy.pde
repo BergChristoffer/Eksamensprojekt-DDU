@@ -1,7 +1,7 @@
 class Enemy {
   int size, agroRange, health, type, totalhealth;
   PVector position, speed, tempPosEnemy;
-  float theta, speedlimit;
+  float theta, speedlimit, procent;
   float rotation = 0;
   boolean hit, wallhit, player1target, player2target, player1blocked, player2blocked;
   PVector v = new PVector();
@@ -85,7 +85,8 @@ class Enemy {
       fill(90);
       rect(45, height-45, width-90, 20);
       fill(220, 220, 30);
-      rect(50, height-40, (health*(width/totalhealth))-100, 10);
+      procent = (float)health/(float)totalhealth * (width-100);
+      rect(50, height-40, procent, 10);
       rectMode(CENTER);
     }
     popMatrix();
