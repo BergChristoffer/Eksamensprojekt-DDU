@@ -32,7 +32,7 @@ Button buySniperButtonP2;
 Button buyRocketLauncherButtonP2;
 Button buyHealthButtonP2;
 Button gameOverButton;
-PImage background, red, blue;
+PImage background, red, blue, P1controls, P2controls;
 
 Player player1;
 Player player2;
@@ -65,8 +65,12 @@ int totaltime;
 void setup() {
   red = loadImage("red.png");
   blue = loadImage("blue.png");
+  P1controls = loadImage("P1controls.png");
+  P2controls = loadImage("P2controls.png");
   red.resize(250, 250);
   blue.resize(250, 250);
+  P1controls.resize(600,430);
+  P2controls.resize(600,430);
   imageMode(CENTER);
   frameRate(60);
   size(1500, 900, P2D);
@@ -103,6 +107,8 @@ void draw() {
     singlePlayerButton.update();
     multiPlayerButton.update();
     highScorePageButton.update();
+    image(P1controls,width/4,height/2+100);
+    image(P2controls,width-width/4,height/2+100);
   }
 
   if (singlePlayerLoginScreen) {
