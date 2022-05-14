@@ -16,8 +16,12 @@ void drawStartScreen() {
     multiplayerName = "";
   }
   highScorePageButton = new Button(width/2, height-100, width, 200, color(125), "HIGHSCORES", 50);
-  if (highScorePageButton.isClicked())
-    println("highscores");
+  if (highScorePageButton.isClicked()) {
+    start = false;
+    highScoreScreen = true;
+    getSingleplayerResults();
+    getMultiplayerResults();
+  }
 }
 
 //singePlayerLoginScreen metoder
@@ -39,7 +43,7 @@ void drawSinglePlayerLoginButtons() {
     playSinglePlayer = true;
     singlePlayerLoginScreen = false;
     singleplayerText.setVisible(false);
-    //createSingleplayer();
+    createSingleplayer();
     startLevel1 = true;
     highscoreTimer = 0;
     highscoreTimerCounter = 0;
@@ -72,7 +76,7 @@ void drawMultiplayerLoginButtons() {
     playMultiPlayer = true;
     multiplayerLoginScreen = false;
     multiplayerText.setVisible(false);
-    //createMultiplayer();
+    createMultiplayer();
     startLevel1 = true;
     highscoreTimer = 0;
     highscoreTimerCounter = 0;
@@ -191,8 +195,8 @@ void drawEndScreen() {
   rect(width/2, height/2, width/2, height/2);
   noStroke();
   fill(0);
-  text("total score: " + totalMoney, width/2, height/2);
-
+  textSize(50);
+  text("GAME OVER", width/2, height/2);
 
   gameOverButton = new Button(width/2, height/2+120, 450, 90, color(255, 0, 0), "BACK TO MENU", 30);
   if (gameOverButton.isClicked()) {
@@ -210,9 +214,92 @@ void drawEndScreen() {
     wave4 = false;
     gameOverScreen = false;
   }
+} 
+
+void gameCompleteScreen() {
+  fill(150);
+  strokeWeight(20);
+  stroke(50);
+  rect(width/2, height/2, width/2, height/2);
+  noStroke();
+  fill(0);
+  textSize(50);
+  text("GAME COMPLETE", width/2, height/2);
+  text("TOTAL TIME: " + highscoreTimer, width/2, height/2-50);
+
+  gameOverButton = new Button(width/2, height/2+120, 450, 90, color(255, 0, 0), "BACK TO MENU", 30);
+  if (gameOverButton.isClicked()) {
+    start = true;
+    playSinglePlayer= false; 
+    playMultiPlayer = false; 
+    level1IsRunning = false; 
+    level2IsRunning = false; 
+    level3IsRunning = false; 
+    level4IsRunning = false; 
+    level5IsRunning = false;
+    wave1 = false; 
+    wave2 = false; 
+    wave3 = false; 
+    wave4 = false;
+    gameComplete = false;
+
+    insertScore();
+  }
 }
 
+void drawHighscoreScreen() {
+  fill(0);
+  textSize(30);
+  text("PLACING", width * 1/6, 200);
+  rect(width * 1/6 + 85, height/2, 2, height);
 
+
+  text("TOP SINGLEPLAYERS", width * 2/6, 200);
+  text("TIME", width * 3/6, 200);
+  rect(width * 3/6 + 80, height/2, 2, height);
+
+
+  text("TOP MULTIPLAYERS", width * 4/6, 200);
+  text("TIME", width * 5/6, 200);
+
+  rect(width/2, 250, width, 2);
+  int y1 = 300;
+  int y2 = 300;
+  int y3 = 300;
+  int y4 = 300;
+
+  int placing = 1;
+  for (String line : topSingleplayers) {
+    text("# " + placing, width * 1/6, y1);
+    text(line, width * 2/6, y1);
+    y1 += 40;
+    placing++;
+  }
+  for (String line : topSingleplayerScores) {
+    text(line, width * 3/6, y2);
+    y2 += 40;
+  }
+
+  for (String line : topMultiplayers) {
+    text(line, width * 4/6, y3);
+    y3 += 40;
+  }
+  for (String line : topMultiplayerScores) {
+    text(line, width * 5/6, y4);
+    y4 += 40;
+  }
+
+  backButton = new Button(150, 100, 200, 100, color(125), "BACK", 30);
+  if (backButton.isClicked()) {
+    start = true;
+    highScoreScreen = false;
+    
+    topSingleplayers.clear();
+    topSingleplayerScores.clear();
+    topMultiplayers.clear();
+    topMultiplayerScores.clear();
+  }
+}
 
 //string variable til navn på spiller(ne)
 String singleplayerName;
@@ -228,7 +315,7 @@ void controlEvent(ControlEvent theEvent) {
       playSinglePlayer = true;
       singlePlayerLoginScreen = false;
       singleplayerText.setVisible(false);
-      //createSingleplayer();
+      createSingleplayer();
       startLevel1 = true;
       highscoreTimer = 0;
       highscoreTimerCounter = 0;
@@ -241,7 +328,7 @@ void controlEvent(ControlEvent theEvent) {
       playMultiPlayer = true;
       multiplayerLoginScreen = false;
       multiplayerText.setVisible(false);
-      //createMultiplayer();
+      createMultiplayer();
       startLevel1 = true;
       highscoreTimer = 0;
       highscoreTimerCounter = 0;

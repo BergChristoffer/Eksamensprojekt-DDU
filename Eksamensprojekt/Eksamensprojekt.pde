@@ -51,7 +51,7 @@ Minim minim;
 
 //LevelController levelController;
 
-boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver, gameOver, gameOverScreen, gameComplete;
+boolean playSinglePlayer, playMultiPlayer, multiplayerLoginScreen, singlePlayerLoginScreen, newLevel, levelOver, gameOver, gameOverScreen, gameComplete, highScoreScreen;
 boolean start = true;
 
 
@@ -118,6 +118,13 @@ void draw() {
     playButton.update();
     backButton.update();
   }
+  
+  if(highScoreScreen){
+    drawHighscoreScreen();
+    backButton.update();
+    
+  }
+  
 
   if (playSinglePlayer) {
     updateEnemyShooting();
@@ -268,8 +275,8 @@ void draw() {
       gameComplete = true;
 
     if (gameComplete) {
-      //tegn en slutskærm
-      //upload score til database
+      gameCompleteScreen();
+      gameOverButton.update();
     }
 
     if (newLevel) {
@@ -373,7 +380,6 @@ void draw() {
       gameOverSound.play();
       player1.position = new PVector(-1000, -1000);
       player2.position = new PVector(-1000, -1000);
-      //gameOverSound.play();
       gameOver = false;
     }
 

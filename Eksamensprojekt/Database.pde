@@ -55,7 +55,7 @@ void insertScore() {
     try {
       if (playMultiPlayer == false) {
         db.query( "SELECT ID_singleplayer FROM singleplayer WHERE name = '" + singleplayerName + "'" );
-        sql = "UPDATE singleplayer SET score = " + highscoreTimer + " WHERE ID_singeplayer = " + db.getInt("ID_singleplayer");
+        sql = "UPDATE singleplayer SET score = " + highscoreTimer + " WHERE ID_singleplayer = " + db.getInt("ID_singleplayer");
       }
 
       if (playMultiPlayer) {
@@ -76,9 +76,9 @@ void insertScore() {
 
 ArrayList<String> topSingleplayers = new ArrayList<String>();
 ArrayList<String> topSingleplayerScores = new ArrayList<String>();
-ArrayList<String> multiplayers = new ArrayList<String>();
-ArrayList<String> multiplayerScores = new ArrayList<String>();
-void getSingeplayerResults() {
+ArrayList<String> topMultiplayers = new ArrayList<String>();
+ArrayList<String> topMultiplayerScores = new ArrayList<String>();
+void getSingleplayerResults() {
   db = new SQLite( this, "database.sqlite" );
   // Connect to database
   if ( db.connect() )
@@ -106,8 +106,8 @@ void getMultiplayerResults() {
     try {
       db.query("select name, score from (select name, score from multiplayer order by score asc) limit 10");
       while (db.next()) {
-        topSingleplayers.add(db.getString("name"));
-        topSingleplayerScores.add(db.getString("score"));
+        topMultiplayers.add(db.getString("name"));
+        topMultiplayerScores.add(db.getString("score"));
       }
 
       //luk database
