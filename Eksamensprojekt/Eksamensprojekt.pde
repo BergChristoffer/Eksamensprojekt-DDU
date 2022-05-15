@@ -140,7 +140,7 @@ void draw() {
 
     //kontroller levels
     if (startLevel1) {
-      player1 = new Player(width/2-200, height-100, "Sniper", color(255, 0, 0));
+      player1 = new Player(width/2-200, height-100, "Pistol", color(255, 0, 0));
       player2 = new Player(width/2+200, height-100, "Pistol", color(0, 0, 255));
       startLevel1 = false;
       level1IsRunning = true;
@@ -321,7 +321,7 @@ void draw() {
     }
 
     if (levelOver) {
-      totaltime = 2;
+      totaltime = 360;
       fill(0, 255, 0);
       rect(width/2, height-10, width-(time*(width/totaltime))-50, 20);
       time ++;
