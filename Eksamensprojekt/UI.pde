@@ -213,6 +213,16 @@ void drawEndScreen() {
     wave3 = false; 
     wave4 = false;
     gameOverScreen = false;
+
+
+
+    startLevel1 = false; 
+    startLevel2 = false; 
+    startLevel3 = false; 
+    startLevel4 = false; 
+    startLevel5 = false;
+    enemyList.clear();
+    wallList.clear();
   }
 } 
 
@@ -231,13 +241,10 @@ void gameCompleteScreen() {
   if (gameOverButton.isClicked()) {
     start = true;
 
-    if (playMultiPlayer){
+    if (playMultiPlayer) {
       createMultiplayer();
       insertMultiplayerScore();
-      
-    }
-
-    else{
+    } else {
       createSingleplayer();
       insertSingleplayerScore();
     }
@@ -256,7 +263,13 @@ void gameCompleteScreen() {
     wave3 = false; 
     wave4 = false;
     gameComplete = false;
-
+    startLevel1 = false; 
+    startLevel2 = false; 
+    startLevel3 = false; 
+    startLevel4 = false; 
+    startLevel5 = false;
+    enemyList.clear();
+    wallList.clear();
   }
 }
 

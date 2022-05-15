@@ -246,8 +246,8 @@ void createLevel4() {
 
 void spawnLevel5Enemies() {
   if (wave1) {
-    enemyList.add(new Enemy(new PVector(300, 400), "EnemyMachineGun", 1, 80, 300, 1));
-    enemyList.add(new Enemy(new PVector(width-300, height-400), "EnemyMachineGun", 1, 80, 300, 1));
+    enemyList.add(new Enemy(new PVector(300, 400), "EnemyMachineGun", 200, 80, 300, 1));
+    enemyList.add(new Enemy(new PVector(width-300, height-400), "EnemyMachineGun", 200, 80, 300, 1));
   }
   if (wave2) {
     enemyList.add(new Enemy(new PVector(300, height-100), "EnemyRifle", 300, 80, 1000, 1));
