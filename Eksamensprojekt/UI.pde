@@ -43,7 +43,7 @@ void drawSinglePlayerLoginButtons() {
     playSinglePlayer = true;
     singlePlayerLoginScreen = false;
     singleplayerText.setVisible(false);
-    createSingleplayer();
+    //createSingleplayer();
     startLevel1 = true;
     highscoreTimer = 0;
     highscoreTimerCounter = 0;
@@ -76,7 +76,7 @@ void drawMultiplayerLoginButtons() {
     playMultiPlayer = true;
     multiplayerLoginScreen = false;
     multiplayerText.setVisible(false);
-    createMultiplayer();
+    //createMultiplayer();
     startLevel1 = true;
     highscoreTimer = 0;
     highscoreTimerCounter = 0;
@@ -230,6 +230,20 @@ void gameCompleteScreen() {
   gameOverButton = new Button(width/2, height/2+120, 450, 90, color(255, 0, 0), "BACK TO MENU", 30);
   if (gameOverButton.isClicked()) {
     start = true;
+
+    if (playMultiPlayer){
+      createMultiplayer();
+      insertMultiplayerScore();
+      
+    }
+
+    else{
+      createSingleplayer();
+      insertSingleplayerScore();
+    }
+
+
+
     playSinglePlayer= false; 
     playMultiPlayer = false; 
     level1IsRunning = false; 
@@ -243,7 +257,6 @@ void gameCompleteScreen() {
     wave4 = false;
     gameComplete = false;
 
-    insertScore();
   }
 }
 
@@ -293,7 +306,7 @@ void drawHighscoreScreen() {
   if (backButton.isClicked()) {
     start = true;
     highScoreScreen = false;
-    
+
     topSingleplayers.clear();
     topSingleplayerScores.clear();
     topMultiplayers.clear();
@@ -315,7 +328,7 @@ void controlEvent(ControlEvent theEvent) {
       playSinglePlayer = true;
       singlePlayerLoginScreen = false;
       singleplayerText.setVisible(false);
-      createSingleplayer();
+      //createSingleplayer();
       startLevel1 = true;
       highscoreTimer = 0;
       highscoreTimerCounter = 0;
@@ -328,7 +341,7 @@ void controlEvent(ControlEvent theEvent) {
       playMultiPlayer = true;
       multiplayerLoginScreen = false;
       multiplayerText.setVisible(false);
-      createMultiplayer();
+      //createMultiplayer();
       startLevel1 = true;
       highscoreTimer = 0;
       highscoreTimerCounter = 0;

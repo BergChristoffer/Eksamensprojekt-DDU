@@ -23,7 +23,6 @@ void createSingleplayer() {
   }
 }
 
-//indsæt multiplayer navn i database
 void createMultiplayer() {
   db = new SQLite( this, "database.sqlite" );
   // Connect to database
@@ -36,7 +35,7 @@ void createMultiplayer() {
         sql = "INSERT INTO multiplayer (name,score) VALUES ('" + multiplayerName + "', '" + 0 + "');";
         db.execute(sql);
 
-        //multiplayerName = "";
+        //singleplayerName = "";
 
         db.close();
       }
@@ -47,21 +46,16 @@ void createMultiplayer() {
   }
 }
 
-void insertScore() {
+void insertSingleplayerScore() {
   db = new SQLite( this, "database.sqlite" );
   // Connect to database
   if ( db.connect() )
   {
     try {
-      if (playMultiPlayer == false) {
-        db.query( "SELECT ID_singleplayer FROM singleplayer WHERE name = '" + singleplayerName + "'" );
-        sql = "UPDATE singleplayer SET score = " + highscoreTimer + " WHERE ID_singleplayer = " + db.getInt("ID_singleplayer");
-      }
 
-      if (playMultiPlayer) {
-        db.query( "SELECT ID_multiplayer FROM multiplayer WHERE name = '" + multiplayerName + "'" );
-        sql = "UPDATE multiplayer SET score = " + highscoreTimer + " WHERE ID_multiplayer = " + db.getInt("ID_multiplayer");
-      }
+      db.query( "SELECT ID_singleplayer FROM singleplayer WHERE name = '" + singleplayerName + "'" );
+      sql = "UPDATE singleplayer SET score = " + highscoreTimer + " WHERE ID_singleplayer = " + db.getInt("ID_singleplayer");
+
 
       db.execute(sql);
 
@@ -73,6 +67,28 @@ void insertScore() {
     }
   }
 }
+void insertMultiplayerScore() {
+  db = new SQLite( this, "database.sqlite" );
+  // Connect to database
+  if ( db.connect() )
+  {
+    try {
+
+      db.query( "SELECT ID_multiplayer FROM multiplayer WHERE name = '" + multiplayerName + "'" );
+      sql = "UPDATE multiplayer SET score = " + highscoreTimer + " WHERE ID_multiplayer = " + db.getInt("ID_multiplayer");
+
+      db.execute(sql);
+
+      //luk database
+      db.close();
+    }
+    catch (Exception e) {
+      System.out.println("Exception: "+e);
+    }
+  }
+}
+
+
 
 ArrayList<String> topSingleplayers = new ArrayList<String>();
 ArrayList<String> topSingleplayerScores = new ArrayList<String>();
